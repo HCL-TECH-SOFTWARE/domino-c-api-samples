@@ -3,7 +3,7 @@ CIRA0EN
 CIRA2EN
 
 (c) Copyright IBM Corporation   1996,   2013
-(c) Copyright HCL Technologies   1996,   2023
+(c) Copyright HCL Technologies   1996,   2021
 All rights reserved.
 
 
@@ -14,7 +14,7 @@ idvault
 PURPOSE
 -------------
 Execute this program to illustrate how to upload id file to ID vault,
-get id file from ID vault, and synch id file contents with the ID vault.
+get id file from ID vault, sync id file contents with the ID vault and get user name of the provided ID file.
 
 ENVIRONMENTS
 -----------------------
@@ -83,6 +83,10 @@ You can find "s1.id","s2.id","s3.id" document in this db.
 
 SAMPLE OUTPUT
 -------------------------
+
+SECKFMGetIDFlags returned ID flags 1.
+SECKFMGetIDFlags returned ID as password protected.
+SECKFMGetUserInfo returned username CN=ss/O=HCL.
 Put ID file using the hKFC...OK
 Put ID file using local file name and hKFC - only hKFC should be used...OK
 Put ID file using local file name...OK
