@@ -48,7 +48,7 @@
 #include <ostime.h>
 #include <misc.h>
 #include <osmisc.h>
-#include <printLog.h>
+#include "../../printLog.h"
 
 /* HCL C API for Notes/Domino subroutine */
 

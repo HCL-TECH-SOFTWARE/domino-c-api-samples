@@ -58,7 +58,7 @@
 #include <nif.h>
 
 #include <osmisc.h>
-#include <printLog.h>
+#include "../../printLog.h"
 
 /* local include files */
 #include "cdfile.h"

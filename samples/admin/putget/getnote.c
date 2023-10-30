@@ -61,7 +61,7 @@ The parameters are as follows:
 #include <osmisc.h>
 #include <names.h>
 #include <nsferr.h>
-#include <printLog.h>
+#include "../../printLog.h"
 
 /* Local include files */
 

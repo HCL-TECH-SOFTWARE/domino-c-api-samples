@@ -55,7 +55,7 @@
 #include "names.h"
 #include "kfm.h"
 #include "icalSample.h"
-#include "printLog.h"
+#include "../../printLog.h"
 
 #include <stdlib.h>
 #include <stdio.h>

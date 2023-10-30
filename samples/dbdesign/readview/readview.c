@@ -45,7 +45,7 @@
 #include <stdnames.h>
 #include <nsfsearc.h>   /* For NSFFormulaDecompile */
 #include <viewfmt.h>
-#include <printLog.h>
+#include "../../printLog.h"
 #if defined(OS400)
 #include <misc.h>
 #endif

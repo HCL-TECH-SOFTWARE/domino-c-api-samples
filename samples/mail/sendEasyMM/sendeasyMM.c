@@ -59,7 +59,7 @@
 #include <mailserv.h>                   /* MailOpenMessageFile */
 #include <neterr.h>                     /* ERR_NO_NETBIOS */
 #include <clerr.h>                      /* ERR_SERVER_NOT_RESPONDING */
-#include <printLog.h>
+#include "../../printLog.h"
 
 
 

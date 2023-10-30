@@ -46,7 +46,7 @@
 #include <nsfnote.h>
 #include <ostime.h>
 #include <stdnames.h>
-#include <printLog.h>
+#include "../../printLog.h"
 
 #include <lapiplat.h>
 

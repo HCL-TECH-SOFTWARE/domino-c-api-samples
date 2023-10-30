@@ -41,7 +41,7 @@ SYNTAX:     TimeTest
 #include "osfile.h"
 #include "misc.h"
 #include "ostime.h"
-#include <printLog.h>
+#include "../../printLog.h"
 
 /* Local function prototypes */
 

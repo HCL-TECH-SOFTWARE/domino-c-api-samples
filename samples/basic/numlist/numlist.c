@@ -53,7 +53,7 @@
 #include <editods.h>
 #include <editdflt.h>
 #include <fontid.h>
-#include <printLog.h>
+#include "../../printLog.h"
 
 #include <osmisc.h>
               

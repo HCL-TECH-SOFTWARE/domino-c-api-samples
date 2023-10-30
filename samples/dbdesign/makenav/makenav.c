@@ -95,7 +95,7 @@ extern "C" {
 #include <viewfmt.h>
 #include <colorid.h>
 #include <osmisc.h>
-#include <printLog.h>
+#include "../../printLog.h"
 
 #ifdef OS390
 #include <_Ascii_a.h>  /* NOTE: must be the LAST file included */

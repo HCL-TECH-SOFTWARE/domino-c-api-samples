@@ -53,7 +53,7 @@
 #include <mail.h>
 #include <osmisc.h>
 #include <osmem.h>
-#include <printLog.h>
+#include "../../printLog.h"
 #include <mime.h>
 #include <mimedir.h>
 #include <mimeods.h>

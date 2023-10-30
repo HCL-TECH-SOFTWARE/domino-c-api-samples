@@ -45,7 +45,7 @@
 #include <names.h>                      /* MAXUSERNAME */
 #include <nsfdb.h>                      /* DBHOOKVEC */
 #include <nsfdata.h>                    /* LIST */
-#include <printLog.h>
+#include "../../printLog.h"
 
 /* Application-specific include files */
 #include "tracker.h"                    /* REQNUM_FILENAME */

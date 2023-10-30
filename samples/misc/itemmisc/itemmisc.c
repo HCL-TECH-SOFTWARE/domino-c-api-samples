@@ -60,7 +60,7 @@
 #include <mail.h>
 #include <osmisc.h>
 #include <osmem.h>
-#include <printLog.h>
+#include "../../printLog.h"
 
 
 #if !defined(ND64) 

@@ -70,7 +70,7 @@ extern "C" {
 #include <osmisc.h>
 #include <misc.h>
 #include <ostime.h>
-#include <printLog.h>
+#include "../../printLog.h"
 #if defined(OS400)
 #include "lapiplat.h"
 #endif

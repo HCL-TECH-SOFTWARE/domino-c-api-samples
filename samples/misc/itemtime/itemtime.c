@@ -48,7 +48,7 @@
 #include <nsfsearc.h>
 #include <osmem.h>
 #include <nsferr.h>
-#include <printLog.h>
+#include "../../printLog.h"
 #include <osmisc.h>
 #include <ostime.h>
 

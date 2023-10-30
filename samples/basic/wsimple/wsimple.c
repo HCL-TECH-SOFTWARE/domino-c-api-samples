@@ -46,7 +46,7 @@
 #include <nsfnote.h>
 #include <ostime.h>
 #include <osmisc.h>
-#include <printLog.h>
+#include "../../printLog.h"
 
 /* Notes API subroutine */
 int main (int argc, char *argv[])

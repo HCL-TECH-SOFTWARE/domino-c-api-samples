@@ -34,7 +34,7 @@
 
 #include "global.h"
 #include "ldap.h"
-#include "printLog.h"
+#include "../../printLog.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>

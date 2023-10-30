@@ -51,7 +51,7 @@
 #include "osmisc.h"
 #include "ldap.h"
 #include "ldap_msc.h"
-#include "printLog.h"
+#include "../../printLog.h"
 
 #include <stdio.h>
 #include <string.h>

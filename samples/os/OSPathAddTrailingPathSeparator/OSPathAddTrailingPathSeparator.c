@@ -49,7 +49,7 @@
 #include <nsfsearc.h>
 #include <nsferr.h>
 #include <osmisc.h>
-#include <printLog.h>
+#include "../../printLog.h"
 
 
 /************************************************************************

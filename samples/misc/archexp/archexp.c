@@ -50,7 +50,7 @@
 #include "osfile.h"
 #include "idtable.h"
 #include "oserr.h"
-#include "printLog.h"
+#include "../../printLog.h"
 
 /* archivie services API file */
 

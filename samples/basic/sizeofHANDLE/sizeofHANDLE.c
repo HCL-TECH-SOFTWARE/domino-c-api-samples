@@ -48,7 +48,7 @@ SYNTAX:     intro  [server name - optional] <database filename>
 #include "lapicinc.h"
 #endif
 #include "lapiplat.h"
-#include "printLog.h"
+#include "../../printLog.h"
 
 /* NOTE: This code MUST be the LAST file included so that ascii versions of the system APIs are used     */
 #if defined(OS390) && (__STRING_CODE_SET__==ISO8859-1 /* If os390 ascii compile                          */)     

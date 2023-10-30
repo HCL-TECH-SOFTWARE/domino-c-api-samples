@@ -64,7 +64,7 @@
 #include <fontid.h>
 #include <osmem.h>
 #include <nif.h>
-#include <printLog.h>
+#include "../../printLog.h"
 
 #include <osmisc.h>
 

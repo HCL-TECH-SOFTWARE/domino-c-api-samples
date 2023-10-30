@@ -36,7 +36,7 @@ SYNTAX:		sharedirectory
 #include "osmisc.h"
 #include "miscerr.h"
 #include "oserr.h"
-#include "printLog.h"
+#include "../../printLog.h"
 
 /* Program declaration. */
 int main(int argc, char *argv[])

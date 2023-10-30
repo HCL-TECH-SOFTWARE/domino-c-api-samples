@@ -56,7 +56,7 @@
 #include <mime.h>
 #include <mimedir.h>
 #include <mimeods.h>
-#include <printLog.h>
+#include "../../printLog.h"
 
 #if !defined(ND64) 
     #define DHANDLE HANDLE 

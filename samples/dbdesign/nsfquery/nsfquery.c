@@ -51,7 +51,7 @@
 #include <miscerr.h>
 #include <oserr.h>
 #include <osmisc.h>
-#include <printLog.h>
+#include "../../printLog.h"
 
 #define  STRING_LENGTH  256
 #define  OUTFILE  "query.tmp"

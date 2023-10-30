@@ -57,7 +57,7 @@
 #include <odstypes.h>
 #include <editods.h>
 #include <osmisc.h>
-#include <printLog.h>
+#include "../../printLog.h"
 
 /* Program-specific include files */
 

@@ -102,7 +102,7 @@
 #endif
 
 #include <osmisc.h>
-#include <printLog.h>
+#include "../../printLog.h"
 #include "auth_fld.h"                   /* Local definitions */
 
 #if !defined(ND64) 

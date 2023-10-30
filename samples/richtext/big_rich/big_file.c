@@ -47,7 +47,7 @@
 #include <string.h>
 #include <memory.h>                     /* _fmemset() */
 #include <stdlib.h>                     /* atol() */
-#include <printLog.h>
+#include "../../printLog.h"
 
 #define LINE_LEN    72
 

@@ -67,7 +67,7 @@ extern "C" {
 #include <log.h>
 #include <misc.h>
 #include <textlist.h>
-#include <printLog.h>
+#include "../../printLog.h"
 #include <lapiplat.h>
 #include <stdlib.h>
 

@@ -66,7 +66,7 @@
 #include <idtable.h>
 #include <kfm.h>
 #include <osfile.h>
-#include <printLog.h>
+#include "../../printLog.h"
 
 
 /* Form Names */

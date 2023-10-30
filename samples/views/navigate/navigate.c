@@ -56,7 +56,7 @@
 #include <nsferr.h>
 #include <niferr.h>
 #include <miscerr.h>
-#include <printLog.h>
+#include "../../printLog.h"
 
 #include <lapiplat.h>
 

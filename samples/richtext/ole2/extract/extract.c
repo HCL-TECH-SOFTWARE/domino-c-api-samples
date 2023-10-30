@@ -33,7 +33,7 @@
 #include <osmem.h>
 #include <nsfole.h>
 #include <osmisc.h>
-#include <printLog.h>
+#include "../../../printLog.h"
 
 
 /* Forward declarations */

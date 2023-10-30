@@ -70,7 +70,7 @@ extern "C" {
 #include <nsferr.h>
 #include <ods.h>
 #include <textlist.h>
-#include <printLog.h>
+#include "../../printLog.h"
 #include <osmisc.h>
 
 void  LNPUBLIC  ProcessArgs (int argc, char *argv[],

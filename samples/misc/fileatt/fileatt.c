@@ -91,7 +91,7 @@
 #include <misc.h>
 #include <miscerr.h>
 #include <editods.h>
-#include <printLog.h>
+#include "../../printLog.h"
 
 STATUS LNPUBLIC AttachFile1(  /* using NSFNoteAttachFile */
     NOTEHANDLE hNote);

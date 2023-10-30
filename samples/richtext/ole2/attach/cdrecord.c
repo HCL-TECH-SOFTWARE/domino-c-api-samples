@@ -43,7 +43,7 @@
 #include <editdflt.h>
 #include <editods.h>
 #include <colorid.h>
-#include <PRINTLOG.h>
+#include "../../../printLog.h"
 
 
 /**********************************************************************

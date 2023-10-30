@@ -47,7 +47,7 @@
 #include <nsfnote.h>
 #include <editods.h>
 #include <osmem.h>
-#include <printLog.h>
+#include "../../printLog.h"
 
 #include <lapiplat.h>
 

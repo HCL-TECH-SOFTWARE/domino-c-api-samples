@@ -55,7 +55,7 @@
 #include <colorid.h>
 
 #include <lapiplat.h>
-#include <printLog.h>
+#include "../../printLog.h"
 
 void CreateBody(char **ppBuf, WORD *pLength);
 

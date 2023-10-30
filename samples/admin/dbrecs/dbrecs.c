@@ -67,7 +67,7 @@
 #include "oserr.h"
 #include "misc.h"
 #include "win32io.h"
-#include "printLog.h"
+#include "../../printLog.h"
 
 /* define exit codes if they are not defined elsewhere */
 #ifndef EXIT_SUCCESS

@@ -43,7 +43,7 @@
 #include <nif.h>
 #include <osmem.h>
 #include <miscerr.h>
-#include <printLog.h>
+#include "../../printLog.h"
 
 #include <osmisc.h>
 

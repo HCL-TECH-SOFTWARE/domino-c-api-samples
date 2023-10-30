@@ -46,7 +46,7 @@ extern "C" {
 #include <nsfnote.h>
 #include <ostime.h>
 #include <osmisc.h>
-#include <printLog.h>
+#include "../../printLog.h"
 
 /* Local include files */
 

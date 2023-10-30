@@ -44,7 +44,7 @@ SYNTAX:     intro  [server name - optional] <database filename>
 #include "nsfdata.h"
 #include "osmisc.h"
 #include "osfile.h"
-#include "PRINTLOG.h"
+#include "../../printLog.h"
 #if defined(OS390)
 #include "lapicinc.h"
 #endif

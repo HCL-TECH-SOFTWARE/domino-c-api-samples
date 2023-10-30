@@ -66,7 +66,7 @@
 #include "textlist.h"
 #include "names.h"
 /*#include "timelist.h"*/
-#include "printLog.h"
+#include "../../printLog.h"
 
 #include <stdlib.h>
 #include <stdio.h>

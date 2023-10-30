@@ -45,7 +45,7 @@
 #include <misc.h>
 #include <miscerr.h>
 #include <editods.h>
-#include <printLog.h>
+#include "../../printLog.h"
 
 #include <osmisc.h>
 

@@ -85,7 +85,7 @@
 #include <osmisc.h>
 
 #include <lapiplat.h>
-#include <printLog.h>
+#include "../../printLog.h"
 
 /* local includes  */
 

@@ -82,7 +82,7 @@
 #include <viewfmt.h>
 #include <colorid.h>
 #include <miscerr.h>
-#include <printLog.h>
+#include "../../printLog.h"
 
 #if !defined(ND64) 
     #define DHANDLE HANDLE 

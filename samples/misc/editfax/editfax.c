@@ -41,7 +41,7 @@
 #include <editdflt.h>
 #include <nsfsearc.h>    /* SEARCH_MATCH, etc. */
 #include <osmisc.h>
-#include <PRINTLOG.h>
+#include "../../printLog.h"
 
 /* OS include files */
 #ifndef UNIX

@@ -61,7 +61,7 @@
 #include <niferr.h>                     /* ERR_NO_MORE_MEMBERS */
 #include <lookup.h>
 #include <osmisc.h>
-#include <printLog.h>
+#include "../../printLog.h"
 
 #if !defined(ND64) 
     #define DHANDLE HANDLE 

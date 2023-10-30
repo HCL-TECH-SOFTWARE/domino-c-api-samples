@@ -41,7 +41,7 @@
 #include <osfile.h> 
 #include <kfm.h>                                             
 #include <textlist.h>
-#include<printLog.h>
+#include"../../printLog.h"
 
 #if !defined(ND64) 
     #define DHANDLE HANDLE 

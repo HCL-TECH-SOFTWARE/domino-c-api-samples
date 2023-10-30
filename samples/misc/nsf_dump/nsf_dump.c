@@ -94,7 +94,7 @@ extern "C" {
 #include <oleods.h>
 #include <idtable.h>
 #include <osmisc.h>
-#include <printLog.h>
+#include "../../printLog.h"
 #include <lapiplat.h>
 
 

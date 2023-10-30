@@ -77,7 +77,7 @@
 #include <nsfsearc.h>
 #include <osfile.h>
 #include <idtable.h>  
-#include <printLog.h>
+#include "../../printLog.h"
 #include <osmisc.h>  
 
 /*

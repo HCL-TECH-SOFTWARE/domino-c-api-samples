@@ -45,7 +45,7 @@
 #include <colorid.h>
 #include <ostime.h>
 #include <osmisc.h>
-#include <printLog.h>
+#include "../../printLog.h"
 
 
 /************************************************************************

@@ -56,7 +56,7 @@
 #include <oserr.h>
 #include <time.h>
 #include <osmisc.h>
-#include <printLog.h>
+#include "../../printLog.h"
 
 #define STRING_LENGTH 256
 

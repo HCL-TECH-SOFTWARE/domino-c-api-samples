@@ -53,7 +53,7 @@
 #include    <osmem.h>
 #include    <idtable.h>
 #include    <intl.h>
-#include    <printLog.h>
+#include    "../../printLog.h"
 
 #include     <lapiplat.h>
 

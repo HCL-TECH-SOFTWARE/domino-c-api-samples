@@ -48,7 +48,7 @@ SYNTAX:     getmultnoteinfo [server name - optional] <database filename>
 #include "idtable.h"
 #include "nsfnote.h"
 #include "osmem.h"
-#include "printLog.h"
+#include "../../printLog.h"
 
 #if defined(OS390)
 #include "lapicinc.h"

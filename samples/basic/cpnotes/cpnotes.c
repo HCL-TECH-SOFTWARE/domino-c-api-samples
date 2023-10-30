@@ -49,7 +49,7 @@
 #include <ostime.h>
 #include <nsferr.h>
 #include <osmisc.h>
-#include <printLog.h>
+#include "../../printLog.h"
 
 void  LNPUBLIC  ProcessArgs (int argc, char *argv[],
                              char *input_path, 

@@ -49,7 +49,7 @@
 #include <ods.h>
 #include <osmem.h>
 #include <osmisc.h>
-#include <PRINTLOG.h>
+#include "../../printLog.h"
 
 
 #define MAX_MESSAGE  (256)

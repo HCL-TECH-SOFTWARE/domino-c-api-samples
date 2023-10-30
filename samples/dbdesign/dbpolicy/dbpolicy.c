@@ -48,7 +48,7 @@
 #include <editdflt.h>
 #include <colorid.h>
 #include <nsferr.h>
-#include <printLog.h>
+#include "../../printLog.h"
 
 #include <lapiplat.h>
 

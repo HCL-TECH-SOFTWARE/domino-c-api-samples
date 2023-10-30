@@ -208,7 +208,7 @@
 #include <stdnames.h>
 #include <agents.h>
 #include <kfm.h>
-#include <printLog.h>
+#include "../../printLog.h"
 
 /*
  *  Local includes

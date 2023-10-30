@@ -45,7 +45,7 @@
 #include "lapicinc.h"
 #endif
 #include "lapiplat.h"
-#include "printLog.h"
+#include "../../printLog.h"
 
 /* Program declaration */
 int main(int argc, char *argv[])

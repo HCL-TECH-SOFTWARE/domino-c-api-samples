@@ -65,7 +65,7 @@ extern "C" {
 #include <osmisc.h>     /*  for OSLoadString */
 #include <stdnames.h>
 #include <nsferr.h>
-#include <printLog.h>
+#include "../../printLog.h"
 
 /*
  *  Local header files

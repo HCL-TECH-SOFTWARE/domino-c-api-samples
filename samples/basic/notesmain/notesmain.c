@@ -53,7 +53,7 @@
 #include <nsfdb.h>
 #include <nsfdata.h>
 #include <osfile.h>
-#include <printLog.h>
+#include "../../printLog.h"
 #include <lapiplat.h>
 
 #if defined(OS390) && (__STRING_CODE_SET__==ISO8859-1 /* ascii compile */)

@@ -71,7 +71,7 @@
 #include <schgtw.h>
 #include <textlist.h>
 
-#include <printLog.h>
+#include "../../printLog.h"
 #include <osmisc.h>
 
 

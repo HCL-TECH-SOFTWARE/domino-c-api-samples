@@ -86,7 +86,7 @@
 #if defined(OS400)
 #include <misc.h>
 #endif
-#include <printLog.h>
+#include "../../printLog.h"
 
 #if !defined(ND64) 
     #define DHANDLE HANDLE 

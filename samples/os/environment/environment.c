@@ -49,7 +49,7 @@ SYNTAX:		environment
 #include "ostime.h"
 #include "misc.h"
 #include "oserr.h"
-#include <printLog.h>
+#include "../../printLog.h"
 
 #define STRLENGTH 256
 

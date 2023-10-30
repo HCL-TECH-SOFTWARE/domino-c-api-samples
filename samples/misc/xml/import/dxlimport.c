@@ -72,7 +72,7 @@
 #include <osmem.h>
 #include <lapiplat.h>
 #include "dxlimport.h"
-#include <printLog.h>
+#include "../../../printLog.h"
 
 #ifdef UNIX
 	#define STRICMP strcasecmp

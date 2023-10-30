@@ -41,7 +41,7 @@
 #include "osfile.h"
 #include "osmem.h"
 #include "win32io.h"
-#include "printLog.h"
+#include "../../printLog.h"
 
 #if !defined(ND64) 
     #define DHANDLE HANDLE 

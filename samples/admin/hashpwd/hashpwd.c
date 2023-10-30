@@ -46,7 +46,7 @@
 #include "misc.h"
 #include "secerr.h"
 #include "bsafe.h"
-#include "printLog.h"
+#include "../../printLog.h"
 
 /* Notes API subroutine */
 int main (int argc, char *argv[])

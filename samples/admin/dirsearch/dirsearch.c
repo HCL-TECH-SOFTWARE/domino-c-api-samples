@@ -53,7 +53,7 @@
 #include "nsfdb.h"
 #include "nsfdata.h"
 #include "osmisc.h"
-#include "printLog.h"
+#include "../../printLog.h"
 
 /* Directory Independence API files */
 #include "dirctx.h"

@@ -57,7 +57,7 @@
 #include <neterr.h>                     /* ERR_NO_NETBIOS */
 #include <clerr.h>                      /* ERR_SERVER_NOT_RESPONDING */
 #include <osmisc.h>
-#include <printLog.h>
+#include "../../printLog.h"
 
 #include "mime.h"
 #include "nsfmime.h"

@@ -54,7 +54,7 @@
 #include <osfile.h>
 #include <mail.h>
 #include <mailserv.h> 
-#include <printLog.h>
+#include "../../printLog.h"
 
 #include <oooapi.h>
 

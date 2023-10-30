@@ -55,7 +55,7 @@
 #include <misc.h>
 #endif
 
-#include <printLog.h>
+#include "../../printLog.h"
 #include <lapiplat.h>
 
 /* Function prototypes */

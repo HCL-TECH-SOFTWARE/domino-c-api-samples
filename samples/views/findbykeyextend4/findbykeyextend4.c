@@ -49,7 +49,7 @@
 #include <miscerr.h>
 #include <editods.h>
 #include <osmisc.h>
-#include <printLog.h>
+#include "../../printLog.h"
 #if !defined(UNIX)
 #include <windows.h>
 #endif

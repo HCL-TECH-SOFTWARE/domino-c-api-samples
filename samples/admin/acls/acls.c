@@ -90,7 +90,7 @@ extern "C" {
 #include <osmem.h>
 #include <textlist.h>
 #include <acl.h>
-#include <printLog.h>
+#include "../../printLog.h"
 
 #if !defined(ND64) 
     #define DHANDLE HANDLE 

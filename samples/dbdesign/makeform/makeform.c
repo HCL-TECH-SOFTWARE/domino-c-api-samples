@@ -120,7 +120,7 @@
 #include <fsods.h>
 #include <rsrcods.h>
 #include <osmisc.h>
-#include <printLog.h>
+#include "../../printLog.h"
 
 /*
  * Local header files

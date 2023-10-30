@@ -46,7 +46,7 @@
 #include <osfile.h>
 #include <ostime.h>
 #include <misc.h>
-#include <printLog.h>
+#include "../../printLog.h"
 
 
 #define ZONE_MASK                0x0f000000L

@@ -28,7 +28,7 @@
 #include <osmem.h>
 #include <nsfasc.h>
 #include <osmisc.h>
-#include <printLog.h>
+#include "../../../printLog.h"
 
 /* Forward declarations */
 STATUS LNPUBLIC ProcessOneNote(

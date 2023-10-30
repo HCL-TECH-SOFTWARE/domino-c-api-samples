@@ -46,7 +46,7 @@
 #include <nsfdb.h>
 #include <nsfdata.h>
 #include <osmisc.h>
-#include <printLog.h>
+#include "../../printLog.h"
 
 /* Local function prototypes */ 
 void  LNPUBLIC  ProcessArgs (int argc, char *argv[],

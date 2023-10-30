@@ -108,7 +108,7 @@
 #include <nsfsearc.h>
 #include <editods.h>
 #include <osmisc.h>
-#include <printLog.h>
+#include "../../printLog.h"
 
 
 /* program specific header file */

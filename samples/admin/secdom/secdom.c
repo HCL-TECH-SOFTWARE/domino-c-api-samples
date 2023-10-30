@@ -42,7 +42,7 @@ extern "C" {
 #include "lookup.h"
 #include "dsapi.h"
 #include "addin.h"
-#include "printLog.h"
+#include "../../printLog.h"
 
 #if !defined(ND64) 
     #define DHANDLE HANDLE 

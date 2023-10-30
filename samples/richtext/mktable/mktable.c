@@ -57,7 +57,7 @@
 #include <osfile.h>
 #include <textlist.h>
 #include <stdnames.h>
-#include <printLog.h>
+#include "../../printLog.h"
 
 #include "mktable.h"
 
