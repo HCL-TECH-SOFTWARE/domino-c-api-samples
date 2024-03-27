@@ -70,7 +70,6 @@
 
 /* HCL C API for Notes/Domino includes */
 
-#include <lapicinc.h>
 
 #include <global.h>
 #include <nsf.h>
@@ -84,7 +83,10 @@
 #include <ixedit.h>
 #include <osmisc.h>
 
-#include <lapiplat.h>
+#ifndef OSMISC_DEFS
+#include <osmisc.h>
+#endif
+
 #if defined(CAPI_TESTING) 
 #include "printlog.h" 
 #else

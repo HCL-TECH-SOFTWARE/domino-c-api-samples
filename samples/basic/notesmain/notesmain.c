@@ -45,10 +45,6 @@
    Version #
  */
 
-#if defined(OS390)
-#include "lapicinc.h"
-#endif
-
 #include <global.h>
 #include <nsfdb.h>
 #include <nsfdata.h>
@@ -62,15 +58,15 @@
  OSLoadString(NULLHANDLE, ERR(api_error), szErrorText, sizeof(szErrorText));\
  fprintf(stderr, "[ERROR]:%s:%d:%s - %s", __FILE__,__LINE__,api_name,szErrorText); }
 #endif 
-#include <lapiplat.h>
+
+#ifndef OSMISC_DEFS
+#include <osmisc.h>
+#endif
 
 #if defined(OS390) && (__STRING_CODE_SET__==ISO8859-1 /* ascii compile */)
 #include <_Ascii_a.h>   /* NOTE: must be the LAST file included */
 #endif /* OS390, ascii compile */
 
-#if defined(OS390) 
-#include <osmisc.h>
-#endif
 
 
 /************************************************************************

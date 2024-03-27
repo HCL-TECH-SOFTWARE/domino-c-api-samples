@@ -55,10 +55,6 @@ extern "C" {
    Version #
  */
 
-#if defined(OS390)
-#include "lapicinc.h"
-#endif
-
 #include <global.h>
 #include <nsfdb.h>
 #include <nsfdata.h>
@@ -76,12 +72,15 @@ extern "C" {
  OSLoadString(NULLHANDLE, ERR(api_error), szErrorText, sizeof(szErrorText));\
  fprintf(stderr, "[ERROR]:%s:%d:%s - %s", __FILE__,__LINE__,api_name,szErrorText); }
 #endif 
-#include <lapiplat.h>
 #include <stdlib.h>
 
 #if defined(OS390) && (__STRING_CODE_SET__==ISO8859-1 /* ascii compile */)
 #include <_Ascii_a.h>   /* NOTE: must be the LAST file included */
 #endif /* OS390, ascii compile */
+
+#ifndef OSMISC_DEFS
+#include <osmisc.h>
+#endif
 
 #define ENVACTIVITY_AUTO "ACTIVITY_AUTO"  /* Env string for handling automation */
 #define ENV_LENGTH 25		/* Length for env ACTIVITY_AUTO string */
@@ -132,7 +131,7 @@ STATUS LNPUBLIC NotesMain(int argc, char far *argv[])
   		NULL, 		/* NULL means ALL activity types. */
   		0, 			/* No flags */
   		NULL))		/* No date restriction */
-    LAPI_RETURN (ERR(error));
+    PRINTERROR(error,"LogOpenActivityStream");
 
   /* Read the records */
   if (error = LogEnumActivityStream(
@@ -141,7 +140,7 @@ STATUS LNPUBLIC NotesMain(int argc, char far *argv[])
   		&recordcount,  /* Some example user data */
   		NULL, 		   /* Not saving the stream position. NULL OK here */
   		0))				/* Not saving the stream position. 0 OK here */
-	  LAPI_RETURN(ERR(error));
+	PRINTERROR(error,"LogEnumActivityStream");
 
   /* Close the stream */
   LogCloseActivityStream(pstreamctx);
@@ -149,7 +148,6 @@ STATUS LNPUBLIC NotesMain(int argc, char far *argv[])
   
   /* End of subroutine. */
   PRINTLOG("\nProgram completed successfully\n");
-  LAPI_RETURN (NOERROR);
 }
 
 STATUS LNCALLBACK ActionRoutine(

@@ -69,10 +69,6 @@ extern "C" {
 
 /* HCL C API for Notes/Domino include files */
 
-#if defined(OS390)
-
-#include <lapicinc.h>
-#endif
 #ifdef OS390
 #include <_Ascii_a.h>    /* NOTE: must be the LAST file included */
 #endif
@@ -103,7 +99,6 @@ extern "C" {
  OSLoadString(NULLHANDLE, ERR(api_error), szErrorText, sizeof(szErrorText));\
  fprintf(stderr, "[ERROR]:%s:%d:%s - %s", __FILE__,__LINE__,api_name,szErrorText); }
 #endif 
-#include <lapiplat.h>
 
 
 /* NSF_DUMP - specific include file */

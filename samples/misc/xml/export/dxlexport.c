@@ -65,8 +65,8 @@
 #include <nif.h>
 #include <osmem.h>
 #include <idtable.h>
-#include <lapiplat.h>
 #include "dxlexport.h"
+
 #if defined(CAPI_TESTING) 
 #include "printlog.h" 
 #else
@@ -79,6 +79,10 @@
 
 #if !defined(ND64) 
     #define DHANDLE HANDLE 
+#endif
+
+#ifndef OSMISC_DEFS
+#include <osmisc.h>
 #endif
 
 

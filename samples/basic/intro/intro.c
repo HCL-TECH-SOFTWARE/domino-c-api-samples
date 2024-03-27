@@ -44,10 +44,11 @@ SYNTAX:     intro  [server name - optional] <database filename>
 #include "nsfdata.h"
 #include "osmisc.h"
 #include "osfile.h"
-#if defined(OS390)
-#include "lapicinc.h"
+
+#ifndef OSMISC_DEFS
+#include <osmisc.h>
 #endif
-#include "lapiplat.h"
+
 #if defined(CAPI_TESTING) 
 #include "printlog.h" 
 #else

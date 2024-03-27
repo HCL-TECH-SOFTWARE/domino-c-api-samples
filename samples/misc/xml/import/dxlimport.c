@@ -70,7 +70,6 @@
 #include <osfile.h>
 #include <nsfdb.h>
 #include <osmem.h>
-#include <lapiplat.h>
 #include "dxlimport.h"
 #if defined(CAPI_TESTING) 
 #include "printlog.h" 
@@ -81,6 +80,10 @@
  OSLoadString(NULLHANDLE, ERR(api_error), szErrorText, sizeof(szErrorText));\
  fprintf(stderr, "[ERROR]:%s:%d:%s - %s", __FILE__,__LINE__,api_name,szErrorText); }
 #endif 
+
+#ifndef OSMISC_DEFS
+#include <osmisc.h>
+#endif
 
 #ifdef UNIX
 	#define STRICMP strcasecmp

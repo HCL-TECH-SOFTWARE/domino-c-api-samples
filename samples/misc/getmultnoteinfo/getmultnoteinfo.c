@@ -58,10 +58,9 @@ SYNTAX:     getmultnoteinfo [server name - optional] <database filename>
  fprintf(stderr, "[ERROR]:%s:%d:%s - %s", __FILE__,__LINE__,api_name,szErrorText); }
 #endif 
 
-#if defined(OS390)
-#include "lapicinc.h"
+#ifndef OSMISC_DEFS
+#include <osmisc.h>
 #endif
-#include "lapiplat.h"
 
 /* NOTE: This code MUST be the LAST file included so that ascii versions of the system APIs are used     */
 #if defined(OS390) && (__STRING_CODE_SET__==ISO8859-1 /* If os390 ascii compile                          */)     

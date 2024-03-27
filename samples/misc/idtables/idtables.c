@@ -44,7 +44,6 @@
 
 /* HCL C API for Notes/Domino include files */
 
-#include     <lapicinc.h>
 
 #include    <global.h>
 #include    <nsf.h>
@@ -63,7 +62,9 @@
  fprintf(stderr, "[ERROR]:%s:%d:%s - %s", __FILE__,__LINE__,api_name,szErrorText); }
 #endif 
 
-#include     <lapiplat.h>
+#ifndef OSMISC_DEFS
+#include <osmisc.h>
+#endif
 
 #if !defined(ND64) 
     #define DHANDLE HANDLE 

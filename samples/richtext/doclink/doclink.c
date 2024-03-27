@@ -44,7 +44,6 @@
 
 /* HCL C API for Notes/Domino Header files.  */
 
-#include <lapicinc.h>
 
 #include <global.h>
 #include <nsfdata.h>
@@ -54,7 +53,10 @@
 #include <editods.h>
 #include <colorid.h>
 
-#include <lapiplat.h>
+#ifndef OSMISC_DEFS
+#include <osmisc.h>
+#endif
+
 #if defined(CAPI_TESTING) 
 #include "printlog.h" 
 #else

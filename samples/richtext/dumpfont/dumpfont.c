@@ -59,7 +59,6 @@ extern "C" {
 
 /* HCL C API for Notes/Domino include files */
 
-#include <lapicinc.h>
 
 #include <global.h>
 #include <nsfdb.h>
@@ -72,7 +71,10 @@ extern "C" {
 #include <stdnames.h>
 #include <editods.h>            /* CDFONTTABLE */
 
-#include <lapiplat.h>
+#ifndef OSMISC_DEFS
+#include <osmisc.h>
+#endif
+
 #if defined(CAPI_TESTING) 
 #include "printlog.h" 
 #else

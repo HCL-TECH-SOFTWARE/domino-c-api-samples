@@ -41,10 +41,11 @@
 #include "idvault.h"
 #include "nsfdb.h"
 #include "osfile.h"
-#if defined(OS390)
-#include "lapicinc.h"
+
+#ifndef OSMISC_DEFS
+#include <osmisc.h>
 #endif
-#include "lapiplat.h"
+
 #if defined(CAPI_TESTING) 
 #include "printlog.h" 
 #else
