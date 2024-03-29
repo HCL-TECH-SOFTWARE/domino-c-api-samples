@@ -98,3 +98,4 @@ SAMPLE OUTPUT
 [15B4:0002-58DC] 23-10-2020 12:41:50   Add-in Test: 20-second job complete.
 [15B4:0002-58DC] 23-10-2020 12:42:09   Add-in Test: 20-second job complete.
 [15B4:0002-58DC] 23-10-2020 12:42:09   Add-in Test: Termination complete.
+
