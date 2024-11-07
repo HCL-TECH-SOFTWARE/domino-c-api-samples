@@ -35,7 +35,7 @@ extern "C" {
 #include <string.h>
 
 /* unix authentication includes */
-#ifdef SOLARIS || LINUX
+#ifdef LINUX
 #include <shadow.h>
 #include <crypt.h>
 #endif
