@@ -57,7 +57,7 @@ int unknown = 1;
 /* Get the unix record for this user */
 
 
-#ifdef SOLARIS || LINUX
+#ifdef LINUX
     struct spwd result;
 #endif
 
@@ -68,7 +68,7 @@ int unknown = 1;
 
 /* Get the unix record for this user */
 
-#ifdef SOLARIS || LINUX
+#ifdef LINUX
 
 if (getspnam_r(userName, &result, buffer, sizeof(buffer))) 
 {
