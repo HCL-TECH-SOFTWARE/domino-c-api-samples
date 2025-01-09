@@ -429,7 +429,7 @@ STATUS PrintAttachmentDetails(DBHANDLE hDB)
         return (1);
     }
 	
-	return erorr;
+    return error;
 }
 
 STATUS LNPUBLIC DumpOneNote( void far *Param,
