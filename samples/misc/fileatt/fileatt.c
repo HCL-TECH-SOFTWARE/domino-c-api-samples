@@ -428,6 +428,8 @@ STATUS PrintAttachmentDetails(DBHANDLE hDB)
         PRINTERROR (error,"NSFSearch");
         return (1);
     }
+	
+	return erorr;
 }
 
 STATUS LNPUBLIC DumpOneNote( void far *Param,
