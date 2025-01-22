@@ -452,7 +452,7 @@ int getLookupInfo (FilterContext* context,
 
         return -1;
     }
-    ValueLength -= sizeof(WORD);
+    ValueLength -= (WORD) sizeof(WORD);
 
     /* check the value DataType */
     switch (DataType) {
@@ -488,7 +488,7 @@ int getLookupInfo (FilterContext* context,
                                          * into */
                             MAX_BUF_LEN);   /* Length of buffer */
     if (!error) {
-        *pInfoLen = strlen(*pInfo)+1;
+        *pInfoLen = (int) strlen(*pInfo)+1;
         return 0;
     }
 
