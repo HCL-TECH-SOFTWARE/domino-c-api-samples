@@ -426,8 +426,10 @@ STATUS PrintAttachmentDetails(DBHANDLE hDB)
     {
         fprintf( stderr,"Error encountered searching for data notes.\n" );
         PRINTERROR (error,"NSFSearch");
-        return (1);
+        return (error);
     }
+	
+    return (NOERROR);
 }
 
 STATUS LNPUBLIC DumpOneNote( void far *Param,
