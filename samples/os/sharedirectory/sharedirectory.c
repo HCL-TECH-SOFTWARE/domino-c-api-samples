@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
 	
 	/* Local data declarations. */
 	
-	char szShareDirectory[MAXPATH];
+	char szShareDirectory[MAXPATH] = {0};
 	STATUS error = NOERROR;
 	memset(szShareDirectory, '\0', MAXPATH);
 
