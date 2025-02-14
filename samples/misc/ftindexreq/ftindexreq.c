@@ -1,6 +1,6 @@
 /****************************************************************************
  *
- * Copyright HCL Technologies 1996, 2024.
+ * Copyright HCL Technologies 1996, 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -121,7 +121,8 @@ int main(int argc, char *argv[])
 
    if (error = ConvertTIMEDATEToText (NULL, NULL, &retTime, szTD,
                                       MAXALPHATIMEDATE, &wRetLen))
-      goto exitCloseDB;  
+      goto exitCloseDB; 
+ 
 
    PRINTLOG ("Time of Last Index:  %s\n\n", szTD);
 
