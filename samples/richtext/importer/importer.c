@@ -262,7 +262,7 @@ int main(int argc, char *argv[])
 
     if (error = NSFDbClose(hDbNSFFile))
     {
-        PRINTLOG("\nError closing database '%s'. Terminating...\n", szNSFFile);
+        PRINTLOG("\nError closing database '%s'. Terminating...\n, szNSFFile");
         PRINTERROR(error,"NSFDbClose");
         goto Done;
     }

@@ -52,9 +52,9 @@ int main(int argc, char *argv[])
 	
 	/* Local data declarations. */
 	
-	char szShareDirectory[MAXPATH] = {0};
+	char szShareDirectory[MAXPATH];
 	STATUS error = NOERROR;
-	memset(szShareDirectory, '\0', MAXPATH);
+	memset(szShareDirectory, MAXPATH, '\0');
 
 	error = NotesInitExtended(argc, argv);
 

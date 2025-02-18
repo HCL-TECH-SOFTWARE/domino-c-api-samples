@@ -279,7 +279,7 @@ STATUS LNPUBLIC ScheduleTask(int command)
     list_ptr = OSLockObject(list_handle);
 
     /* Retrieve the user's schedule container */
-    if (szServerName[0] == '\0')
+    if (szServerName==NULL)
                 SchrqstLocalOrRemote=SCHRQST_LOCAL;        /* local mail  */
     else
                 SchrqstLocalOrRemote=SCHRQST_FORCEREMOTE;  /* server mail */

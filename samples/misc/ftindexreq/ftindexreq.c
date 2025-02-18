@@ -121,8 +121,7 @@ int main(int argc, char *argv[])
 
    if (error = ConvertTIMEDATEToText (NULL, NULL, &retTime, szTD,
                                       MAXALPHATIMEDATE, &wRetLen))
-      goto exitCloseDB; 
- 
+      goto exitCloseDB;  
 
    PRINTLOG ("Time of Last Index:  %s\n\n", szTD);
 
