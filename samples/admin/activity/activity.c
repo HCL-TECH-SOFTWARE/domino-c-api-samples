@@ -124,23 +124,31 @@ STATUS LNPUBLIC NotesMain(int argc, char far *argv[])
    }
 
    /* Open the stream. */
-  if (error = LogOpenActivityStream(
-  		&pstreamctx, /* Return the stream context */
-  		pserver, 	 /* Server name or NULL */
-		"log.nsf",			 /*	LogPath */
-  		NULL, 		/* NULL means ALL activity types. */
-  		0, 			/* No flags */
-  		NULL))		/* No date restriction */
-    PRINTERROR(error,"LogOpenActivityStream");
+   if (error = LogOpenActivityStream(
+	   &pstreamctx, /* Return the stream context */
+	   pserver, 	 /* Server name or NULL */
+	   "log.nsf",			 /*	LogPath */
+	   NULL, 		/* NULL means ALL activity types. */
+	   0, 			/* No flags */
+	   NULL))		/* No date restriction */
+   {
+	   PRINTERROR(error, "LogOpenActivityStream");
+	   NotesTerm();
+	   return(1);
+   }
 
   /* Read the records */
-  if (error = LogEnumActivityStream(
-  		pstreamctx,    /* Open activity stream context */
-  		ActionRoutine, /* User defined callback */
-  		&recordcount,  /* Some example user data */
-  		NULL, 		   /* Not saving the stream position. NULL OK here */
-  		0))				/* Not saving the stream position. 0 OK here */
-	PRINTERROR(error,"LogEnumActivityStream");
+   if (error = LogEnumActivityStream(
+	   pstreamctx,    /* Open activity stream context */
+	   ActionRoutine, /* User defined callback */
+	   &recordcount,  /* Some example user data */
+	   NULL, 		   /* Not saving the stream position. NULL OK here */
+	   0))				/* Not saving the stream position. 0 OK here */
+   {
+	   PRINTERROR(error, "LogEnumActivityStream");
+	   NotesTerm();
+	   return(1);
+   }
 
   /* Close the stream */
   LogCloseActivityStream(pstreamctx);

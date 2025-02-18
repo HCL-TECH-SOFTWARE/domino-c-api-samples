@@ -521,7 +521,7 @@ STATUS PutBar(char far * far *pbRTItem, char *pBarText,
   */
     if (pBarText != NULL)
         {
-                strcpy(*pbRTItem, pBarText);
+                strncpy(*pbRTItem, pBarText, sizeof(*pBarText));
                 *pbRTItem += 1;
                 *pbRTItem += wTextLength;
         }

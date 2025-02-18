@@ -620,7 +620,7 @@ void far        *pCtx)
         sprintf(FieldString, "Field Name = %s, Data Type = %s\n",
                 szFieldName, szDataType);
 
-        strcat(pBuf, FieldString);
+        strncat(pBuf, FieldString, sizeof(pBuf));
     
     }
 

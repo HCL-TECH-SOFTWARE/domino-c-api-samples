@@ -128,9 +128,9 @@ int main (int argc, char *argv[])
 
 /* Construct the last name. */
 
-        strcpy (last_name, "Smith");
+        strncpy (last_name, "Smith", sizeof(last_name));
         sprintf(count, "%i", i); /* itoa (i, count, 10); */
-        strcat (last_name, count);
+        strncat (last_name, count, sizeof(last_name));
 
 /* Create the record. */
 

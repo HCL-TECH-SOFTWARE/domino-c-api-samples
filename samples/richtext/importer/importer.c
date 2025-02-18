@@ -343,7 +343,7 @@ STATUS LNPUBLIC ImportCD(char *szModulePath, char *szFileName,
     /* specific data structure (if any), then the  signature-specific   */
     /* data.                                                            */
 
-      strcpy (EditImportData.OutputFileName, TempName);
+      strncpy (EditImportData.OutputFileName, TempName, sizeof(EditImportData.OutputFileName));
       PRINTLOG ("Temp filename is %s.\n", EditImportData.OutputFileName);
 
     /* Assign the default fontid */
@@ -373,7 +373,7 @@ STATUS LNPUBLIC ImportCD(char *szModulePath, char *szFileName,
 
     /* return the temp filename to calling routine */
 
-    strcpy (szTempName, EditImportData.OutputFileName);
+    strncpy (szTempName, EditImportData.OutputFileName, sizeof(szTempName));
 
 Done:
     /* Free the DLL and return */

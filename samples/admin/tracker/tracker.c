@@ -116,8 +116,8 @@ STATUS LNPUBLIC  MainEntryPoint(DBHOOKVEC * pDBHooks)
     {
         /* if we have an error log it and return */
  
-        strcpy(TrackerLogFile, TRACE_FILENAME);
-        strcat(TrackerLogFile,".001");
+        strncpy(TrackerLogFile, TRACE_FILENAME, sizeof(TrackerLogFile));
+        strncat(TrackerLogFile,".001", sizeof(TrackerLogFile));
   
       /* open the trace log file */
 #if defined (OS400)
@@ -155,7 +155,7 @@ STATUS LNPUBLIC  MainEntryPoint(DBHOOKVEC * pDBHooks)
     if (!OSGetEnvironmentString(TRACKER_DBNAME_VARIABLE, 
                                 szDBPathName, MAXENVVALUE))
     {
-        strcpy(szDBPathName, TRACKER_DEFAULT_DBNAME);
+        strncpy(szDBPathName, TRACKER_DEFAULT_DBNAME, sizeof(szDBPathName));
     }
 
     if (error = NSFDbOpen(szDBPathName, &hDB))
@@ -763,7 +763,7 @@ BOOL   LNPUBLIC  IsTargetDB( DBHANDLE hDB )
         TraceNotesError(error, "IsTargetDB: Unable to get target DB path.");
         return FALSE;
     }
-    if (strcmp(szTargetDBCanonicalPath, szDBCanonicalPathName) != 0)
+    if (strcmp(szTargetDBCanonicalPath, szDBCanonicalPathName != 0)
     {
         fprintf(pTraceFile[inst-1], "IsTargetDB: Given DB is not target.\n");
         return FALSE;
@@ -1104,7 +1104,7 @@ STATUS  LNPUBLIC  CopyNoteToTrashcan (DBHANDLE hDB,
     if (!OSGetEnvironmentString(TRACKER_TRASHCAN_VARIABLE,
                                 szTrashcanName, MAXENVVALUE))
     {
-        strcpy(szTrashcanName, TRACKER_DEFAULT_TRASHCAN);
+        strncpy(szTrashcanName, TRACKER_DEFAULT_TRASHCAN, sizeof(szTrashcanName));
     }
 
     if (error = NSFDbOpen (szTrashcanName, &hTrashcanDB))
@@ -1203,7 +1203,7 @@ STATUS  LNPUBLIC  RenderDataAsText(void *Data, WORD Length,
     *pszItemText = (char *)malloc(wTextLength);
 
     /* return the text string to the return buffer, then clean up */
-    strcpy(*pszItemText, szTextBuff);
+    strncpy(*pszItemText, szTextBuff, sizeof(*pszItemText));
     free(szTextBuff);
     OSMemFree(bidValue.pool);
 
@@ -1247,7 +1247,7 @@ STATUS  LNPUBLIC  GetInstanceNumber (int *pInstNum)
     char       tmpnum[6];
 
     /* copy tracker log file name */
-    strcpy(TrackerLogFile, TRACE_FILENAME);
+    strncpy(TrackerLogFile, TRACE_FILENAME, sizeof(TrackerLogFile));
 
     *pInstNum = 0;
 
@@ -1321,12 +1321,12 @@ STATUS  LNPUBLIC  GetInstanceNumber (int *pInstNum)
     
     /* add part of number extension to file name */
     if (InstNum <= 9)
-        strcat(TrackerLogFile,".00");
+        strncat(TrackerLogFile,".00", sizeof(TrackerLogFile));
     else
-        strcat(TrackerLogFile,".0");
+        strncat(TrackerLogFile,".0", sizeof(TrackerLogFile));
     
     /* append number to log file name (ex. TRACKER.001 ) */
-    strcat(TrackerLogFile,tmpnum);
+    strncat(TrackerLogFile,tmpnum,sizeof(TrackerLogFile));
 
     return NOERROR;
 }

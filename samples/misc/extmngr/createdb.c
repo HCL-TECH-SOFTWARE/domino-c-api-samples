@@ -120,14 +120,14 @@ int        item;
   wDirNameLen = OSGetDataDirectory(pFullPathName);
   strcat(pFullPathName, "/");
   wDirNameLen = strlen(pFullPathName);
-  strcpy(DBFileName, pFullPathName);
-  strcat(DBFileName, DB_NAME);
+  strncpy(DBFileName, pFullPathName, sizeof(DBFileName));
+  strncat(DBFileName, DB_NAME, sizeof(DBFileName));
 #else
   wDirNameLen = OSGetDataDirectory(pFullPathName);
   strcat(pFullPathName, "\\");
   wDirNameLen = strlen(pFullPathName);
-  strcpy(DBFileName, pFullPathName);
-  strcat(DBFileName, DB_NAME);
+  strncpy(DBFileName, pFullPathName, sizeof(DBFileName));
+  strncat(DBFileName, DB_NAME, sizeof(DBFileName));
 #endif
 
 #ifndef OS400
@@ -173,7 +173,7 @@ int        item;
 
         /* search for "|" in string.  This is the delimiter per field or item */
         pString = strtok((char *)String,"|");
-        strcpy(pDBNew->CommonName,pString); /* copy first item */
+        strncpy(pDBNew->CommonName,pString,sizeof(pString)); /* copy first item */
 
         item = 0;
 
@@ -183,12 +183,12 @@ int        item;
 
             switch(item++)
             {
-                case 0:  strcpy(pDBNew->LatinName,pString); /* copy into the LName item */
+                case 0:  strncpy(pDBNew->LatinName,pString,sizeof(pString)); /* copy into the LName item */
                     break;
 
-                case 1:  strcpy(pDBNew->Range,pString); /* copy into the Range item */
+                case 1:  strncpy(pDBNew->Range,pString,sizeof(pString)); /* copy into the Range item */
                     break;
-                case 2:  strcpy(pDBNew->Status,pString); /* copy into the Status item */
+                case 2:  strncpy(pDBNew->Status,pString,sizeof(pString)); /* copy into the Status item */
                     if (pDBNew->Status[strlen(pDBNew->Status)-1]=='\n')
                         pDBNew->Status[strlen(pDBNew->Status)-1]='\0';
                     break;

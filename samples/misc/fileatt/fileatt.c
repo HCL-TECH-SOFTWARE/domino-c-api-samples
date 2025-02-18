@@ -599,6 +599,10 @@ void  LNPUBLIC   DumpObjectItem( char * Name,
     {
         PRINTLOG(  "   Error: unable to get object size.\n" );
         PRINTLOG(  "   Error code = %#x.\n", error );
+        NSFNoteClose(hNote);
+        NSFDbClose(hDB);
+        NotesTerm();
+        return (1);
     }
     else
     {
@@ -798,6 +802,11 @@ STATUS LNPUBLIC AttachFile2(  /* using low-level FILEOBJECT routines */
                               hObjectItemBuffer,
                               0,
                               objFile.FileSize);
+    {
+        NSFDbClose(hDB);
+        NotesTerm();
+        return (ERR(sError));
+    }
 
     OSUnlockObject(hObjectItemBuffer);
     OSMemFree(hObjectItemBuffer);

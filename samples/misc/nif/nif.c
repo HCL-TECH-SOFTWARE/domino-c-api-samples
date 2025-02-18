@@ -383,6 +383,8 @@ int main(int argc, char* argv[])
 
 Exit0:
 	NSFDbClose(hDbHandle);
+	NotesTerm();
+	return 1;
 
 Exit1:
 	NotesTerm();

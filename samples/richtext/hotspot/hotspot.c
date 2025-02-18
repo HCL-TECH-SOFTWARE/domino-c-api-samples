@@ -1518,7 +1518,7 @@ STATUS InsertLSButton(NOTEHANDLE hNote,
     /* Copy the raw Lotus Script into the newly allocated memory 
        space. */
     pFormattedLS=OSLock(char,hSource);
-    strcpy(pFormattedLS,szScript);
+    strncpy(pFormattedLS,szScript,sizeof(pFormattedLS));
     OSUnlock(hSource);
 
     /* Set up SCRIPTCONTEXTDESCR */

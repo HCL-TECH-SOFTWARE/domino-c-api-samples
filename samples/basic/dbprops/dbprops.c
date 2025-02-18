@@ -126,7 +126,7 @@ int main(int argc, char *argv[])
    if (argc == 2)
    {
       usage =0;
-      strcpy(action, argv[1]);
+      strncpy(action, argv[1], sizeof(action));
       for (i=0; i<15; i++)
       {
            if(action[i] == '\0')
@@ -137,7 +137,7 @@ int main(int argc, char *argv[])
       {
          usage = 1;
          rset = 1;
-         strcpy (db_title, new_title);
+         strncpy (db_title, new_title, sizeof(db_title));
          set_db_flags[0] = CHFLAG_NOUNREAD_MARKS;         /*Don't maintain unread marks*/
          set_db_flags[1] = CHFLAG_FORM_BUCKET_OPT;        /*Document table bitmap optimization*/
          set_db_flags[2] = CHFLAG_MAINTAIN_LAST_ACCESSED; /*Maintain last accessed property*/
@@ -152,7 +152,7 @@ int main(int argc, char *argv[])
       {
           usage = 1;
           rset = 1;
-          strcpy (db_title, old_title);
+          strncpy (db_title, old_title, sizeof(db_title));
           db_flags[0] = '\0';
           rset_wRepFlags = REPLFLG_IGNORE_DELETES | REPLFLG_PRIORITY_LOW;
           rset_wCutoffInterval = 90;

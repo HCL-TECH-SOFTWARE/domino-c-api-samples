@@ -208,7 +208,7 @@ int main(int argc, char *argv[])
    /* Process command line */
    for (arg_count = 1; arg_count < argc; arg_count++)
    {
-      strcpy(temp_str, argv[arg_count]);
+      strncpy(temp_str, argv[arg_count], sizeof(temp_str));
       if (temp_str[0] != '-')
       {
          PrintUsage();
@@ -219,7 +219,7 @@ int main(int argc, char *argv[])
       {
          case 'A':
          case 'a':
-            strcpy(arc_name, &temp_str[2]);
+            strncpy(arc_name, &temp_str[2], sizeof(arc_name));
             dataset_state += HAVE_ARCHIVE;
             break;
 
@@ -250,7 +250,7 @@ int main(int argc, char *argv[])
          case 'n':
             item_type = TYPE_TEXT;
             memcpy(text_item_value, &item_type, sizeof(WORD));
-            strcpy(&text_item_value[sizeof(WORD)], &temp_str[2]);
+            strncpy(&text_item_value[sizeof(WORD)], &temp_str[2], sizeof(text_item_value));
             text_item_size = (DWORD) (strlen(&temp_str[2]) + sizeof(WORD));
             dataset_state += HAVE_CATEGORY;
             break;
@@ -262,7 +262,7 @@ int main(int argc, char *argv[])
 
          case 'S':
          case 's':
-            strcpy(src_name, &temp_str[2]);
+            strncpy(src_name, &temp_str[2], sizeof(src_name));
             break;
 
          case 'F':
