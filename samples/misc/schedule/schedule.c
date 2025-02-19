@@ -1,6 +1,6 @@
 /****************************************************************************
  *
- * Copyright HCL Technologies 1996, 2025.
+ * Copyright HCL Technologies 1996, 2023.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -279,7 +279,7 @@ STATUS LNPUBLIC ScheduleTask(int command)
     list_ptr = OSLockObject(list_handle);
 
     /* Retrieve the user's schedule container */
-    if (szServerName==NULL)
+    if (szServerName[0] == '\0')
                 SchrqstLocalOrRemote=SCHRQST_LOCAL;        /* local mail  */
     else
                 SchrqstLocalOrRemote=SCHRQST_FORCEREMOTE;  /* server mail */
