@@ -100,10 +100,10 @@ int main(int argc, char *argv[])
 	/* init ... */
 	ServerName = argv[1];
 	DomainName = argv[2];	
-	strncat(UserNameS1,DomainName,sizeof(UserNameS1));
-	strncat(UserNameS2,DomainName,sizeof(UserNameS2));
-	strncat(UserNameS3,DomainName,sizeof(UserNameS3));
-	strncat(UserNameSS,DomainName,sizeof(UserNameSS));
+	strncat(UserNameS1,DomainName,sizeof(UserNameS1)-1);
+	strncat(UserNameS2,DomainName,sizeof(UserNameS2)-1);
+	strncat(UserNameS3,DomainName,sizeof(UserNameS3)-1);
+	strncat(UserNameSS,DomainName,sizeof(UserNameSS)-1);
 
 
         if (error = NotesInitExtended (argc, argv))

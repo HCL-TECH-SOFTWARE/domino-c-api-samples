@@ -133,7 +133,6 @@ STATUS LNPUBLIC NotesMain(int argc, char far *argv[])
 	   NULL))		/* No date restriction */
    {
 	   PRINTERROR(error, "LogOpenActivityStream");
-	   NotesTerm();
 	   return(1);
    }
 
@@ -146,7 +145,6 @@ STATUS LNPUBLIC NotesMain(int argc, char far *argv[])
 	   0))				/* Not saving the stream position. 0 OK here */
    {
 	   PRINTERROR(error, "LogEnumActivityStream");
-	   NotesTerm();
 	   return(1);
    }
 
@@ -156,6 +154,9 @@ STATUS LNPUBLIC NotesMain(int argc, char far *argv[])
   
   /* End of subroutine. */
   PRINTLOG("\nProgram completed successfully\n");
+
+  NotesTerm();
+  return(1);
 }
 
 STATUS LNCALLBACK ActionRoutine(

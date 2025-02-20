@@ -535,10 +535,10 @@ STATUS PutRefs(HTMLHANDLE cvtr)
 	                        rslt = HTMLDestroyConverter(hHTML);
 	                        //whatever the converter is destroyed or not, we continue
 
-	                        strncpy(PictureName, pszItemName, sizeof(PictureName));
-	                        strncat(PictureName, ElemNumber, sizeof(PictureName));
-	                        strncat(PictureName, OffsetNumber, sizeof(PictureName));
-	                        strncat(PictureName, ".gif", sizeof(PictureName));
+	                        strncpy(PictureName, pszItemName, sizeof(PictureName)-1);
+	                        strncat(PictureName, ElemNumber, sizeof(PictureName)-1);
+	                        strncat(PictureName, OffsetNumber, sizeof(PictureName)-1);
+	                        strncat(PictureName, ".gif", sizeof(PictureName)-1);
 	                        PictureFie = fopen(PictureName, "wb");
 	                        fwrite(pszBinaryText, 1, wTextLength, PictureFie);
 	                        fclose(PictureFie);

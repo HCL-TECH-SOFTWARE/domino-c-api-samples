@@ -601,7 +601,6 @@ void  LNPUBLIC   DumpObjectItem( char * Name,
         PRINTLOG(  "   Error code = %#x.\n", error );
         NSFNoteClose(hNote);
         NSFDbClose(hDB);
-        NotesTerm();
         return (1);
     }
     else
@@ -804,7 +803,6 @@ STATUS LNPUBLIC AttachFile2(  /* using low-level FILEOBJECT routines */
                               objFile.FileSize);
     {
         NSFDbClose(hDB);
-        NotesTerm();
         return (ERR(sError));
     }
 

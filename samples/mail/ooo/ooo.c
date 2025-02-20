@@ -119,10 +119,10 @@ int main (int argc, char *argv[])
         PRINTLOG("Start date[ %s ]- End date[ %s ]\n", szStartAway, szEndAway);
         fflush(stdout);
 
-        strncpy(pGeneralMessage,szOwnerName,sizeof(pGeneralMessage));
-        strncat(pGeneralMessage," will out of office",sizeof(pGeneralMessage));
-        strncpy(pGeneralSubject,szOwnerName,sizeof(pGeneralSubject));
-        strncat(pGeneralSubject," is out of office",sizeof(pGeneralSubject));
+        strncpy(pGeneralMessage,szOwnerName,sizeof(pGeneralMessage)-1);
+        strncat(pGeneralMessage," will out of office",sizeof(pGeneralMessage)-1);
+        strncpy(pGeneralSubject,szOwnerName,sizeof(pGeneralSubject)-1);
+        strncat(pGeneralSubject," is out of office",sizeof(pGeneralSubject)-1);
 
         if ( error = NotesInitExtended (argc, argv) )
         {
@@ -222,7 +222,7 @@ int main (int argc, char *argv[])
           PRINTLOG("Gets ExcludeInternet is FALSE\n");
         }
 
-        strncpy (timetext, szStartAway, sizeof(timetext));
+        strncpy (timetext, szStartAway, sizeof(timetext)-1);
 
 /* Get a pointer to the time/date string. We need this for the next call. */
 
@@ -238,7 +238,7 @@ int main (int argc, char *argv[])
 
         }
 
-        strncpy (timetext, szEndAway, sizeof(timetext));
+        strncpy (timetext, szEndAway, sizeof(timetext)-1);
 /* Get a pointer to the time/date string. We need this for the next call. */
 
         text_pointer = timetext;

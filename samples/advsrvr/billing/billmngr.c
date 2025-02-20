@@ -315,7 +315,7 @@ STATUS LNCALLBACK BillHandler ( EMRECORD FAR * theData )
                goto Done; 	     
 
    /* else, set billing message fields with appropriate info*/
-           strncpy(BillMsg.rec.notecreate.Username, Username, sizeof(Username));
+           strncpy(BillMsg.rec.notecreate.Username, Username, sizeof(Username)-1);
            BillMsg.rec.notecreate.dbNoteID = NoteId;  
            BillMsg.rec.notecreate.ReplicaID = DbId;  
 

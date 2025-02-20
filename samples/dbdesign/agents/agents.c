@@ -518,7 +518,7 @@ STATUS  LNPUBLIC  AddBackgroundAgent( DBHANDLE hDb )
     /*** Copy the raw Lotus Script into the newly allocated memory 
     space. */
     pFormattedLS=OSLock(char,hSource);
-    strncpy(pFormattedLS,szScript,sizeof(pFormattedLS));
+    strncpy(pFormattedLS,szScript,sizeof(pFormattedLS)-1);
     OSUnlock(hSource);
 
     /*** Convert the raw Lotus Script to IDE compliant format.  */
@@ -969,7 +969,7 @@ STATUS  LNPUBLIC  AddJavaAgent( DBHANDLE hDb )
     
 
     /* $FILE info */
-        strncpy(szSourceFile,szCode,sizeof(szSourceFile));
+        strncpy(szSourceFile,szCode,sizeof(szSourceFile)-1);
 
 #ifndef UNIX
     strcat(szSourceFile,"\\");
@@ -977,7 +977,7 @@ STATUS  LNPUBLIC  AddJavaAgent( DBHANDLE hDb )
     strcat(szSourceFile,"/");
 #endif
 
-    strncat(szSourceFile,szClass,sizeof(szSourceFile));
+    strncat(szSourceFile,szClass,sizeof(szSourceFile)-1);
 
     if (error = NSFNoteAttachFile( hAgent,
                                    ITEM_NAME_ATTACHMENT,

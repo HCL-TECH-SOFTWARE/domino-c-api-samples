@@ -169,7 +169,7 @@ int main(int argc, char *argv[])
     else if (argc == 2) /* else we have the remote server name */
     {
         ServName = argv[1];
-        strncpy(MailServName, ServName, sizeof(MailServName));
+        strncpy(MailServName, ServName, sizeof(MailServName)-1);
         LocalServer = FALSE;
     }
 

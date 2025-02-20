@@ -120,14 +120,14 @@ int        item;
   wDirNameLen = OSGetDataDirectory(pFullPathName);
   strcat(pFullPathName, "/");
   wDirNameLen = strlen(pFullPathName);
-  strncpy(DBFileName, pFullPathName, sizeof(DBFileName));
-  strncat(DBFileName, DB_NAME, sizeof(DBFileName));
+  strncpy(DBFileName, pFullPathName, sizeof(DBFileName)-1);
+  strncat(DBFileName, DB_NAME, sizeof(DBFileName)-1);
 #else
   wDirNameLen = OSGetDataDirectory(pFullPathName);
   strcat(pFullPathName, "\\");
   wDirNameLen = strlen(pFullPathName);
-  strncpy(DBFileName, pFullPathName, sizeof(DBFileName));
-  strncat(DBFileName, DB_NAME, sizeof(DBFileName));
+  strncpy(DBFileName, pFullPathName, sizeof(DBFileName)-1);
+  strncat(DBFileName, DB_NAME, sizeof(DBFileName)-1);
 #endif
 
 #ifndef OS400
@@ -173,7 +173,7 @@ int        item;
 
         /* search for "|" in string.  This is the delimiter per field or item */
         pString = strtok((char *)String,"|");
-        strncpy(pDBNew->CommonName,pString,sizeof(pString)); /* copy first item */
+        strncpy(pDBNew->CommonName,pString,sizeof(pDBNew->CommonName)-1); /* copy first item */
 
         item = 0;
 
@@ -183,12 +183,12 @@ int        item;
 
             switch(item++)
             {
-                case 0:  strncpy(pDBNew->LatinName,pString,sizeof(pString)); /* copy into the LName item */
+                case 0:  strncpy(pDBNew->LatinName,pString,sizeof(pDBNew->LatinName)-1); /* copy into the LName item */
                     break;
 
-                case 1:  strncpy(pDBNew->Range,pString,sizeof(pString)); /* copy into the Range item */
+                case 1:  strncpy(pDBNew->Range,pString,sizeof(pDBNew->Range)-1); /* copy into the Range item */
                     break;
-                case 2:  strncpy(pDBNew->Status,pString,sizeof(pString)); /* copy into the Status item */
+                case 2:  strncpy(pDBNew->Status,pString,sizeof(pDBNew->Status)-1); /* copy into the Status item */
                     if (pDBNew->Status[strlen(pDBNew->Status)-1]=='\n')
                         pDBNew->Status[strlen(pDBNew->Status)-1]='\0';
                     break;

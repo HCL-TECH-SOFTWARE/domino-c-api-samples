@@ -268,9 +268,9 @@ STATUS LNPUBLIC  AddInMain (HMODULE hModule, int argc, char *argv[])
     }
 
     /* Create and Open Message Queues for worker threads */
-   strncpy(MsgQueueName[0], MsgQueue1, sizeof(MsgQueueName));
-   strncpy(MsgQueueName[1], MsgQueue2, sizeof(MsgQueueName));
-   strncpy(MsgQueueName[2], MsgQueue3, sizeof(MsgQueueName));
+   strncpy(MsgQueueName[0], MsgQueue1, sizeof(MsgQueueName)-1);
+   strncpy(MsgQueueName[1], MsgQueue2, sizeof(MsgQueueName)-1);
+   strncpy(MsgQueueName[2], MsgQueue3, sizeof(MsgQueueName)-1);
 
     for (i=0; i<3; i++)
     {
