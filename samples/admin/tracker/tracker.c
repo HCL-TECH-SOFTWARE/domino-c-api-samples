@@ -763,7 +763,7 @@ BOOL   LNPUBLIC  IsTargetDB( DBHANDLE hDB )
         TraceNotesError(error, "IsTargetDB: Unable to get target DB path.");
         return FALSE;
     }
-    if (strcmp(szTargetDBCanonicalPath, szDBCanonicalPathName != 0)
+    if (strcmp(szTargetDBCanonicalPath, szDBCanonicalPathName) != 0)
     {
         fprintf(pTraceFile[inst-1], "IsTargetDB: Given DB is not target.\n");
         return FALSE;
