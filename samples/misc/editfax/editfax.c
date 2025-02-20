@@ -56,6 +56,7 @@
 #include <wingdi.h> 
 #endif
 #include <stdio.h>
+#include <stdlib.h>
 
 
 #if !defined(ND64) 

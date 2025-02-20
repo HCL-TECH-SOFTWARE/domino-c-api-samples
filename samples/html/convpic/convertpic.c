@@ -434,13 +434,16 @@ STATUS PutRefs(HTMLHANDLE cvtr)
 	            case URT_Unid: 
 	                PrintLogInfo("				-uViewID-"); break;
 	            case URT_NoteId: 
-	                fprintf(m_pLogFile, LogInfoFormat, "				", (void*)tgt.Value.nid);
+	                fprintf(m_pLogFile, LogInfoFormat, "				", tgt.Value.nid);
 	                break;
 	            case URT_Special: 
 	                fprintf(m_pLogFile, LogInfoFormat, "				", tgt.Value.special);
 	                break;
 	            case URT_RepId: 
 	                PrintLogInfo("				-repid-");
+	                break;
+	            case URT_NumberOfTypes:
+	                PrintLogInfo("				-NoOfTypes-");
 	                break;
 	        }
 	        PrintLogInfo("				</RefValue>\n");

@@ -72,7 +72,6 @@
 
 
 /* constants */
-#define NULLPTR 0
 #define TESTDB          "MIMEMsg.nsf"
 #define MAX_NAME_LEN    256
 
