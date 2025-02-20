@@ -1,6 +1,6 @@
 /****************************************************************************
  *
- * Copyright HCL Technologies 1996, 2023.
+ * Copyright HCL Technologies 1996, 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -262,7 +262,7 @@ int main(int argc, char *argv[])
 
     if (error = NSFDbClose(hDbNSFFile))
     {
-        PRINTLOG("\nError closing database '%s'. Terminating...\n, szNSFFile");
+        PRINTLOG("\nError closing database '%s'. Terminating...\n", szNSFFile);
         PRINTERROR(error,"NSFDbClose");
         goto Done;
     }

@@ -1,6 +1,6 @@
 /*************************************************************************
  *
- * Copyright HCL Technologies 1996, 2023.
+ * Copyright HCL Technologies 1996, 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -52,9 +52,9 @@ int main(int argc, char *argv[])
 	
 	/* Local data declarations. */
 	
-	char szShareDirectory[MAXPATH];
+	char szShareDirectory[MAXPATH] = {0};
 	STATUS error = NOERROR;
-	memset(szShareDirectory, MAXPATH, '\0');
+	memset(szShareDirectory, '\0', MAXPATH);
 
 	error = NotesInitExtended(argc, argv);
 

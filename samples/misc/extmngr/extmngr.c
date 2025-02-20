@@ -1,5 +1,5 @@
 /*
- * Copyright HCL Technologies 1996, 2023.
+ * Copyright HCL Technologies 1996, 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -546,7 +546,7 @@ DLL_EXPORT_PREFIX STATUS LNPUBLIC EMHandlerProc( EMRECORD FAR * pExRecord )
 	    case EM_NSFDBCREATE:
 	    {
 	        char far *DBName;
-	        USHORT DbClass;
+	        int DbClass;
 	        BOOL Force;
 	        VARARG_PTR ap;
 	    
@@ -555,7 +555,7 @@ DLL_EXPORT_PREFIX STATUS LNPUBLIC EMHandlerProc( EMRECORD FAR * pExRecord )
 	        /* get arguments */
 	        ap = pExRecord->Ap;
 	        DBName = VARARG_GET (ap, char far *);
-	        DbClass = VARARG_GET (ap, USHORT);
+	        DbClass = VARARG_GET (ap, int);
 	        Force = VARARG_GET (ap, BOOL);
 		
 	        /* check error code */
