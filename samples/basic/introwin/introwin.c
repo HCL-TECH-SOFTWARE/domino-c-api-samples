@@ -434,7 +434,7 @@ RETURN:             hNotesDB = NULLHANDLE;
         default:                    /* Passes it on if unproccessed    */
             return (DefWindowProc(hWnd, message, wParam, lParam));
     } 
-    return 0;
+    return nError;
 } 
 
 /************************************************************************

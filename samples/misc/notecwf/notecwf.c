@@ -206,7 +206,7 @@ Item_Error:
     }
 
     PRINTLOG("\nProgram completed successfully.\n");
-    return(0);
+    return(error);
 
 }
 

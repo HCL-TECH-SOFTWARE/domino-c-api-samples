@@ -296,7 +296,7 @@ call. */
 /* End of subroutine. */
     PRINTLOG("\nProgram completed successfully.\n");
     NotesTerm();
-    return (0);
+    return (error);
 }
 
 

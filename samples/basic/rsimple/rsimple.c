@@ -182,7 +182,7 @@ to NULLHANDLE and eliminate the formula compilation.) */
 /* End of main routine. */
     PRINTLOG("\nProgram completed successfully.\n");
     NotesTerm();
-    return (0); 
+    return (error); 
 
 }
 

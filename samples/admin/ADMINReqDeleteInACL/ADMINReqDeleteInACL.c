@@ -175,7 +175,7 @@ int main(int argc, char *argv[])
     /* Terminate Domino and Notes. */
     NotesTerm();
     /* End of program. */
-    return (0);
+    return (error);
 
 }
 

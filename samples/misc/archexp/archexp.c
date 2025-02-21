@@ -199,7 +199,7 @@ cleanup:
     NotesTerm();
 
     /* End of archexp program. */
-    return (0);
+    return (error);
 }
 
 

@@ -208,7 +208,7 @@ int main(int argc, char *argv[])
     NotesTerm();
 
     /* End of program. */
-    return (0);
+    return (error);
 
 }
 /************************************************************************

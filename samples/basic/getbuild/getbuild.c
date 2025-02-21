@@ -120,7 +120,7 @@ int main(int argc, char *argv[])
     /* End of subroutine. */
 
     NotesTerm();
-    return (0); 
+    return (error); 
 }
 
 /************************************************************************

@@ -204,7 +204,7 @@ Done:
 	   return (1);
 	}
 	NotesTerm();
-	return (0);
+	return (error);
 }
 
 int processArgs (int nargc, const char * const *nargv, ARG_STRUCT *args)

@@ -151,6 +151,6 @@ Done1:
 /* End of subroutine. */
 
    NotesTerm();
-   return(0);
+   return(error);
 }
 

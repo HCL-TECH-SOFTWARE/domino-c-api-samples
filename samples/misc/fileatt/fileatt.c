@@ -407,7 +407,7 @@ int main(int argc, char *argv[])
 
     NotesTerm();
     PRINTLOG ("\nProgram completed successfully.\n");
-    return (0); 
+    return (sError);
 
 }
 

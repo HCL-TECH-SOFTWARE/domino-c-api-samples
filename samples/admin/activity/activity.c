@@ -156,7 +156,7 @@ STATUS LNPUBLIC NotesMain(int argc, char far *argv[])
   PRINTLOG("\nProgram completed successfully\n");
 
   NotesTerm();
-  return(0);
+  return(error);
 }
 
 STATUS LNCALLBACK ActionRoutine(

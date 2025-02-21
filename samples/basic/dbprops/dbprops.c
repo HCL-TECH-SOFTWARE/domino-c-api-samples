@@ -422,5 +422,5 @@ int main(int argc, char *argv[])
 /* End of program */
    PRINTLOG("\n\n Program completed successfully.\n");
    NotesTerm();
-   return (0);
+   return (error);
 }

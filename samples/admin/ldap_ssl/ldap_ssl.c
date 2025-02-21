@@ -118,5 +118,5 @@ int main( int argc, char *argv[] )
     ldap_unbind_s(pLDAPHandle);
     NotesTerm();
     PRINTLOG ( "\nProgram completed successfully.\n" );
-    return 0;
+    return error;
 }

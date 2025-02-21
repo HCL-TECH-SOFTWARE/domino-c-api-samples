@@ -77,6 +77,6 @@ int main(int argc, char *argv[])
 		PRINTLOG("Program completed successfully.\n");
 	}
 	NotesTerm();
-	return (0);
+	return (error);
 }
 

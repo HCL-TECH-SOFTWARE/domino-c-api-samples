@@ -262,7 +262,7 @@ the resulting pointer to the type we need. */
    if (error==NOERROR)
       PRINTLOG("\nProgram completed successfully.\n");
 
-   return (0); 
+   return (error); 
 
 }
 

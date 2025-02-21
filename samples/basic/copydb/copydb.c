@@ -308,7 +308,7 @@ specified to indicate that we do not want any cutoff date.  */
 /* End of program. */
     PRINTLOG("\nProgram completed successfully.\n");
     NotesTerm();
-    return (0); 
+    return (error); 
 }
 
 

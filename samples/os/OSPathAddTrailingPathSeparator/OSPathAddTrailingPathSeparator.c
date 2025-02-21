@@ -157,6 +157,6 @@ int main(int argc, char *argv[])
    
    /* End of main routine. */
    NotesTerm();
-   return (0); 
+   return (error); 
 
 }

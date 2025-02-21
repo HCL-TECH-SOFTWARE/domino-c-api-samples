@@ -411,6 +411,6 @@ int main(int argc, char *argv[])
 /* End of program. */
     PRINTLOG("\nProgram completed successfully\n"); 
     NotesTerm();
-    return (0); 
+    return (sError);
 
 }

@@ -148,7 +148,7 @@ int main(int argc, char *argv[])
 /* End of main routine. */
     PRINTLOG("\nProgram completed successfully.\n");
     NotesTerm();
-    return (0); 
+    return (error); 
 
 }
 

@@ -264,7 +264,7 @@ Exit1:
       PRINTLOG("This program encountered an error.  Please see trace file makeform.err!\n");
     }
       NotesTerm();
-      return (1);
+      return (sError);
 
 
 }

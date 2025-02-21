@@ -661,5 +661,5 @@ int main(int argc, char *argv[])
     PRINTLOG ("\nSelective replication formula created.\n");
     PRINTLOG ("\nDone.\n");
     NotesTerm();
-    return (0); 
+    return (sError);
 }

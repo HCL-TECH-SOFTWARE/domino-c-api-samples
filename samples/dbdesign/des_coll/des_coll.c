@@ -239,7 +239,7 @@ int main (int argc, char *argv[])
 
    NSFDbClose(hDB);
    free(szPathName);
-   return (0);
+   return (error);
 
 }
 

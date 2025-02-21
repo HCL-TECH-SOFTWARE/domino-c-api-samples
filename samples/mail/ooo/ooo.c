@@ -380,7 +380,7 @@ EXIT2:
         PRINTLOG("\nProgram completed successfully.\n");
         fflush(stdout);
         NotesTerm();
-        return (0);
+        return (error);
 }
 
 /* This function is to get the start and end date for ooo */

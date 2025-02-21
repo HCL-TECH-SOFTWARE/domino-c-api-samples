@@ -117,7 +117,7 @@ int main(int argc, char *argv[])
 
 	/* End of intro program. */
 
-	return (0);
+	return (error);
 }
 
 /************************************************************************

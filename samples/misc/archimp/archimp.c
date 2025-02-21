@@ -217,7 +217,7 @@ cleanup:
 
     /* End of archimp program. */
 
-    return (0);
+    return (error);
 }
 
 

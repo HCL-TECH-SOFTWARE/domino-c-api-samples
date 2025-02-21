@@ -325,7 +325,7 @@ that don't point to a real note. */
       PRINTLOG("\nProgram completed successfully.\n");
 
       NotesTerm();
-      return(0);
+      return(error);
 }
 
 

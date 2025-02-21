@@ -388,6 +388,6 @@ int main(int argc, char *argv[])
 
         /* End of intro program. */
         PRINTLOG("\nProgram completed successfully.\n");
-        return (0);
+        return (error);
 }
 

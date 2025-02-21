@@ -642,5 +642,5 @@ int main (int argc, char *argv[])
 /* ************************************************** */
 
    NotesTerm();
-   return(0);
+   return(error);
 }

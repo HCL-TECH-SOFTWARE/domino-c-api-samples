@@ -199,7 +199,7 @@ call an action routine. */
 
 /* End of intro program. */
 
-    return (0);
+    return (error);
 }
 
 /************************************************************************
