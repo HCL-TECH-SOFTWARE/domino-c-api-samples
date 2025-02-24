@@ -182,7 +182,7 @@ int main(int argc, char *argv[])
    if (error)
    {
        PRINTLOG("Error: Unable to initialize Notes.\n");
-       return (1);
+       return (error);
    }
 
    /* Check arg list for database name, action, start, end and catetory   */
@@ -190,7 +190,7 @@ int main(int argc, char *argv[])
    {
        PrintUsage();
        NotesTerm();
-       return (0);
+       return (error);
    }
 
    /* Get OS information for string parsing */
@@ -213,7 +213,7 @@ int main(int argc, char *argv[])
       {
          PrintUsage();
          NotesTerm();
-         return (0);
+         return (error);
       }
       switch (temp_str[1])
       {

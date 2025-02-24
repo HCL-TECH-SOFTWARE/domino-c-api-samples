@@ -123,7 +123,7 @@ int main(int argc, char *argv[])
 	if (error)
 	{
 	    fprintf (stderr, "\nError initializing Notes.\n");
-	    return (1);
+	    return (error);
 	}
 
 	if (strcmp (server_name, ""))
@@ -132,7 +132,7 @@ int main(int argc, char *argv[])
 	    {
 	        PRINTERROR (error,"OSPathNetConstruct");
 	        NotesTerm();
-	        return (1);
+	        return (error);
 	    }
 	    path_name = pname;
 	}
@@ -143,7 +143,7 @@ int main(int argc, char *argv[])
 	{
 	    PRINTERROR (error,"NSFDbOpen");
 	    NotesTerm();
-	    return (1);
+	    return (error);
 	}
 
 	/* Get the database title. */
@@ -153,7 +153,7 @@ int main(int argc, char *argv[])
 	    PRINTERROR (error,"NSFDbInfoGet");
 	    NSFDbClose (db_handle);
 	    NotesTerm();
-	    return (1);
+	    return (error);
 	}
 
 	NSFDbInfoParse (buffer, INFOPARSE_TITLE, title, NSF_INFO_SIZE - 1);
@@ -189,7 +189,7 @@ int main(int argc, char *argv[])
 	{
 	    PRINTERROR (error,"NSFDbClose");
 	    NotesTerm();
-	    return (1);
+	    return (error);
 	}
 
 	/* Terminate Domino and Notes. */

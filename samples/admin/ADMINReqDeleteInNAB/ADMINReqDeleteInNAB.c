@@ -113,7 +113,7 @@ int main(int argc, char *argv[])
 	if (error = NotesInitExtended(argc, argv))
         {
             PRINTERROR (error,"NotesInitExtended");
-            return(1);
+            return(error);
         }
 
         /* Construct the path for the admin request file */
@@ -121,7 +121,7 @@ int main(int argc, char *argv[])
         {
             PRINTERROR(error,"OSPathNetConstruct");
             NotesTerm();
-            return (1);
+            return (error);
         }
 
 	/* Open the database. */
@@ -129,7 +129,7 @@ int main(int argc, char *argv[])
 	{	
 	    PRINTERROR (error,"NSFDbOpen");
 	    NotesTerm();
-	    return (1);
+	    return (error);
 	}
 	
 	/* Get the current user name */
@@ -138,7 +138,7 @@ int main(int argc, char *argv[])
 	    PRINTERROR(error,"SECKFMGetUserName");
 	    NSFDbClose (db_handle);
 	    NotesTerm();
-	    return (1);
+	    return (error);
 	}
 	
 	/* Get the mail servername form notes.ini */
@@ -160,7 +160,7 @@ int main(int argc, char *argv[])
 	    PRINTERROR(error,"ADMINReqDeleteInNAB");
 	    NSFDbClose (db_handle);
 	    NotesTerm();
-	    return (1);
+	    return (error);
 	}
 	
 	PRINTLOG("!!! ADMINReqDeleteInNAB Processed Sucessfully !!!\n ");
@@ -183,7 +183,7 @@ int main(int argc, char *argv[])
             PRINTERROR(error,"ADMINReqDeleteInNABExt");
             NSFDbClose (db_handle);
             NotesTerm();
-            return (1);
+            return (error);
 	}
 	
 	 PRINTLOG("!!! ADMINReqDeleteInNABExt Processed Sucessfully !!!\n ");
@@ -193,7 +193,7 @@ int main(int argc, char *argv[])
 	{
 	    PRINTERROR (error,"NSFDbClose");
 	    NotesTerm();
-	    return (1);
+	    return (error);
 	}
 									   
 }

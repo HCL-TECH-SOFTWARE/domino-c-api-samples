@@ -289,7 +289,7 @@ int main(int argc, char *argv[])
     if (sError = NotesInitExtended (argc, argv))
     {
         PRINTLOG("\n Unable to initialize Notes.\n");
-        return (1);
+        return (sError);
     }
 
 
@@ -300,7 +300,7 @@ int main(int argc, char *argv[])
     {
         PRINTERROR (sError,"NSFDbOpen");
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
     /* Create a Note */
@@ -310,7 +310,7 @@ int main(int argc, char *argv[])
         NSFDbClose(hDbNSFFile);    /* ERROR - Close database before exit.*/
         PRINTERROR (sError,"NSFNoteCreate");
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
     /* Add the Form name  */
@@ -324,7 +324,7 @@ int main(int argc, char *argv[])
         NSFDbClose(hDbNSFFile);    /* ERROR - Close database before exit.*/
         PRINTERROR (sError,"NSFItemSetText");
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
     /* Set CompanyName field  */
@@ -338,7 +338,7 @@ int main(int argc, char *argv[])
         NSFDbClose(hDbNSFFile);    /* ERROR - Close database before exit.*/
         PRINTERROR (sError,"NSFItemSetText");
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
 
@@ -353,7 +353,7 @@ int main(int argc, char *argv[])
         NSFDbClose(hDbNSFFile);    /* Close database before exit.*/
         PRINTERROR (sError,"InsertRichText");
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
     /* write the note */
@@ -364,7 +364,7 @@ int main(int argc, char *argv[])
         NSFDbClose(hDbNSFFile);    /* ERROR - Close database before exit.*/
         PRINTERROR (sError,"NSFNoteUpdate");
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
     /* Compile the LotusScript */
@@ -374,7 +374,7 @@ int main(int argc, char *argv[])
         NSFDbClose(hDbNSFFile);    /* ERROR - Close database before exit.*/
         PRINTERROR (sError,"NSFNoteLSCompile");
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
     /* write the note */
@@ -385,7 +385,7 @@ int main(int argc, char *argv[])
         NSFDbClose(hDbNSFFile);    /* ERROR - Close database before exit.*/
         PRINTERROR (sError,"NSFNoteUpdate");
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
     /* Start cleaning up.  First, Close the Note */
@@ -397,7 +397,7 @@ int main(int argc, char *argv[])
     {
         PRINTERROR (sError,"NSFDbClose");
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
 
@@ -405,7 +405,7 @@ int main(int argc, char *argv[])
 
     /* Return normally.  */
     NotesTerm();
-    return (0);
+    return (sError);
 
 }
 

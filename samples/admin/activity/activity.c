@@ -133,7 +133,7 @@ STATUS LNPUBLIC NotesMain(int argc, char far *argv[])
 	   NULL))		/* No date restriction */
    {
 	   PRINTERROR(error, "LogOpenActivityStream");
-	   return(1);
+	   return(error);
    }
 
   /* Read the records */
@@ -145,7 +145,7 @@ STATUS LNPUBLIC NotesMain(int argc, char far *argv[])
 	   0))				/* Not saving the stream position. 0 OK here */
    {
 	   PRINTERROR(error, "LogEnumActivityStream");
-	   return(1);
+	   return(error);
    }
 
   /* Close the stream */

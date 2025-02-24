@@ -104,7 +104,7 @@ int main(int argc, char *argv[])
 	if (error)
 	{
 	    fprintf (stderr, "\nError initializing Notes.\n");
-	    return (1);
+	    return (error);
 	}
 
 	PRINTLOG("sizeof HANDLE %d\n", sizeof(HANDLE));

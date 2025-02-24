@@ -182,7 +182,7 @@ int main(int argc, char *argv[])
    if (error = NotesInitExtended (argc, argv))
    {
       PRINTLOG("\n Unable to initialize Notes.\n");
-      return (1);
+      return (error);
    }
 
 
@@ -191,7 +191,7 @@ int main(int argc, char *argv[])
    {
       PRINTERROR (error,"NSFDbOpen");
       NotesTerm();
-      return (1);
+      return (error);
    }
 
 /* Get the replication info */
@@ -200,7 +200,7 @@ int main(int argc, char *argv[])
       NSFDbClose (db_handle);
       PRINTERROR (error,"NSFDbReplicaInfoGet");
       NotesTerm();
-      return (1);
+      return (error);
    }
 
 /* We can change the title of the output database by following these steps:
@@ -230,7 +230,7 @@ int main(int argc, char *argv[])
       NSFDbClose (db_handle);
       PRINTERROR (error,"NSFDbInfoGet");
       NotesTerm();
-      return (1);
+      return (error);
    }
 
 /* Add the database title to the database information buffer */
@@ -242,7 +242,7 @@ int main(int argc, char *argv[])
           NSFDbClose (db_handle);
           PRINTERROR (error,"NSFDbInfoSet");
           NotesTerm();
-          return (1);
+          return (error);
       }
       dbrepInfo.Flags = rset_wRepFlags;
       dbrepInfo.CutoffInterval = rset_wCutoffInterval;
@@ -251,7 +251,7 @@ int main(int argc, char *argv[])
           NSFDbClose (db_handle);
           PRINTERROR (error,"NSFDbReplicaInfoSet");
           NotesTerm();
-          return (1);
+          return (error);
       }
    }
 
@@ -332,7 +332,7 @@ int main(int argc, char *argv[])
              NSFNoteClose (hIconNote);
              NSFDbClose (db_handle);
              NotesTerm();
-             return (1);
+             return (error);
          }
 
 /* Update the note in the database */
@@ -342,7 +342,7 @@ int main(int argc, char *argv[])
              NSFNoteClose (hIconNote);
              NSFDbClose (db_handle);
              NotesTerm();
-             return (1);
+             return (error);
          }
       }
 
@@ -414,7 +414,7 @@ int main(int argc, char *argv[])
    {
        PRINTERROR (error,"NSFDbClose");
        NotesTerm();
-       return (1);
+       return (error);
    }
 
    fflush(stdout);

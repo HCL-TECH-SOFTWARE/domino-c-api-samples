@@ -61,7 +61,7 @@ int main(int argc, char *argv[])
 	if (error != NOERROR)
 	{
 		PRINTERROR(error,"NotesInitExtended");
-		return (1);
+		return (error);
 	}
 
 	/* This api is applicable only to the client. 

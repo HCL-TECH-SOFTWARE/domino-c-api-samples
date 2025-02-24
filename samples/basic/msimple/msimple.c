@@ -112,7 +112,7 @@ int main(int argc, char *argv[])
    if (error = NotesInitExtended (argc, argv))
    {
        PRINTLOG("\n Unable to initialize Notes.\n");
-       return (1);
+       return (error);
    }
    
    
@@ -122,7 +122,7 @@ int main(int argc, char *argv[])
    {
        PRINTERROR (error,"NSFDbOpen");  
        NotesTerm();
-       return (1);
+       return (error);
    } 
 
 
@@ -136,7 +136,7 @@ int main(int argc, char *argv[])
        NSFDbClose (db_handle);
        PRINTERROR (error,"IDCreateTable");  
        NotesTerm();
-       return (1);
+       return (error);
    }
 
    /* Compile the selection formula. */
@@ -156,7 +156,7 @@ int main(int argc, char *argv[])
        NSFDbClose (db_handle);
        PRINTERROR (error,"NSFFormulaCompile");  
        NotesTerm();
-       return (1);
+       return (error);
    }
 
    /* Call NSFSearch to find the notes that match the selection criteria. 
@@ -178,7 +178,7 @@ int main(int argc, char *argv[])
        NSFDbClose (db_handle);
        PRINTERROR (error,"NSFSearch");  
        NotesTerm();
-       return (1);
+       return (error);
    }
 
    /* Free the memory allocated to the compiled formula. */

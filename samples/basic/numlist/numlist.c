@@ -98,7 +98,7 @@ int main(int argc, char *argv[])
     if (error = NotesInitExtended (argc, argv))
     {
         PRINTLOG("\n Unable to initialize Notes.\n");
-        return (1);
+        return (error);
     }
 
 
@@ -108,7 +108,7 @@ int main(int argc, char *argv[])
     {
         PRINTERROR (error,"NSFDbOpen");  
         NotesTerm();
-        return (1);
+        return (error);
     } 
         
     PRINTLOG("\nOpened database: \"%s\"\n", szPathName); 
@@ -120,7 +120,7 @@ int main(int argc, char *argv[])
         NSFDbClose (hDB);
         PRINTERROR (error,"NSFNoteCreate");  
         NotesTerm();
-        return (1);
+        return (error);
     }
 
 /* Write a field named FORM to the note */
@@ -131,7 +131,7 @@ int main(int argc, char *argv[])
         NSFDbClose (hDB);
         PRINTERROR (error,"NSFItemSetText");  
         NotesTerm();
-        return (1);
+        return (error);
     }
 
 /* Write a text field named PLAIN_TEXT to the note. */
@@ -143,7 +143,7 @@ int main(int argc, char *argv[])
         NSFDbClose (hDB);
         PRINTERROR (error,"NSFItemSetText");  
         NotesTerm();
-        return (1);
+        return (error);
     }
 
 /* Write a field named NUMBER to the note. */
@@ -160,7 +160,7 @@ int main(int argc, char *argv[])
         NSFDbClose (hDB);
         PRINTERROR (error,"AppendNumberListField");  
         NotesTerm();
-        return (1);
+        return (error);
     }    
         
     PRINTLOG("Updating and closing note.\n", szPathName); 
@@ -171,7 +171,7 @@ int main(int argc, char *argv[])
         NSFDbClose (hDB);
         PRINTERROR (error,"NSFNoteUpdate");  
         NotesTerm();
-        return (1);
+        return (error);
     }
         
     if (error = NSFNoteClose (hNote))
@@ -179,14 +179,14 @@ int main(int argc, char *argv[])
         NSFDbClose (hDB);
         PRINTERROR (error,"NSFNoteClose");  
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     if (error = NSFDbClose (hDB))
     {
         PRINTERROR (error,"NSFDbClose");  
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     PRINTLOG("\nProgram completed successfully.\n"); 

@@ -87,7 +87,7 @@ int main (int argc, char *argv[])
    if (error = NotesInitExtended (argc, argv))
    {
       PRINTLOG("\nUnable to initialize Notes.\n");
-      return(1);
+      return(error);
    }
 
 /* ************************************************** */
@@ -135,7 +135,7 @@ Done1:
    {
       PRINTERROR(error,"NIFOpenCollection");
       NotesTerm();
-      return(1);
+      return(error);
    }
 
 /* ************************************************** */

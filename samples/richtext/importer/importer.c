@@ -161,7 +161,7 @@ int main(int argc, char *argv[])
     if (error)
     {
         PRINTLOG("Error: Unable to initialize Notes.\n");
-        return (1);
+        return (error);
     }
 
     /* Call the appropriate Import/Export DLL with the appropriate  */
@@ -281,11 +281,11 @@ int main(int argc, char *argv[])
 
     PRINTLOG("\nProgram completed successfully.\n");
 
-    return(0);
+    return(error);
 
 Done:
     NotesTerm();
-    return (1);        /* Return Domino and Notes error code. */
+    return (error);        /* Return Domino and Notes error code. */
 }
 
 /************************************************************************

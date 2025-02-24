@@ -90,7 +90,7 @@ int main(int argc, char *argv[])
     if (error = NotesInitExtended (argc, argv))
     {
         PRINTLOG("\n Unable to initialize Notes.\n");
-        return (1);
+        return (error);
     }
 
 /* Open the input database. */
@@ -99,7 +99,7 @@ int main(int argc, char *argv[])
     {
         PRINTERROR (error,"NSFDbOpen");  
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     PRINTLOG("\nOpened \"%s\" as the input database", input_path); 
@@ -111,7 +111,7 @@ int main(int argc, char *argv[])
         NSFDbClose (input_handle);
         PRINTERROR (error,"NSFDbCreate");  
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     if (error = NSFDbOpen (output_path, &output_handle))
@@ -119,7 +119,7 @@ int main(int argc, char *argv[])
         NSFDbClose (input_handle);
         PRINTERROR (error,"NSFDbOpen");  
         NotesTerm();
-        return (1);
+        return (error);
     }
   
     PRINTLOG("\nCreated \"%s\" as the output database\n", output_path); 
@@ -143,7 +143,7 @@ database to the output database. */
         NSFDbClose (output_handle);
         PRINTERROR (error,"NSFDbCopy");  
         NotesTerm();
-        return (1);
+        return (error);
     }
 
 /* Get the current time and date. This is a void function - nothing is
@@ -162,7 +162,7 @@ code for this error. */
         NSFDbClose (output_handle);
         PRINTLOG ("\nProblem adjusting time/date.\n");
         NotesTerm();
-        return (0);
+        return (error);
     }
 
 /* Copy only the data notes modified within the last month from 
@@ -183,7 +183,7 @@ an error, so we don't want to return on this condition.*/
         NSFDbClose (output_handle);
         PRINTERROR (error,"NSFDbCopy");  
         NotesTerm();
-        return (1);
+        return (error);
     }
 
 /* Set an ASCII time/date string to the beginning of 1996. Note: The 
@@ -213,7 +213,7 @@ call. */
         NSFDbClose (output_handle);
         PRINTERROR (error,"ConvertTextToTIMEDATE");  
         NotesTerm();
-        return (1);
+        return (error);
     }
 
 /* Copy the help document only if it was modified since 1/1/96. */
@@ -231,7 +231,7 @@ call. */
         NSFDbClose (output_handle);
         PRINTERROR (error,"NSFDbCopy");  
         NotesTerm();
-        return (1);
+        return (error);
     } 
 
 /* Now we can change the title of the output database
@@ -254,7 +254,7 @@ call. */
         NSFDbClose (output_handle);
         PRINTERROR (error,"NSFDbInfoGet");  
         NotesTerm();
-        return (1);
+        return (error);
     }
 
 /* Add the database title to the database information buffer */
@@ -269,7 +269,7 @@ call. */
         NSFDbClose (output_handle);
         PRINTERROR (error,"NSFDbInfoSet");  
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     PRINTLOG("\nSet the title of \"%s\" to \"%s\"", output_path, output_title);
@@ -281,14 +281,14 @@ call. */
         NSFDbClose (output_handle);
         PRINTERROR (error,"NSFDbClose");  
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     if (error = NSFDbClose (output_handle))
     {
         PRINTERROR (error,"NSFDbClose");  
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     PRINTLOG("\nDone.\n"); 

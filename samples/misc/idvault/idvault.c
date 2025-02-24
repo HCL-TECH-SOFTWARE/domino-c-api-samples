@@ -109,20 +109,20 @@ int main(int argc, char *argv[])
         if (error = NotesInitExtended (argc, argv))
         {
            fprintf (stderr, "\nError initializing Notes.\n");
-           return (1);
+           return (error);
         }
 
 	if ( error = OSPathNetConstruct( NULL, ServerName,DBName,DBPath) ){
 	    PRINTERROR (error,"OSPathNetConstruct");
 	    NotesTerm();
-	    return (1);
+	    return (error);
 	}
 
 	/*Must be call NSFDbOpen() for init before execute other id vault functions.*/	
 	if ( error = NSFDbOpen (DBPath, &hDB) ){
 	    PRINTERROR (error,"NSFDbOpen");
 	    NotesTerm();
-	    return (1);
+	    return (error);
 	}
 
 	error = SECKFMOpen (&hKFC, UserS1ID, PASSWORD, SECKFM_open_All, 0, NULL);
@@ -130,7 +130,7 @@ int main(int argc, char *argv[])
 	     PRINTERROR (error,"SECKFMOpen");
              NSFDbClose(hDB);
              NotesTerm();
-             return (1);
+             return (error);
 	}
 
         /*
@@ -179,7 +179,7 @@ int main(int argc, char *argv[])
 	     SECKFMClose (&hKFC, SECKFM_close_WriteIdFile, 0, NULL);
              NSFDbClose(hDB);
              NotesTerm();
-             return (1);
+             return (error);
 
 	}
 	PRINTLOG("Put ID file using the hKFC...OK\n");
@@ -191,7 +191,7 @@ int main(int argc, char *argv[])
              PRINTERROR (error,"SECKFMOpen");
              NSFDbClose(hDB);
              NotesTerm();
-             return (1);
+             return (error);
 
 	}
 	/* Put ID file using local file name and hKFC - only hKFC should be used */
@@ -208,7 +208,7 @@ int main(int argc, char *argv[])
 	     SECKFMClose (&hKFC, SECKFM_close_WriteIdFile, 0, NULL);
              NSFDbClose(hDB);
              NotesTerm();
-             return (1);
+             return (error);
 
 	}
 
@@ -220,7 +220,7 @@ int main(int argc, char *argv[])
              PRINTERROR (error,"SECKFMOpen");
              NSFDbClose(hDB);
              NotesTerm();
-             return (1);
+             return (error);
 
 	}
 	
@@ -239,7 +239,7 @@ int main(int argc, char *argv[])
              SECKFMClose (&hKFC, SECKFM_close_WriteIdFile, 0, NULL);
              NSFDbClose(hDB);
              NotesTerm();
-             return (1);
+             return (error);
 
 	}
 
@@ -259,7 +259,7 @@ int main(int argc, char *argv[])
              PRINTERROR (error,"SECidfGet");
              NSFDbClose(hDB);
              NotesTerm();
-             return (1);
+             return (error);
 
 	}
 	PRINTLOG("Get id file to local file name and hKFC...OK\n");
@@ -281,7 +281,7 @@ int main(int argc, char *argv[])
              PRINTERROR (error,"SECidfGet");
              NSFDbClose(hDB);
              NotesTerm();
-             return (1);
+             return (error);
 
 	}
 
@@ -303,7 +303,7 @@ int main(int argc, char *argv[])
              PRINTERROR (error,"SECidfGet");
              NSFDbClose(hDB);
              NotesTerm();
-             return (1);
+             return (error);
 
 	}
 
@@ -314,7 +314,7 @@ int main(int argc, char *argv[])
              PRINTERROR (error,"SECKFMOpen");
              NSFDbClose(hDB);
              NotesTerm();
-             return (1);
+             return (error);
 
 	}
 
@@ -332,7 +332,7 @@ int main(int argc, char *argv[])
              SECKFMClose (&hKFC2, SECKFM_close_WriteIdFile, 0, NULL);
              NSFDbClose(hDB);
              NotesTerm();
-             return (1);
+             return (error);
 
 	}
 	PRINTLOG("Sync the hKFC with the ID file in the Vault and write new hKFC...OK\n");
@@ -351,7 +351,7 @@ int main(int argc, char *argv[])
              SECKFMClose (&hKFC2, SECKFM_close_WriteIdFile, 0, NULL);
              NSFDbClose(hDB);
              NotesTerm();
-             return (1);
+             return (error);
 
         }
 	PRINTLOG("Sync the ID file with the ID file in the Vault ...OK\n");
@@ -370,7 +370,7 @@ int main(int argc, char *argv[])
              SECKFMClose (&hKFC2, SECKFM_close_WriteIdFile, 0, NULL);
              NSFDbClose(hDB);
              NotesTerm();
-             return (1);
+             return (error);
 
         }
         PRINTLOG("Sync the hKFC with the ID file in the Vault and hKFC...OK\n");

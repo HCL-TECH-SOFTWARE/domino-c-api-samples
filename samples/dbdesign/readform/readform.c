@@ -142,7 +142,7 @@ int main(int argc, char *argv[])
     if (sError = NotesInitExtended (argc, argv))
     {
         PRINTLOG("\n Unable to initialize Notes.\n");
-        return (1);
+        return (sError);
     }
       
     PRINTLOG("");
@@ -157,7 +157,7 @@ int main(int argc, char *argv[])
     {
         PRINTERROR (sError, "NSFDbOpen");  
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
     /* read the initial form */
@@ -172,7 +172,7 @@ int main(int argc, char *argv[])
     {
         PRINTERROR (sError, "ReadForm");  
         NotesTerm();
-        return (1);
+        return (sError);
     }
   
     /*

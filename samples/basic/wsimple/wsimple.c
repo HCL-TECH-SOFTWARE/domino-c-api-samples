@@ -69,7 +69,7 @@ int main (int argc, char *argv[])
     if (error = NotesInitExtended (argc, argv))
     {
         PRINTLOG("\n Unable to initialize Notes.\n");
-        return (1);
+        return (error);
     }
 
   /* Open the database. */
@@ -78,7 +78,7 @@ int main (int argc, char *argv[])
     {
         PRINTERROR (error,"NSFDbOpen");
         NotesTerm();
-        return (1);
+        return (error);
     }
 
 
@@ -89,7 +89,7 @@ int main (int argc, char *argv[])
         PRINTERROR (error,"NSFNoteCreate");
         NSFDbClose (db_handle);
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     /* Write a field named FORM to the note -- this field specifies the
@@ -104,7 +104,7 @@ int main (int argc, char *argv[])
         NSFNoteClose (note_handle);
         NSFDbClose (db_handle);
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     /* Write a text field named PLAIN_TEXT to the note. */
@@ -118,7 +118,7 @@ int main (int argc, char *argv[])
         NSFNoteClose (note_handle);
         NSFDbClose (db_handle);
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     /* Write a field named NUMBER to the note. */
@@ -131,7 +131,7 @@ int main (int argc, char *argv[])
         NSFNoteClose (note_handle);
         NSFDbClose (db_handle);
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     /* Get the current time/date and write it to a field named TIME_DATE. */
@@ -144,7 +144,7 @@ int main (int argc, char *argv[])
         NSFNoteClose (note_handle);
         NSFDbClose (db_handle);
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     /* Create a text-list field and add it to the note. */
@@ -158,7 +158,7 @@ int main (int argc, char *argv[])
         NSFNoteClose (note_handle);
         NSFDbClose (db_handle);
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     /* Add several items to the text-list field. */
@@ -173,7 +173,7 @@ int main (int argc, char *argv[])
         NSFNoteClose (note_handle);
         NSFDbClose (db_handle);
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     if (error = NSFItemAppendTextList ( note_handle,
@@ -186,7 +186,7 @@ int main (int argc, char *argv[])
         NSFNoteClose (note_handle);
         NSFDbClose (db_handle);
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     /* Add the entire new note (with all fields) to the database. */
@@ -197,7 +197,7 @@ int main (int argc, char *argv[])
         NSFNoteClose (note_handle);
         NSFDbClose (db_handle);
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     /* Close the note. (Remove its structure from memory.) */
@@ -207,7 +207,7 @@ int main (int argc, char *argv[])
         PRINTERROR (error,"NSFNoteClose");
         NSFDbClose (db_handle);
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     /* Close the database */
@@ -216,7 +216,7 @@ int main (int argc, char *argv[])
     {
         PRINTERROR (error,"NSFDbClose");
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     /* End of subroutine. */

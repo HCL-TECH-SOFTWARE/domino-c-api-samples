@@ -167,7 +167,7 @@ int main(int argc, char *argv[])
     if (sError = NotesInitExtended (argc, argv))
     {
         PRINTLOG("\n Unable to initialize Notes.\n");
-        return (1);
+        return (sError);
     }
 
 
@@ -183,7 +183,7 @@ int main(int argc, char *argv[])
     {
         PRINTERROR (sError,"OSPathNetConstruct");  
         NotesTerm();
-        return (1);
+        return (sError);
     }
  
 /*
@@ -194,7 +194,7 @@ int main(int argc, char *argv[])
     {
         PRINTERROR (sError,"NSFDbOpen");  
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
     PRINTLOG ("\nCreating replica database.\n");
@@ -211,7 +211,7 @@ int main(int argc, char *argv[])
         NSFDbClose(hOrigDB);
         PRINTERROR (sError,"NSFDbCreate");  
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
     if (sError = NSFDbOpen(szFileName, &hDB))
@@ -219,7 +219,7 @@ int main(int argc, char *argv[])
         NSFDbClose(hOrigDB);
         PRINTERROR (sError,"NSFDbOpen");  
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
 
@@ -235,7 +235,7 @@ int main(int argc, char *argv[])
         NSFDbClose (hDB);
         PRINTERROR (sError,"NSFDbReplicaInfoGet");  
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
 /*
@@ -251,7 +251,7 @@ int main(int argc, char *argv[])
         NSFDbClose (hDB);
         PRINTERROR (sError,"NSFDbReplicaInfoSet");  
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
 /*
@@ -264,7 +264,7 @@ int main(int argc, char *argv[])
         NSFDbClose (hDB);
         PRINTERROR (sError,"NSFDbCopyACL");  
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
 /*
@@ -297,7 +297,7 @@ int main(int argc, char *argv[])
             NSFDbClose (hDB);
             PRINTERROR (sError,"NSFDbGetModifiedNoteTable");  
             NotesTerm();
-            return (1);
+            return (sError);
         }
 
     NumScanned = 0L;
@@ -315,7 +315,7 @@ int main(int argc, char *argv[])
                 NSFDbClose (hDB);
                 PRINTERROR (sError,"NSFDbCopyNote");  
                 NotesTerm();
-                return (1);
+                return (sError);
             }
     IDDestroyTable (pIDTable);
                        
@@ -337,7 +337,7 @@ int main(int argc, char *argv[])
         NSFDbClose(hDB);            /* Close database            */
         PRINTERROR (sError,"NSFNoteCreate");  
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
 /*
@@ -360,7 +360,7 @@ int main(int argc, char *argv[])
         NSFDbClose(hDB);            /* Close database            */
         PRINTERROR (sError,"NSFNoteCreate");  
         NotesTerm();
-        return (1);
+        return (sError);
     }
     if (sError = REGGetIDInfo (IDFileSpec, REGIDGetName, UserName, 
                                MAXUSERNAME+1, &retUserNameLen))
@@ -368,7 +368,7 @@ int main(int argc, char *argv[])
         NSFDbClose(hDB);            /* Close database            */
         PRINTERROR (sError,"REGGetIDInfo");  
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
 /*
@@ -383,7 +383,7 @@ int main(int argc, char *argv[])
         NSFDbClose(hDB);            /* Close database            */
         PRINTERROR (sError,"NSFItemSetText");  
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
     
@@ -399,7 +399,7 @@ int main(int argc, char *argv[])
         NSFDbClose(hDB);            /* Close database            */
         PRINTERROR (sError,"NSFItemSetText");  
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
 /*
@@ -487,7 +487,7 @@ int main(int argc, char *argv[])
         NSFDbClose(hDB);             /* Close database            */
         PRINTERROR (sError,"NSFItemAppend");  
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
 /*
@@ -552,7 +552,7 @@ int main(int argc, char *argv[])
         NSFDbClose(hDB);             /* Close database            */
         PRINTERROR (sError,"NSFItemAppend");  
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
 /*
@@ -579,7 +579,7 @@ int main(int argc, char *argv[])
         NSFDbClose(hDB);             /* Close database            */
         PRINTERROR (sError,"NSFFormulaCompile");  
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
     pSelFormula = (char*) OSLockObject(hSelFormula);
@@ -601,7 +601,7 @@ int main(int argc, char *argv[])
         NSFDbClose(hDB);             /* Close database            */
         PRINTERROR (sError,"NSFItemAppend");  
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
 /*
@@ -622,7 +622,7 @@ int main(int argc, char *argv[])
         NSFDbClose(hDB);             /* Close database            */
         PRINTERROR (sError,"NSFNoteUpdate");  
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
 /* 
@@ -636,7 +636,7 @@ int main(int argc, char *argv[])
         NSFDbClose(hDB);             /* Close database            */
         PRINTERROR (sError,"NSFNoteClose");  
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
 /*
@@ -649,7 +649,7 @@ int main(int argc, char *argv[])
         OSMemFree (hMem);
         PRINTERROR (sError,"NSFDbClose");  
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
 /*

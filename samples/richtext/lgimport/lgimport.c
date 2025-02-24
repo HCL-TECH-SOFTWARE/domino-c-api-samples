@@ -169,7 +169,7 @@ int main(int argc, char *argv[])
     if (usError)
     {
         PRINTLOG("Error: Unable to initialize Notes.\n");
-        return (1);
+        return (usError);
     }
 
     if (argc != 4 && argc != 5)
@@ -177,7 +177,7 @@ int main(int argc, char *argv[])
         PRINTLOG("\nUsage: \n\tlgimport <NSF Filename>");
         PRINTLOG(" <Import/Export DLL Name> <Import File Path>");
         PRINTLOG(" <Second DLL Name> (if necessary)\n");
-        return(0);
+        return(usError);
     }
 
     szNSFFile    = argv[1];
@@ -284,11 +284,11 @@ int main(int argc, char *argv[])
 
     PRINTLOG("\nProgram completed successfully.\n");
 
-    return(0);
+    return(usError);
 
 Done:
     NotesTerm();
-    return(1);
+    return(usError);
 }
 
 

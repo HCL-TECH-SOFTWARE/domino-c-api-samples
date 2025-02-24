@@ -108,7 +108,7 @@ int main(int argc, char *argv[])
 	if (sError = NotesInitExtended (argc, argv))
 	{
 	    PRINTLOG("\n Unable to initialize Notes.\n");
-	    return (1);
+	    return (sError);
 	}
 
     /*
@@ -146,7 +146,7 @@ int main(int argc, char *argv[])
     {
       PRINTERROR (sError,"OSPathNetConstruct");
       NotesTerm();
-      return (1);
+      return (sError);
     }
 
    /*
@@ -174,7 +174,7 @@ int main(int argc, char *argv[])
         PRINTLOG ("Invalid Schedule Command %s.\n",szCmd);
         PRINTERROR (sError,"OSPathNetConstruct");
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
     if (!sError)

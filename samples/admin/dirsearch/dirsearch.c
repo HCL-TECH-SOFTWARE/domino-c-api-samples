@@ -139,13 +139,13 @@ int main(int argc, char *argv[])
 	{
 	   fprintf (stderr, "\nError initializing Notes.\n");
 	   NotesTerm();
-	   return (1);
+	   return (error);
 	}
 
 	if (processArgs (argc, (const char * const *)argv, &args))
 	{
 	   NotesTerm();
-	   return 1;
+	   return error;
 	}
 	/* Create the specified directory context for directory operations */
 	if (( error = DirCtxAlloc2(args.szServerName, args.szDomainName, &hCtx)) != NOERROR)
@@ -201,7 +201,7 @@ Done:
 	   PRINTERROR(error,"DirCtxSetFlags");
 
 	   NotesTerm();
-	   return (1);
+	   return (error);
 	}
 	NotesTerm();
 	return (error);

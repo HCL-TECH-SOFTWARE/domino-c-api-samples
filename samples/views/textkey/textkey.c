@@ -89,7 +89,7 @@ int main(int argc, char *argv[])
    if (error = NotesInitExtended (argc, argv))
    {
       PRINTLOG("\n Unable to initialize Notes. Error Code[0x%04x]\n", error);
-      return (1);
+      return (error);
    }
 
 
@@ -105,7 +105,7 @@ int main(int argc, char *argv[])
    {
       PRINTERROR (error,"NSFDbOpen");  
       NotesTerm();
-      return (1);
+      return (error);
    } 
 
 /* Get the note id of the view we want. */
@@ -115,7 +115,7 @@ int main(int argc, char *argv[])
       NSFDbClose (db_handle);
       PRINTERROR (error,"NIFFindView");  
       NotesTerm();
-      return (1);
+      return (error);
    }
 
 /* Get a collection of notes using this view. */
@@ -135,7 +135,7 @@ int main(int argc, char *argv[])
       NSFDbClose (db_handle);
       PRINTERROR (error,"NIFOpenCollection");  
       NotesTerm();
-      return (1);
+      return (error);
    }
 
 /* Look for notes that have the given primary sort key (which must be of
@@ -158,7 +158,7 @@ there are. Check the return code for "not found" versus a real error. */
       NIFCloseCollection (coll_handle);
       NSFDbClose (db_handle);
       NotesTerm();
-      return (0); 
+      return (error); 
    }
    
    if (error)
@@ -167,7 +167,7 @@ there are. Check the return code for "not found" versus a real error. */
       NSFDbClose (db_handle);
       PRINTERROR (error,"NIFFindByName");  
       NotesTerm();
-      return (1);
+      return (error);
    }
 
 /* Get a buffer of all the note IDs that have this key. */
@@ -195,7 +195,7 @@ there are. Check the return code for "not found" versus a real error. */
          NSFDbClose (db_handle);
          PRINTERROR (error,"NIFReadEntries");  
          NotesTerm();
-         return (1);
+         return (error);
       }
 
 /* Check to make sure there was a buffer of information returned.
@@ -208,7 +208,7 @@ key.) */
          NSFDbClose (db_handle);
          PRINTLOG ("\nEmpty buffer returned by NIFReadEntries.\n");
          NotesTerm();
-         return (0); 
+         return (error); 
       }
 
 /* Lock down (freeze the location) of the buffer of notes IDs. Cast
@@ -243,7 +243,7 @@ the resulting pointer to the type we need. */
       NSFDbClose (db_handle);
       PRINTERROR (error,"NIFCloseCollection");  
       NotesTerm();
-      return (1);
+      return (error);
    }
 
 /* Close the database. */
@@ -252,7 +252,7 @@ the resulting pointer to the type we need. */
    {     
        PRINTERROR (error,"NSFDbClose");  
        NotesTerm();
-       return (1);
+       return (error);
    }
 
 /* End of subroutine. */

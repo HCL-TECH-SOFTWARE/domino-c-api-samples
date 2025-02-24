@@ -141,13 +141,13 @@ int main(int argc, char *argv[])
 	else
 	{
 		printf("\n Invalid args: itemmisc <db> <view> \n");
-		return(1);
+		return(error);
 	}
 
 	if (error = NotesInitExtended(argc, argv))
 	{
 		printf("\n Unable to initialize Notes.\n");
-		return(1);
+		return(error);
 	}
 
 	/* Open the database specified on the command line. */

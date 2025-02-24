@@ -128,7 +128,7 @@ int main(int argc, char *argv[])
     if (error)
     {
         fprintf (stderr, "\nError initializing Notes.\n");
-        return (1);
+        return (error);
     }
 
     if (strcmp (server, "\"\""))
@@ -143,7 +143,7 @@ int main(int argc, char *argv[])
         {
             PRINTERROR (error,"OSPathNetConstruct");
             NotesTerm();
-            return (1);
+            return (error);
         }
 
     }
@@ -154,7 +154,7 @@ int main(int argc, char *argv[])
     {
         PRINTERROR (error,"NSFDbOpen");
         NotesTerm();
-        return (1);
+        return (error);
     }
 
 /* Call NSFSearch to find files in the directory. For each file found,
@@ -178,7 +178,7 @@ call an action routine. */
         PRINTERROR (error,"NSFSearch");
         NSFDbClose (dir_handle);
         NotesTerm();
-        return (1);
+        return (error);
     }
 
 /* Close the directory. */
@@ -187,7 +187,7 @@ call an action routine. */
     {
         PRINTERROR (error,"NSFDbClose");
         NotesTerm();
-        return (1);
+        return (error);
     }
 
 /* Terminate Domino and Notes. */

@@ -128,7 +128,7 @@ int main (int argc, char *argv[])
         {
             PRINTLOG("\n Unable to initialize Notes. Error Code[0x%04x]\n", error);
             fflush(stdout);
-            return (1);
+            return (error);
         }
 
         if (!OSGetEnvironmentString(MAIL_MAILSERVER_ITEM, szServerName, MAXUSERNAME))
@@ -137,7 +137,7 @@ int main (int argc, char *argv[])
            fflush(stdout);
            strcpy(szServerName,"");
            NotesTerm();
-           return(1);
+           return(error);
         }
 
 
@@ -147,7 +147,7 @@ int main (int argc, char *argv[])
         {
             PRINTERROR (error,"MailOpenMessageFile");
             NotesTerm();
-            return (1);
+            return (error);
         }
 
 /* at add-in initialization */

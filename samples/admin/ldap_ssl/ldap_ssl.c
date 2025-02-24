@@ -83,14 +83,14 @@ int main( int argc, char *argv[] )
     {
         PRINTLOG ( "\nError: incorrect syntax\n" );
         PRINTLOG ( "\nUsage:%s  <Hostname> <Organization> <DN> <Password> \n", argv[0] );
-        return(1);
+        return(error);
     }
 
     /* Intialize notes */   
     if ( error = NotesInitExtended ( argc, argv ))
     {
         PRINTLOG ( "\nUnable to initialize Notes. Error Code[0x%04x]\n", error );
-        return (1);
+        return (error);
     }
     
     /* Get a handle to an LDAP connection */	
@@ -98,7 +98,7 @@ int main( int argc, char *argv[] )
     {
         PRINTLOG ( "\nFailed to get a handle to LDAP with SSL.\n" );
         NotesTerm();
-        return(1);
+        return(error);
     }
 	
     /* Authenticate to the directory as administrator */
@@ -108,7 +108,7 @@ int main( int argc, char *argv[] )
         ldap_perror(pLDAPHandle, "ldap_simple_bind_s");
         ldap_unbind_s(pLDAPHandle);
         NotesTerm();
-        return(1);
+        return(error);
     }
     else
     {

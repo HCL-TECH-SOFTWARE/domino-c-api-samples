@@ -204,7 +204,7 @@ exit:
     {
         PRINTLOG( "Fail to get text from %s.\n", szDbName );
         fflush( stdout );
-        return ( 1 );
+        return ( error );
     }
     else
     { 

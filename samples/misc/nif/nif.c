@@ -150,7 +150,7 @@ int main(int argc, char* argv[])
 	if (error)
 	{
 		PRINTERROR(error,"NotesInitExtended")
-		return (1);
+		return (error);
 	}
 
 	/* Open the database. */

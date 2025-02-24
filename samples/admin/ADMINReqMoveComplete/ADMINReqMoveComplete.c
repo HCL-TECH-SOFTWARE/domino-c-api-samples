@@ -123,7 +123,7 @@ int main(int argc, char *argv[])
     if (error = NotesInitExtended(argc, argv))
     {
         PRINTERROR (error,"NotesInitExtended");
-        return(1);
+        return(error);
     }
 	
     /* Reading Domino data directory. */
@@ -135,7 +135,7 @@ int main(int argc, char *argv[])
     {
         PRINTERROR(error,"OSPathAddTrailingPathSeparator");
         NotesTerm();
-        return (1);
+        return (error);
     }
     PRINTLOG("data path with trailing path separator: %s\n", szDataPath);
 
@@ -149,7 +149,7 @@ int main(int argc, char *argv[])
     {
         PRINTERROR(error,"OSPathNetConstruct");
         NotesTerm();
-        return (1);
+        return (error);
     }
 	
     /* Open the admin4 DB database. */
@@ -157,16 +157,16 @@ int main(int argc, char *argv[])
     {	
 	PRINTERROR (error,"NSFDbOpen");
 	NotesTerm();
-	return (1);
+	return (error);
     }
 	
      /* Construct the path for the NAB file */
     if (error = OSPathNetConstruct(NULL, pszServerName, pszNABFile, szNABFilePath))
     {
         PRINTERROR(error,"OSPathNetConstruct");
-	NSFDbClose(db_handle);
+	    NSFDbClose(db_handle);
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     PRINTLOG("*************************************************\n");
@@ -178,7 +178,7 @@ int main(int argc, char *argv[])
     {
         PRINTERROR (error,"NSFDbOpen");
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     /* Get the Note ID of the user to be renamed. */
@@ -187,7 +187,7 @@ int main(int argc, char *argv[])
         NSFDbClose (hNABook);
         PRINTERROR (error,"REGFindAddressBookEntry");
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     /* Get the Note handle. */
@@ -226,7 +226,7 @@ int main(int argc, char *argv[])
         NSFDbClose (hNABook);
         PRINTERROR (error,"ADMINReqMoveUserInHier");
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     NSFNoteClose (nhNote);
@@ -238,7 +238,7 @@ int main(int argc, char *argv[])
         NSFDbClose (db_handle);
 	PRINTERROR (error,"NSFDbClose");
 	NotesTerm();
-	return (1);
+	return (error);
     }
 
     PRINTLOG("!!! ADMINReqMoveUserInHier Processed Sucessfully !!!\n ");
@@ -256,7 +256,7 @@ int main(int argc, char *argv[])
 	NSFDbClose (db_handle);
 	PRINTERROR (error,"NIFFindView");
 	NotesTerm();
-	return (1);
+	return (error);
     }	
 	
     /* Open the Collection. */
@@ -274,7 +274,7 @@ int main(int argc, char *argv[])
 	NSFDbClose (db_handle);
 	PRINTERROR (error,"NIFOpenCollection");
 	NotesTerm();
-	return (1);
+	return (error);
     }
 	
     colPosition.Level = 0;
@@ -305,7 +305,7 @@ int main(int argc, char *argv[])
 	    NSFDbClose (db_handle);
 	    PRINTERROR (error,"NIFReadEntries");
 	    NotesTerm();
-	    return (1);
+	    return (error);
 	}
 		
 
@@ -329,7 +329,7 @@ int main(int argc, char *argv[])
             OSUnlockObject(hBuffer);
             OSMemFree(hBuffer);
             NotesTerm();
-            return (1);
+            return (error);
 	}
 	else {
 	/* Print out the list of all the note IDs in this collection. */
@@ -351,7 +351,7 @@ int main(int argc, char *argv[])
                  OSUnlockObject(hBuffer);
                  OSMemFree(hBuffer);
 	         NotesTerm();
-	         return (1);
+	         return (error);
             }
 	}
 
@@ -389,7 +389,7 @@ int main(int argc, char *argv[])
 	NSFDbClose (db_handle);
 	PRINTERROR (error,"ADMINReqMoveComplete");
 	NotesTerm();
-	return (1);
+	return (error);
     }
 
     PRINTLOG("!!! ADMINReqMoveComplete Processed Sucessfully !!!\n ");
@@ -403,7 +403,7 @@ int main(int argc, char *argv[])
     {
 	PRINTERROR (error,"NSFDbClose");
 	NotesTerm();
-	return (1);
+	return (error);
     }
 
     /* Terminate Domino and Notes. */

@@ -273,13 +273,13 @@ int main(int argc, char *argv[])
     {
         PRINTLOG("\n Usage: %s <full path soruce file name>\n", argv[0]);
         PRINTLOG("\n Exp: %s D:\\notesapi\\samples\\misc\\fileatt\\readme.txt", argv[0]);
-        return 1;
+        return sError;
     }
 
     if (sError = NotesInitExtended (argc, argv))
     {
         PRINTLOG("\n Unable to initialize Notes. Error Code[0x%04x]\n", sError);
-        return (1);
+        return (sError);
     }
 
 
@@ -291,7 +291,7 @@ int main(int argc, char *argv[])
     {
         PRINTERROR (sError,"NSFDbOpen");  
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
     /*
@@ -303,7 +303,7 @@ int main(int argc, char *argv[])
         NSFDbClose(hDB);
         PRINTERROR (sError,"NSFNoteCreate");  
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
     NSFNoteSetInfo(lhNote, _NOTE_CLASS, &ClassDocument);
@@ -321,7 +321,7 @@ int main(int argc, char *argv[])
         NSFDbClose(hDB);
         PRINTERROR (sError,"NSFItemSetText");  
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
     if (sError = CreateAttFile("attach1.txt"))
@@ -330,7 +330,7 @@ int main(int argc, char *argv[])
         NSFDbClose(hDB);
         PRINTERROR (sError,"CreateAttFile");  
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
     if (sError = CreateAttFile("attach2.txt"))
@@ -339,7 +339,7 @@ int main(int argc, char *argv[])
         NSFDbClose(hDB);
         PRINTERROR (sError,"CreateAttFile");  
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
     if (sError = AttachFile1(lhNote))
@@ -348,7 +348,7 @@ int main(int argc, char *argv[])
         NSFDbClose(hDB);
         PRINTERROR (sError,"AttachFile1");
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
     if (sError = AttachFile2(hDB, lhNote))
@@ -357,7 +357,7 @@ int main(int argc, char *argv[])
         NSFDbClose(hDB);
         PRINTERROR (sError,"AttachFile2");  
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
     /*
@@ -370,7 +370,7 @@ int main(int argc, char *argv[])
         NSFDbClose(hDB);
         PRINTERROR (sError,"NSFNoteUpdate");  
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
     /*
@@ -382,7 +382,7 @@ int main(int argc, char *argv[])
         NSFDbClose(hDB);
         PRINTERROR (sError,"NSFNoteClose");  
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
     if(sError=PrintAttachmentDetails(hDB))
@@ -390,7 +390,7 @@ int main(int argc, char *argv[])
         NSFDbClose(hDB);
         PRINTERROR (sError,"PrintAttachmentDetails");
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
     /*
@@ -401,7 +401,7 @@ int main(int argc, char *argv[])
     {
         PRINTERROR (sError,"NSFDbClose");  
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
 
@@ -426,7 +426,7 @@ STATUS PrintAttachmentDetails(DBHANDLE hDB)
     {
         fprintf( stderr,"Error encountered searching for data notes.\n" );
         PRINTERROR (error,"NSFSearch");
-        return (1);
+        return (error);
     }
 }
 
@@ -601,7 +601,7 @@ void  LNPUBLIC   DumpObjectItem( char * Name,
         PRINTLOG(  "   Error code = %#x.\n", error );
         NSFNoteClose(hNote);
         NSFDbClose(hDB);
-        return (1);
+        return (error);
     }
     else
     {

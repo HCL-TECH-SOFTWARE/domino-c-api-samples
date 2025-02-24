@@ -127,7 +127,7 @@ int main(int argc, char *argv[])
    {
        PRINTERROR (error,"NSFDbOpen");  
        NotesTerm();
-       return (1);
+       return (error);
    } 
 
 
@@ -138,7 +138,7 @@ int main(int argc, char *argv[])
        NSFDbClose (db_handle);
        PRINTERROR (error,"NIFFindView");  
        NotesTerm();
-       return (1);
+       return (error);
    }
 
 /* Get the current collection using this view. */
@@ -158,7 +158,7 @@ int main(int argc, char *argv[])
        NSFDbClose (db_handle);
        PRINTERROR (error,"NIFOpenCollection");  
        NotesTerm();
-       return (1);
+       return (error);
    }
 
 /* Look for the given category (which must be of type text). We get back a 
@@ -179,7 +179,7 @@ subcategories. */
       NIFCloseCollection (coll_handle);
       NSFDbClose (db_handle);
       NotesTerm();
-      return (0); 
+      return (error); 
    }
    
    if (error)
@@ -188,7 +188,7 @@ subcategories. */
       NSFDbClose (db_handle);
       PRINTERROR (error,"NIFFindByName");  
       NotesTerm();
-      return (1);
+      return (error);
    }
 
 /*
@@ -225,7 +225,7 @@ arranged in the order of the bits in the READ_MASKs.
             NSFDbClose (db_handle);
             PRINTERROR (error,"NIFReadEntries");  
             NotesTerm();
-            return (1);
+            return (error);
          }
  
 /* Check to make sure there was a buffer of information returned. (This
@@ -238,7 +238,7 @@ has some documents in it.) */
            NSFDbClose (db_handle);
            PRINTLOG ("\nEmpty buffer returned by NIFReadEntries.\n");
            NotesTerm();
-           return (0); 
+           return (error); 
         }
 
 /* Lock down (freeze the location) of the information buffer. Cast
@@ -325,7 +325,7 @@ over it. */
       NSFDbClose (db_handle);
       PRINTERROR (error,"NIFCloseCollection");  
       NotesTerm();
-      return (1);
+      return (error);
    }
 
 /* Close the database. */
@@ -334,7 +334,7 @@ over it. */
    {
        PRINTERROR (error,"NSFDbClose");  
        NotesTerm();
-       return (1);
+       return (error);
    } 
 
 
