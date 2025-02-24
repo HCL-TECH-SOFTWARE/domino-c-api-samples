@@ -20,12 +20,13 @@ HEADERS =
 OBJECTS = secdom.o u_secdom.o
 
 # Set LINKOPTS - the linker options passed to CC when linking.
-# -o $(TARGET) causes compiler to create target rather than a.out
-LINKOPTS = -o $(TARGET)
+# -shared to produce a shared object which can then be linked with
+# other objects to form an executable. This is necessary for creating the .so
+LINKOPTS = -Wl,--no-whole-archive -L/usr/local/lib64 -L/usr/lib64 -L/lib64 -ldl -lrt -lm -lstdc++ -L/lib64 -Lcrypt -lpthread -lc -lresolv -shared
 
 # the executable depends on the objects.
 $(TARGET): $(OBJECTS)
-	ld $(LINKOPTS) $(OBJECTS) -L$(NOTESDIR) $(LIBS)
+	$(CC) $(LINKOPTS) $(OBJECTS) $(LIBNOTESSO) -o $(TARGET)
 
 # the object files depend on the corresponding source files
 .c.o:
