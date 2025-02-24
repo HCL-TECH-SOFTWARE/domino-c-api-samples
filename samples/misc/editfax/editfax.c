@@ -56,7 +56,7 @@
 #include <wingdi.h> 
 #endif
 #include <stdio.h>
-#include <stdlib.h>
+#include <stdlib.h> /* for strtoul() library function */
 
 
 #if !defined(ND64) 
