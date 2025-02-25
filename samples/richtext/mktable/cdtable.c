@@ -636,7 +636,7 @@ BOOL    CDPutPreTableBegin(int table_num,
     cd_prebegtbl.ViewerType = 0;
     cd_prebegtbl.Spare = 0;
     cd_prebegtbl.MinRowHeight = 0;
-    cd_prebegtbl.Spares[1] = 0;
+    cd_prebegtbl.Spares[0] = 0;
 
     if (table_num == 1)
     {
