@@ -164,7 +164,7 @@ int main(int argc, char *argv[])
     if (error = OSPathNetConstruct(NULL, pszServerName, pszNABFile, szNABFilePath))
     {
         PRINTERROR(error,"OSPathNetConstruct");
-	    NSFDbClose(db_handle);
+        NSFDbClose(db_handle);
         NotesTerm();
         return (error);
     }
