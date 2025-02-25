@@ -618,7 +618,7 @@ start of the name. */
 
 /* Clear the field name. */
 
-    strncpy (field_name, "", sizeof(field_name)-1);
+    strncpy (field_name, "", strlen(field_name));
     name_len = 0;
 
 /* Start a loop that will get the field name. We check for bad input
