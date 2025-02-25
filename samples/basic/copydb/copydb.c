@@ -78,10 +78,10 @@ void  LNPUBLIC  ProcessArgs (int argc, char *argv[],
 
 int main(int argc, char *argv[])
 {
-    char        input_path[STRING_LENGTH];   /* pathname of input database */
-    char        output_path[STRING_LENGTH];  /* pathname of output database */
-    char        output_title[NSF_INFO_SIZE]; /* title of output database */
-    char        output_db_info[NSF_INFO_SIZE];  /* database info buffer */
+    char        input_path[STRING_LENGTH] = { 0 };   /* pathname of input database */
+    char        output_path[STRING_LENGTH] = { 0 };  /* pathname of output database */
+    char        output_title[NSF_INFO_SIZE] = { 0 }; /* title of output database */
+    char        output_db_info[NSF_INFO_SIZE] = { 0 };  /* database info buffer */
     DBHANDLE    input_handle;       /* handle of input database */
     DBHANDLE    output_handle;      /* handle of output database */
     DBID        input_dbid;         /* dbid of input database */

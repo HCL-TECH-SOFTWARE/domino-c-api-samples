@@ -147,7 +147,7 @@ char DBMgr[STRING_LENGTH];      /* the first user */
 
 int main (int argc, char *argv[])
 {
-   char DBPath[STRING_LENGTH];
+    char DBPath[STRING_LENGTH] = { 0 };
    DBHANDLE hDB;
    DHANDLE hACL;
    ACL_PRIVILEGES RoleBits = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};        

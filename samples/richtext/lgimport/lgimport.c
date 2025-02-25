@@ -156,8 +156,8 @@ STATUS (LNCALLBACKPTR ProcAddress)(VOID *IXContext, WORD Flags,
 
 int main(int argc, char *argv[])
 {
-    char        achTempName[MAXPATH];
-    char       *szModPath, *szFilePath, *szNSFFile, *szDLL;
+    char        achTempName[MAXPATH] = { 0 };
+    char       *szModPath = NULL, *szFilePath = NULL, *szNSFFile = NULL, *szDLL = NULL;
 
     DHANDLE     hNewNote;
     DBHANDLE    hDbNSFFile;

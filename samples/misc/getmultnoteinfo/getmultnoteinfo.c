@@ -82,10 +82,10 @@ int main(int argc, char *argv[])
 {
 	/* Local data declarations */
 
-	char			pname[MAXPATH] = "";         /* buffer to store the input path to database */
-	char			*path_name;                  /* pathname of database */
-	char			*server_name;                /* server name where database lives*/
-	char			*db_name;                    /* name of database */
+	char			pname[MAXPATH] = { 0 };         /* buffer to store the input path to database */
+	char			*path_name = NULL;                  /* pathname of database */
+	char			*server_name = NULL;                /* server name where database lives*/
+	char			*db_name = NULL;                    /* name of database */
 	int			ArgNum = 0;
 	int			i = 0;	
 
@@ -99,7 +99,8 @@ int main(int argc, char *argv[])
 	DHANDLE			hIDTable;
 	DHANDLE			hInfoTable,		hInfoTableByUNID;
 	DWORD			InfoTableLength,		InfoTableLengthByUNID;
-	char			*InfoTable,		*InfoTableByUNID;
+	char * InfoTable = NULL; 
+	char * InfoTableByUNID = NULL;
 	NOTEID			id[MaxNoteNum],		idByUNID[MaxNoteNum];
 	OID			oid[MaxNoteNum],		oidByUNID[MaxNoteNum];
 	BOOL			First;

@@ -89,14 +89,14 @@ SECGETSIGNERINFOPROC VerifyCertCallBack (void *, void *, DWORD, WORD, WORD);
 *************************************************************************/
 int main (int argc, char *argv[])
 {
-    char        *szDBName;
+    char        *szDBName = NULL;
     DBHANDLE    hDB;
     STATUS      error;
     DHANDLE     hNoteIDTable;
 
-    char       pname[MAXPATH] = "";         /* buffer to store the input path to database */
-    char       *path_name;                  /* pathname of database */
-    char       *db_name;                    /* name of database */
+    char       pname[MAXPATH] = { 0 };         /* buffer to store the input path to database */
+    char       *path_name = NULL;                  /* pathname of database */
+    char       *db_name = NULL;                    /* name of database */
 
 
 /* Initialize pointers to point to "" */

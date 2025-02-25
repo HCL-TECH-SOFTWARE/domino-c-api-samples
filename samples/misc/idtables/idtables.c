@@ -135,13 +135,13 @@ int main(int argc, char *argv[])
                current_td,
                temp_td,
                nondata_td_src;
-   char        *temp_ptr,
-               src_name[MAXPATH],
-               text_item_value[LINEOTEXT],
-               temp_str[LINEOTEXT],
-               begin_str[MAXALPHATIMEDATE + 1],
-               end_str[MAXALPHATIMEDATE + 1],
-               arc_name[MAXPATH];
+   char        *temp_ptr = NULL,
+               src_name[MAXPATH] = { 0 },
+               text_item_value[LINEOTEXT] = { 0 },
+               temp_str[LINEOTEXT] = { 0 },
+               begin_str[MAXALPHATIMEDATE + 1] = { 0 },
+               end_str[MAXALPHATIMEDATE + 1] = { 0 },
+               arc_name[MAXPATH] = { 0 };
    DHANDLE       idtable_handle,
                arctable_handle,
                deltable_handle,

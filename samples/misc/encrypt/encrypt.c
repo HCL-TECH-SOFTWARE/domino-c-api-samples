@@ -93,18 +93,18 @@ int main(int argc, char *argv[])
 
     /* Local data declarations */
 
-    char        PathName[MAXPATH]; /* pathname of database */
-    char        EncryptKey[100];   /* name of secret encryption key */
+    char        PathName[MAXPATH] = { 0 }; /* pathname of database */
+    char        EncryptKey[100] = { 0 };   /* name of secret encryption key */
     DBHANDLE    hDB;               /* database handle */
     NOTEHANDLE  hNote;             /* note handle */
-    char        TextField[100];    /* contents of a text field */
+    char        TextField[100] = { 0 };    /* contents of a text field */
     NUMBER      NumField = 1;      /* contents of a numeric field */
     TIMEDATE    TimeField;         /* contents of a time/date field */
     NOTEID      NoteID1, NoteID2;  /* note id's of the created documents */
     NOTEHANDLE  hEncryptedNote;    /* note handle of encrypted note */
     STATUS      error = NOERROR;   /* return code from API calls */
-    char        user1[MAXPATH];
-    char        user2[MAXPATH];
+    char        user1[MAXPATH] = { 0 };
+    char        user2[MAXPATH] = { 0 };
 
 
     

@@ -103,7 +103,7 @@ int main(int argc, char *argv[])
 
     char          szFormula[] = "numberfield";
 
-    char          *pFormula;                   /* pointer to compiled formula.    */
+    char          *pFormula = NULL;                   /* pointer to compiled formula.    */
     FORMULAHANDLE hFormula;
     WORD          wFormulaLen;
 
@@ -111,7 +111,7 @@ int main(int argc, char *argv[])
 
     DHANDLE       hResult;                     /* Handle to results returned by  */
                                                /* NSFComputeEvaluate()           */
-    char          *pResult;                    /* Pointer to results buffer.     */
+    char          *pResult = NULL;                    /* Pointer to results buffer.     */
     WORD          wResultLen;                  /* Length of result buffer.       */
 
     HCOMPUTE      hCompute;                    /* Handle to COMPUTE returned by  */
@@ -136,7 +136,7 @@ int main(int argc, char *argv[])
     RANGE         *pRange;
     NUMBER        *pNumber;
     WORD          wEntry;
-    char          szTextNum[MAXALPHANUMBER+1];
+    char          szTextNum[MAXALPHANUMBER + 1] = { 0 };
     WORD          wTextNumLen;
 
 

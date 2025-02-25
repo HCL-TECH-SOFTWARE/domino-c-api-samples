@@ -125,17 +125,17 @@
 
 int main (int argc, char *argv[])
 {
-    char        szServerName[STRING_LENGTH];   
+    char        szServerName[STRING_LENGTH] = { 0 };
                                 /* name of HCL Domino Server where DB resides */
-    char        szDbPathName[STRING_LENGTH];   
+    char        szDbPathName[STRING_LENGTH] = { 0 };
                                 /* pathname of database, e.g. "discuss" */
-    char        szMainFileName[STRING_LENGTH]; 
+    char        szMainFileName[STRING_LENGTH] = { 0 };
                                 /* ASCII file containing Main Doc body */
-    char        szRespFileName[STRING_LENGTH]; 
+    char        szRespFileName[STRING_LENGTH] = { 0 };
                                 /* ASCII file containing Reponse body */
     DBHANDLE    hDb;            /* handle to database specified */
-    char      * szMainSubject;  /* subject of Main Topic document */
-    char      * szRespSubject;  /* subject of Response document */
+    char      * szMainSubject = NULL;  /* subject of Main Topic document */
+    char      * szRespSubject = NULL;  /* subject of Response document */
     OID         MainNoteOID;    /* OID of Main Topic document */
     STATUS      error=NOERROR;  /* return code from API calls */
 

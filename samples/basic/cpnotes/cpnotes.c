@@ -74,15 +74,15 @@ void  LNPUBLIC  ProcessArgs (int argc, char *argv[],
 
 int main(int argc, char *argv[])
 {
-    char        input_path[STRING_LENGTH];      /* pathname of input database */
-    char        output_path[STRING_LENGTH];     /* pathname of output database */
-    char        output_title [NSF_INFO_SIZE];   /* title of output database */
-    char        output_db_info[NSF_INFO_SIZE];  /* database info buffer */
+    char        input_path[STRING_LENGTH] = { 0 };      /* pathname of input database */
+    char        output_path[STRING_LENGTH] = { 0 };     /* pathname of output database */
+    char        output_title[NSF_INFO_SIZE] = { 0 };   /* title of output database */
+    char        output_db_info[NSF_INFO_SIZE] = { 0 };  /* database info buffer */
     DBHANDLE    input_handle;                   /* handle of input database */
     DBHANDLE    output_handle;                  /* handle of output database */
     TIMEDATE    start_time;                     /* cutoff time in Domino and Notes binary form */
-    char        timetext[MAXALPHATIMEDATE+1];   /* time/date in ASCII */
-    char        far *text_pointer;              /* pointer to timetext */
+    char        timetext[MAXALPHATIMEDATE + 1] = { 0 };   /* time/date in ASCII */
+    char        far *text_pointer = NULL;              /* pointer to timetext */
     STATUS        error = NOERROR;              /* return status from API calls */
 
     ProcessArgs (argc, argv, input_path, output_path, output_title);

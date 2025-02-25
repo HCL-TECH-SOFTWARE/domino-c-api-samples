@@ -90,7 +90,7 @@ extern "C" {
 #endif
 
 DBHANDLE       hDB;                       /* database handle */
-char far       *pOutputBuffer;            /* Buffer to hold output strings. */
+char far       *pOutputBuffer = NULL;            /* Buffer to hold output strings. */
 STATUS         sError=0;                  /* return code */
 
 /************************************************************************

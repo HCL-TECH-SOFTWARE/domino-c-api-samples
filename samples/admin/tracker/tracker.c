@@ -86,7 +86,7 @@ DWORD           dwStyleID_global;
 
 /* Record all Tracker activity in the trace file */
 FILE           *pTraceFile[MAX_TRACKER_INSTANCES];
-char           TrackerLogFile[MAX_TRACKERLOG];
+char           TrackerLogFile[MAX_TRACKERLOG] = { 0 };
 int            inst; /* instance index for multi-process systems */
 
 /************************************************************************
@@ -103,10 +103,10 @@ int            inst; /* instance index for multi-process systems */
 
 STATUS LNPUBLIC  MainEntryPoint(DBHOOKVEC * pDBHooks)
 {
-    char        szDBPathName[MAXENVVALUE];
+    char        szDBPathName[MAXENVVALUE] = { 0 };
     STATUS      error;
     DBHANDLE    hDB;
-    char        szErrorMessage[MAXENVVALUE+50];
+    char        szErrorMessage[MAXENVVALUE + 50] = { 0 };
 
     /* initialize instances for multi-process systems */
     inst = 0;
@@ -1080,7 +1080,7 @@ STATUS  LNPUBLIC  CopyNoteToTrashcan (DBHANDLE hDB,
     STATUS          error;
     DBREPLICAINFO   TargetDBRepInfo;
     DBID            TargetDBID;
-    char            szTrashcanName[MAXENVVALUE];
+    char            szTrashcanName[MAXENVVALUE] = { 0 };
     DBHANDLE        hTrashcanDB;
     DBREPLICAINFO   TrashcanRepInfo;
     DBID            TrashcanDBID;

@@ -88,9 +88,9 @@ int main(int argc, char *argv[])
 
 /* Local data declarations. */
 
-   char               db_filename[STRING_LENGTH]; /* pathname of the database */
+   char               db_filename[STRING_LENGTH] = { 0 }; /* pathname of the database */
    DBHANDLE           db_handle;                  /* handle of the database */
-   char               view_name[STRING_LENGTH];   /* name of the view we'll use */
+   char               view_name[STRING_LENGTH] = { 0 };   /* name of the view we'll use */
    NOTEID             view_id;                    /* note id of the view */
    HCOLLECTION        coll_handle;                /* collection handle */
    STATUS             error;                      /* return status from API calls */

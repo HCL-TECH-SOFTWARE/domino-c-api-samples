@@ -115,8 +115,8 @@ STATUS AddItemReaders(NOTEHANDLE hNote);
 int main(int argc, char *argv[])
 {
 	STATUS error = NOERROR;
-	char pathName[LINEOFTEXT];
-	char viewName[LINEOFTEXT];
+	char pathName[LINEOFTEXT] = { 0 };
+	char viewName[LINEOFTEXT] = { 0 };
 	DBHANDLE hDB;
 	HCOLLECTION hCollection;
 	NOTEID viewNoteID;

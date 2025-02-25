@@ -96,14 +96,14 @@ STATUS LNPUBLIC modify_field (void far *, DWORD);
 
 int main(int argc, char *argv[])
 {
-   char       *db_filename;    /* pathname of source database */
+   char       *db_filename = NULL;    /* pathname of source database */
    DBHANDLE    db_handle;      /* handle of source database */
    char formula[] = "@IsAvailable(NUMBER)";  /* an ASCII selection formula */
    FORMULAHANDLE    formula_handle;    /* a compiled selection formula */
    WORD        wdc;            /* a word we don't care about */
    STATUS      error = NOERROR;         /* return status from API calls */
    DHANDLE       hNoteIDTable;   /* table of Note IDs to modify */
-   char        database_name[STRING_LENGTH];
+   char        database_name[STRING_LENGTH] = { 0 };
    
 
    db_filename = database_name;

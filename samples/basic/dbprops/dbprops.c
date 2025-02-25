@@ -100,12 +100,12 @@ int main(int argc, char *argv[])
    char        path_name[] = "test.nsf";          /* pathname of database */
    char        old_title[] = "TEST";              /* original title of database */
    char        new_title[] = "Database Properties Test"; /* new title of database */
-   char        current_title[50] = "";            /* current title of database */
-   char        db_title[50] = "";                 /* title of database */
-   char        db_flags[100] = "";                /* icon note flags */
-   char        set_db_flags[100] = "";            /* modified icon note flags */
-   char        db_info[NSF_INFO_SIZE];            /* database info buffer */
-   char        action[15] = "";                   /* input acttion */
+   char        current_title[50] = { 0 };            /* current title of database */
+   char        db_title[50] = { 0 };                 /* title of database */
+   char        db_flags[100] = { 0 };                /* icon note flags */
+   char        set_db_flags[100] = { 0 };            /* modified icon note flags */
+   char        db_info[NSF_INFO_SIZE] = { 0 };            /* database info buffer */
+   char        action[15] = { 0 };                   /* input acttion */
    int         usage = 1;
    int         i = 0;
    int         rset = 0;
@@ -118,7 +118,7 @@ int main(int argc, char *argv[])
    WORD             rset_wRepFlags;               /* replication flags to be set  */
    WORD             wPriority;                    /* replication priority	*/
    WORD             rset_wCutoffInterval;			/* rep cutoff interval to be set */
-   char             szTimedate[MAXALPHATIMEDATE+1];
+   char             szTimedate[MAXALPHATIMEDATE + 1] = { 0 };
    WORD             wLen;
 
 

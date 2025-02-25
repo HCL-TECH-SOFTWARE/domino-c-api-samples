@@ -66,14 +66,14 @@ int main (int argc, char *argv[])
 
 /* Local data declarations */
 
-    char           *db_path;         /* pathname of test database */
+    char           *db_path = NULL;         /* pathname of test database */
     int            transactions;     /* total number of transactions */
 
     DBHANDLE       db_handle;        /* database handle */
     NOTEHANDLE     note_handle;      /* note handle */
 
-    char           last_name[100];   /* last name in N&A book */
-    char           count[10];        /* used to construct unique names */
+    char           last_name[100] = { 0 };   /* last name in N&A book */
+    char           count[10] = { 0 };        /* used to construct unique names */
 
     LONG           time_delta;
     TIMEDATE       StartTime;        /* time to mark the start of the program */

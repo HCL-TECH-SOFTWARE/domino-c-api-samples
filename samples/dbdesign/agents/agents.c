@@ -120,7 +120,7 @@ char szAGENT_JAVA[]       = "Assign Hot Problems";
 int main (int argc, char *argv[])
 {
     STATUS      error = NOERROR;
-    char        *szDbName;
+    char        *szDbName = NULL;
     DBHANDLE    hDb;
     int         goodAgents=0;
 

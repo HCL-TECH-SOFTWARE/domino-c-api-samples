@@ -95,7 +95,7 @@ int main(int argc, char *argv[])
 
 /* Local data declarations */
 
-   char          path_name[STRING_LENGTH];                          /* pathname of database */
+   char          path_name[STRING_LENGTH] = { 0 };                          /* pathname of database */
    DBHANDLE      db_handle;                                         /* database handle */
    NOTEHANDLE    note_handle;                                       /* note handle */
    STATUS        error;                                             /* return code from API calls */

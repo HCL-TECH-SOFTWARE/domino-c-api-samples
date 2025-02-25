@@ -201,7 +201,7 @@ STATUS LNPUBLIC  AddInMain (HMODULE hModule, int argc, char *argv[])
     DHANDLE    hStatusLineDesc; /* handle to new default status line */
     HMODULE    hMod;            /* add-in task's module handle */
     STATUS     error;           /* return code from HCL C API for Notes/Domino */
-    char       MsgBuffer[3] [MAX_MESSAGE + 1];   /* Buffer for messages */
+    char       MsgBuffer[3][MAX_MESSAGE + 1] = { 0 };   /* Buffer for messages */
     WORD       MsgLen;                           /* Size of message */
 
     long       cur_time;       /* current time of day */

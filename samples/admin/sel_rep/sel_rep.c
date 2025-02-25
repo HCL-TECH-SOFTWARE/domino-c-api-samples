@@ -111,7 +111,7 @@ int main(int argc, char *argv[])
 
     char *szServerName = NULL;
     char szFileName[] = "test.nsf";
-    char szFullPathName[MAXPATH];
+    char szFullPathName[MAXPATH] = { 0 };
     char szReplVersion[] = "1";
     
     WORD   wdc;           /* "We Don't Care" - Used to receive data that */

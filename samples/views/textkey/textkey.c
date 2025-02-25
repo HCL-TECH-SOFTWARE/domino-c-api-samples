@@ -69,9 +69,9 @@ int main(int argc, char *argv[])
 
 /* Local data declarations */
 
-   char               db_filename[STRING_LENGTH];        /* pathname of the database */
-   char               view_name[STRING_LENGTH];          /* name of the view we'll read */
-   char               text_key[STRING_LENGTH];           /* key to search for in view */
+   char               db_filename[STRING_LENGTH] = { 0 };        /* pathname of the database */
+   char               view_name[STRING_LENGTH] = { 0 };          /* name of the view we'll read */
+   char               text_key[STRING_LENGTH] = { 0 };           /* key to search for in view */
    DBHANDLE           db_handle;                         /* handle of the database */
    NOTEID             view_id;                           /* note id of the view */
    HCOLLECTION        coll_handle;                       /* collection handle */

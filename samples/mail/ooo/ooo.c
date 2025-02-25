@@ -85,22 +85,23 @@ int main (int argc, char *argv[])
         OOOCTXHANDLE    hOOOContext = NULLHANDLE;
         OOOCTXPTR       *pOOOContext = NULL;
         TIMEDATE        tdStartAway,tdEndAway;
-        char            timetext[MAXALPHATIMEDATE+1];   /* time/date in ASCII */
-        char            far *text_pointer;              /* pointer to timetext */
+        char            timetext[MAXALPHATIMEDATE + 1] = { 0 };   /* time/date in ASCII */
+        char            far *text_pointer = NULL;              /* pointer to timetext */
         DHANDLE         hMailFile = NULLHANDLE;
 
-        char            *szMailFileName;
-        char            *szOwnerName;
-        char            szServerName[MAXUSERNAME+1];
-        char            szMailFilePath[MAXPATH+1];
-        char            szStartAway[MAXALPHATIMEDATE+1],szEndAway[MAXALPHATIMEDATE+1];
-        char            pGeneralMessage[MESSAGELEN];
-        char            pGeneralSubject[MESSAGELEN];
+        char            *szMailFileName = NULL;
+        char            *szOwnerName = NULL;
+        char            szServerName[MAXUSERNAME + 1] = { 0 };
+        char            szMailFilePath[MAXPATH + 1] = { 0 };
+        char            szStartAway[MAXALPHATIMEDATE + 1] = { 0 }; 
+        char            szEndAway[MAXALPHATIMEDATE + 1] = { 0 };
+        char            pGeneralMessage[MESSAGELEN] = { 0 };
+        char            pGeneralSubject[MESSAGELEN] = { 0 };
         WORD            retVersion,retState,pGeneralMessageLen;
         BOOL            bExcludeInternet;
 
         char            altline[MAXPATH] = "I am out of office";
-        char            currrentoooStatus[MAXPATH] = "";
+        char            currrentoooStatus[MAXPATH] = { 0 };
 
         if (argc != 3)
         {

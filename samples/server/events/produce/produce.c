@@ -87,7 +87,7 @@ BOOL receiveConsumermesg()
 	char            InputDestName[] = "EVENT.NSF";      /*  A database name to associate with   */
                                                             /*  events of a certain type.           */
 
-	char            OutputDestName[20];                 /*  A buffer in which to read the name  */
+	char            OutputDestName[20] = { 0 };                 /*  A buffer in which to read the name  */
                                                             /*  associated with a certain event.    */
                                                             /*  (Probably will be the same as       */
                                                             /*  InputDestName, but this is defined  */
@@ -101,8 +101,8 @@ BOOL receiveConsumermesg()
 	STATUS          sError;
 	BYTE far*       pBuf;
 	EVENT_DATA far* pEventData;
-	BYTE            DataBuf[64];                        /* A temp buf to hold event data.       */
-	BYTE            MessageBuf[128];                    /* A buffer in which to build log msgs. */
+	BYTE            DataBuf[64] = { 0 };                        /* A temp buf to hold event data.       */
+	BYTE            MessageBuf[128] = { 0 };                    /* A buffer in which to build log msgs. */
 
 	/*
          * Create the event queue, and specify that we are interested in events

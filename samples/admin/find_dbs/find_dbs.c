@@ -101,9 +101,9 @@ int main(int argc, char *argv[])
 
 /* Local data declarations */
 
-    char        server[STRING_LENGTH];      /* name of HCL Domino Server */
-    char        directory[STRING_LENGTH];   /* directory path */
-    char        full_netpath[MAXPATH] = ""; /* full network path */
+    char        server[STRING_LENGTH] = { 0 };      /* name of HCL Domino Server */
+    char        directory[STRING_LENGTH] = { 0 };   /* directory path */
+    char        full_netpath[MAXPATH] = { 0 }; /* full network path */
     DBHANDLE    dir_handle;                 /* handle for directory */
 #ifdef OS400
     STATUS      error;            /* return status from API calls */

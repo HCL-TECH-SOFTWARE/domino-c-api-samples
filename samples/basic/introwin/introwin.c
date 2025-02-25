@@ -74,13 +74,13 @@ extern char **  __argv;
 static HANDLE     hInst, hModule;             /* current instance,
                                                 module handle.    */
 static DBHANDLE    hNotesDB = NULLHANDLE;
-static char    szDBFileNameString[LINEOTEXT]; /* String to hold filename
+static char    szDBFileNameString[LINEOTEXT] = { 0 }; /* String to hold filename
                                                      of database.  */
-static char    szErrorString[LINEOTEXT];      /* String to be used for
+static char    szErrorString[LINEOTEXT] = { 0 };      /* String to be used for
                                                      error messages. */
-static char    szBuffer[LINEOTEXT];           /* Info buffer. */
+static char    szBuffer[LINEOTEXT] = { 0 };           /* Info buffer. */
 
-static char    szDBTitleString[NSF_INFO_SIZE];    /* String to hold title
+static char    szDBTitleString[NSF_INFO_SIZE] = { 0 };    /* String to hold title
                                                      of database.   */
 /*************************************************************************
 

@@ -96,9 +96,9 @@ int main(int argc, char *argv[])
 /* Local type definitions */
 
 /* Local data declarations */
-    char        *path_name;     /* pathname of database */
-    char        Length[6];      /* command line string */
-    char        Width[6];       /* command line string */
+    char        *path_name = NULL;     /* pathname of database */
+    char        Length[6] = { 0 };      /* command line string */
+    char        Width[6] = { 0 };       /* command line string */
     DBHANDLE    db_handle;      /* database handle */
     NOTEHANDLE  note_handle;    /* note handle */
 

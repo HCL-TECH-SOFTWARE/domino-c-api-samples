@@ -152,7 +152,7 @@ DBHANDLE hDB;
 
 /* print any errors to this trace file */
 FILE *pTraceFile;      
-char errMsg[129];      
+char errMsg[129] = { 0 };
 
 /* form names */
 char FormName[]    = "Test Form 1";

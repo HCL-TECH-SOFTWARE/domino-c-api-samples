@@ -75,13 +75,13 @@ int main(int argc, char *argv[])
 	/* Local data declarations */
 
 
-	char       pname[MAXPATH] = "";         /* buffer to store the input path to database */
-	char       *path_name;                  /* pathname of database */
-	char       *server_name;                /* server name where database lives*/
-	char       *db_name;                    /* name of database */
+	char       pname[MAXPATH] = { 0 };         /* buffer to store the input path to database */
+	char       *path_name = NULL;                  /* pathname of database */
+	char       *server_name = NULL;                /* server name where database lives*/
+	char       *db_name = NULL;                    /* name of database */
 	DBHANDLE   db_handle = NULLHANDLE;                   /* database handle */
-	char       buffer[NSF_INFO_SIZE] = "";  /* database info buffer */
-	char       title[NSF_INFO_SIZE] = "";   /* database title */
+	char       buffer[NSF_INFO_SIZE] = { 0 };  /* database info buffer */
+	char       title[NSF_INFO_SIZE] = { 0 };   /* database title */
 	STATUS     error = NOERROR;             /* error code from API calls */
 	int        ArgNum = 0;
 

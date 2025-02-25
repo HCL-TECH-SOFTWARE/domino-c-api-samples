@@ -85,12 +85,12 @@ STATUS LNPUBLIC AppendNumberListField (
 int main(int argc, char *argv[])
 {
 #define LIST_COUNT 5
-    char        *szPathName;
+    char        *szPathName = NULL;
     DBHANDLE    hDB;
     NOTEHANDLE  hNote;
     STATUS      error = NOERROR;
     NUMBER      aNumbers[LIST_COUNT] = {1,3,9703.4,-7,0.11592};
-    char        database_name[STRING_LENGTH];
+    char        database_name[STRING_LENGTH] = { 0 };
    
     szPathName = database_name;
     ProcessArgs(argc, argv, szPathName); 

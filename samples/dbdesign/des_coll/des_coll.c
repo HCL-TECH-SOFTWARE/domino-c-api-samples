@@ -90,10 +90,10 @@ void LNPUBLIC PrintTitle (DWORD dwItem, WORD wClass, BYTE *summary);
 int main (int argc, char *argv[])
 {
    STATUS             error=0;
-   char               *szPathName;
+   char               *szPathName = NULL;
    DBHANDLE           hDB;
-   char               szDBInfo[NSF_INFO_SIZE];
-   char               szDBTitle[NSF_INFO_SIZE];
+   char               szDBInfo[NSF_INFO_SIZE] = { 0 };
+   char               szDBTitle[NSF_INFO_SIZE] = { 0 };
    HCOLLECTION        hCollection;
    COLLECTIONPOSITION CollPosition;
    DHANDLE            hBuffer;

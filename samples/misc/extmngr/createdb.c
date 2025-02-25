@@ -93,17 +93,17 @@ DBRECORD   *pDBHead=0;
 DBRECORD   *pDBPrev=0;
 STATUS     sError = NOERROR;
 
-FILE       *pFile;
+FILE       *pFile = NULL;
 
 WORD       wDirNameLen = 0;
-char       DBFileName[MAXPATH];   /* database filename          */
-char       String[128];            /* String var. for reading from file.    */
+char       DBFileName[MAXPATH] = { 0 };   /* database filename          */
+char       String[128] = { 0 };            /* String var. for reading from file.    */
 #ifndef OS400
-char       *pFullPathName;         /* Full pathname for database file       */
+char       *pFullPathName = NULL;         /* Full pathname for database file       */
 #else
 char       pFullPathName[MAXPATH];         /* Full pathname for database file       */
 #endif
-char       *pString;               /* Pointer to help parse input from file.*/
+char       *pString = NULL;               /* Pointer to help parse input from file.*/
 int        item;
 
 /*

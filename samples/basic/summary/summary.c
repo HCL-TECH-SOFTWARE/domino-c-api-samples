@@ -123,10 +123,10 @@ char    ItemName[MAX_ITEM_NAME_LEN];/* Zero terminated item name */
 
 int main(int argc, char *argv[])
 {
-    char       *db_filename;  /* pathname of source database */
+    char       *db_filename = NULL;  /* pathname of source database */
     DBHANDLE    db_handle;    /* handle of source database */
     STATUS      error = NOERROR;   /* return status from API calls */
-    char        database_name[STRING_LENGTH];
+    char        database_name[STRING_LENGTH] = { 0 };
 
     db_filename = database_name;
     ProcessArgs(argc, argv, db_filename);

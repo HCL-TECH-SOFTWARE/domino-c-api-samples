@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
     DBHANDLE		db_handle;              /* database handle */
     WORD		wbuild;
     STATUS		error = NOERROR;            /* error code from C API for Domino and Notes calls */
-    char		database_name[STRING_LENGTH];
+    char		database_name[STRING_LENGTH] = { 0 };
     db_filename = database_name;
     ProcessArgs(argc, argv, db_filename);
 
