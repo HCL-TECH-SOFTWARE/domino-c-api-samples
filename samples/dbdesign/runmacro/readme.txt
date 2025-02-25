@@ -22,8 +22,7 @@ database via the API.
 
 ENVIRONMENTS
 ------------
-Windows (32-bit)
-Windows (64-bit)
+Linux 64 bit
 IBM i
 
 
@@ -34,9 +33,7 @@ readme.txt   - This file specifies what is needed to use this example.
 runmacro.c   - Main program.
 runmacro.h   - Definitions and function prototypes.
 
-mswin32.mak     - Make file for Windows 32-bit.
-
-mswin64.mak     - Make file for Windows 64-bit.
+linux64.mak    - Makefile for Linux 64 bit.
 
 mk_runmacro_i.clp - Make file (CL Program) for IBM i using ILE C 
                     with the source code being an IFS file.
