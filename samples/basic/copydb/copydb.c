@@ -192,17 +192,19 @@ specified to indicate that we do not want any cutoff date.  */
                                            NOTE_CLASS_ALL,
                                            start_time, &last_time,
                                            &idtable_p) )
-    if (error == ERR_NO_MODIFIED_NOTES)
     {
-        PRINTLOG ("There are no documents in the Database.\n");
-    }
-    else
-    {
-        NSFDbClose (input_handle);
-        NSFDbClose (output_handle);
-        PRINTERROR (error,"NSFDbGetModifiedNoteTable");  
-        NotesTerm();
-        return (1);
+	    if (error == ERR_NO_MODIFIED_NOTES)
+	    {
+                PRINTLOG ("There are no documents in the Database.\n");
+	    }
+	    else
+	    {
+                NSFDbClose (input_handle);
+                NSFDbClose (output_handle);
+                PRINTERROR (error,"NSFDbGetModifiedNoteTable");
+                NotesTerm();
+                return (1);
+	    }
     }
     num_scanned = 0L;
     num_entries = IDEntries (idtable_p);

@@ -144,7 +144,7 @@ int main (int argc, char *argv[])
             szDbName);
     PRINTLOG ("Program execution completed.  See logfile '%s' for results.\n",
                AGENTS_LOG);
-    fprintf (pAgentsLog, "Program execution completed.\n", AGENTS_LOG);
+    fprintf (pAgentsLog, "Program execution completed '%s'.\n", AGENTS_LOG);
 
 
     /* Close database, close log file pointer. */

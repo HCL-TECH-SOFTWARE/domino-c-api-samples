@@ -149,7 +149,7 @@ int main(int argc, char *argv[])
 /* Write a field named NUMBER to the note. */
 
         
-    PRINTLOG("Appending number list.\n", szPathName); 
+    PRINTLOG("Appending number list.\n"); 
     if (error = AppendNumberListField (
                                        hNote, 
                                        "NUMBER", 
@@ -163,7 +163,7 @@ int main(int argc, char *argv[])
         return (1);
     }    
         
-    PRINTLOG("Updating and closing note.\n", szPathName); 
+    PRINTLOG("Updating and closing note.\n"); 
 
     if (error = NSFNoteUpdate (hNote, 0))
     {

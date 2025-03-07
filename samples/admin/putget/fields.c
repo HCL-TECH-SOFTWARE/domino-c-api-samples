@@ -152,6 +152,11 @@ int put_text_field (NOTEHANDLE note_handle,
 /* Allocate a buffer that will hold the output. */
 
     output_buffer = (char *) malloc (field_len);
+    if (output_buffer == NULL)
+    {
+        perror("malloc failed");
+        exit(1);
+    }
 
 /* Start a loop that will copy the text field to the output buffer. Replace
 any line feed with a null. */
@@ -971,6 +976,11 @@ the length of the field's name. */
 current location in the output buffer. */
 
     output_buffer = (BYTE *) malloc (output_len);
+    if (output_buffer == NULL)
+    {
+        perror("malloc failed");
+        exit(1);
+    }
     buff_ptr = output_buffer;
 
 /* Copy the user name to the output buffer. */

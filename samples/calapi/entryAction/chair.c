@@ -95,7 +95,7 @@ STATUS TestCalCreateEntry(DHANDLE hDB, char* pszICalender, char* pOrganizer, cha
     STATUS	error = NOERROR;
 
     DWORD dwFlags = 0L;
-    MEMHANDLE hRetUID = NULL;
+    MEMHANDLE hRetUID = NULLMEMHANDLE;
     char* pszRetUID = NULL;
     
     error = CalCreateEntry(hDB, pszICalender, dwFlags, &hRetUID, NULL);

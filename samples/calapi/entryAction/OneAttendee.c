@@ -93,7 +93,7 @@ STATUS TestCalReadEntryExt(DHANDLE hDB, char* pszICalenderUID, char* pszRecurren
 {
     STATUS   error = NOERROR;
 
-    MEMHANDLE hCalData = NULL;
+    MEMHANDLE hCalData = NULLMEMHANDLE;
     DWORD dwFlags = CAL_READ_INCLUDE_X_LOTUS;
     char* pszCalData = NULL;
 
@@ -164,8 +164,8 @@ STATUS GetAndAcceptNewInvitationsFromYesterday(DHANDLE hDB)
     STATUS   error = NOERROR;
 
     WORD wNumInvites = 0;
-    MEMHANDLE hRetNOTEIDs = NULL;
-    MEMHANDLE hRetUNIDs = NULL;
+    MEMHANDLE hRetNOTEIDs = NULLMEMHANDLE;
+    MEMHANDLE hRetUNIDs = NULLMEMHANDLE;
 
     NOTEID* pNoteID = NULL;
 
