@@ -600,7 +600,10 @@ STATUS GetCertCtx (char far *pCertFile, HCERTIFIER *phCertCtx,
     OSCurrentTIMEDATE(&ExpDate);
 
     /* set the expiration date to two years from today (Domino and Notes default) */
-    TimeDateAdjust(&ExpDate, 0, 0, 0, 0, 0, 2);
+    if (TimeDateAdjust(&ExpDate, 0, 0, 0, 0, 0, 2) == FALSE)
+    {
+        PRINTLOG("%s\n","TimeDateAdjust failed");
+    }
     ExpireDate = ExpDate;
 
    /* get the encoded password */

@@ -46,6 +46,16 @@ and PUTNOTE programs.
 #include "file_io.h"
 #include "misc.h"
 
+#if defined(CAPI_TESTING)
+#include "printlog.h"
+#else
+ #define PRINTLOG printf
+ #define PRINTERROR(api_error, api_name) {\
+ char    szErrorText[256] = { 0 };\
+ OSLoadString(NULLHANDLE, ERR(api_error), szErrorText, sizeof(szErrorText));\
+ fprintf(stderr, "[ERROR]:%s:%d:%s - %s", __FILE__,__LINE__,api_name,szErrorText); }
+#endif
+
 #if !defined(ND64) 
     #define DHANDLE HANDLE 
 #endif
@@ -154,7 +164,7 @@ int put_text_field (NOTEHANDLE note_handle,
     output_buffer = (char *) malloc (field_len);
     if (output_buffer == NULL)
     {
-        perror("malloc failed");
+        PRINTERROR(api_error,"malloc failed");
         exit(1);
     }
 
@@ -978,7 +988,7 @@ current location in the output buffer. */
     output_buffer = (BYTE *) malloc (output_len);
     if (output_buffer == NULL)
     {
-        perror("malloc failed");
+        PRINTERROR(api_error,"malloc failed");
         exit(1);
     }
     buff_ptr = output_buffer;
