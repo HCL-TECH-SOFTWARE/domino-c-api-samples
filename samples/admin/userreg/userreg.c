@@ -148,10 +148,10 @@ BOOL LocalServer;
 
 int main(int argc, char *argv[])
 {
-    STATUS   error;              /* return code from API calls */
-    char     *ServName;          /* server name entered on the command line */
-    char     MailServName[MAXUSERNAME + 1]; /* mail server name */
-    char     FullDBPath[MAXPATH];  /* complete pathname for Name and Address
+    STATUS   error = NOERROR;              /* return code from API calls */
+    char     *ServName = NULL;          /* server name entered on the command line */
+    char     MailServName[MAXUSERNAME + 1] = { 0 }; /* mail server name */
+    char     FullDBPath[MAXPATH] ={0};  /* complete pathname for Name and Address
                                      Book */
     char     ServLocation[MAXLOCATIONNAME] = "Sales LAB";
     char     WorkLocation[MAXLOCATIONNAME] = "323 West";
@@ -400,6 +400,7 @@ int main(int argc, char *argv[])
     {
         PRINTERROR(error,"GetCertCtx");
         NotesTerm();
+        return (error); 
     }
 
     PRINTLOG("Begin recertifying %s...\n", NEW_USERNAME);
