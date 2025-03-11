@@ -1208,7 +1208,7 @@ STATUS  LNPUBLIC  RenderDataAsText(void *Data, WORD Length,
     }
 
     /* return the text string to the return buffer, then clean up */
-    strncpy(*pszItemText, szTextBuff, strlen(wTextLength));
+    strncpy(*pszItemText, szTextBuff, wTextLength);
     free(szTextBuff);
     OSMemFree(bidValue.pool);
 

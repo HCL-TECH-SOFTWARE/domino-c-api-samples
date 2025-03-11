@@ -155,7 +155,6 @@ STATUS LNPUBLIC NotesMain(int argc, char far *argv[])
   /* End of subroutine. */
   PRINTLOG("\nProgram completed successfully\n");
 
-  NotesTerm();
   return(error);
 }
 
