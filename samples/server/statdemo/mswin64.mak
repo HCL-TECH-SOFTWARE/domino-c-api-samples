@@ -15,7 +15,7 @@ outfilename = statdemo
 # Update the executable file if necessary, and if so, add the resource
 # back in.
 $(outfilename).exe: statdemo.obj statdemo.res
-	link /DEBUG /DEBUGTYPE:cv   /INCREMENTAL:NO /NOLOGO -subsystem:console,5.0 statdemo.obj $(NOTES_LIBS) \
+	link /INCREMENTAL:NO /NOLOGO /SUBSYSTEM:CONSOLE statdemo.obj $(NOTES_LIBS) \
 		statdemo.res  $(LIBS) mswsock.lib -out:$(outfilename).exe
 
 # Update the resource file if necessary.

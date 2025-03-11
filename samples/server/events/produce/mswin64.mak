@@ -21,7 +21,7 @@ all: $(outfilename1).exe $(outfilename2).exe
 # Update the executable file if necessary, and if so, add the resource
 # back in.
 $(outfilename1).exe: $(PROGNAME1).obj $(PROGNAME1).res
-	link /DEBUG /DEBUGTYPE:cv   /INCREMENTAL:NO /NOLOGO -subsystem:console,5.0    $(PROGNAME1).obj notes0.obj notesai0.obj \
+	link /INCREMENTAL:NO /NOLOGO /SUBSYSTEM:CONSOLE $(PROGNAME1).obj notes0.obj notesai0.obj \
 	$(PROGNAME1).res $(LIBS) msvcrt.lib OLDNAMES.lib notes.lib user32.lib -out:$(outfilename1).exe
 
 # Update the resource file if necessary.
@@ -35,7 +35,7 @@ $(PROGNAME1).obj : $(PROGNAME1).c $(PROGNAME1).h
 # Update the executable file if necessary, and if so, add the resource
 # back in.
 $(outfilename2).exe: $(PROGNAME2).obj $(PROGNAME2).res
-	link /DEBUG /DEBUGTYPE:cv   /INCREMENTAL:NO /NOLOGO -subsystem:console,5.0  $(PROGNAME2).obj notes0.obj notesai0.obj \
+	link /INCREMENTAL:NO /NOLOGO /SUBSYSTEM:CONSOLE $(PROGNAME2).obj notes0.obj notesai0.obj \
 	$(PROGNAME2).res $(LIBS) msvcrt.lib OLDNAMES.lib notes.lib user32.lib -out:$(outfilename2).exe
 
 # Update the resource file if necessary.
