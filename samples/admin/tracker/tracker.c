@@ -1202,8 +1202,13 @@ STATUS  LNPUBLIC  RenderDataAsText(void *Data, WORD Length,
     /* Now allocate a return buffer just the size we really need. */
     *pszItemText = (char *)malloc(wTextLength);
 
+    if(*pszItemText == NULL)
+    {
+        PRINTERROR(error, "malloc failed.\n");
+    }
+
     /* return the text string to the return buffer, then clean up */
-    strncpy(*pszItemText, szTextBuff, sizeof(*pszItemText)-1);
+    strncpy(*pszItemText, szTextBuff, strlen(wTextLength));
     free(szTextBuff);
     OSMemFree(bidValue.pool);
 
