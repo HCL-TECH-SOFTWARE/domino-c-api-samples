@@ -38,6 +38,7 @@ and PUTNOTE programs.
 #include <editdflt.h>
 #include <fontid.h>
 #include <osmem.h>
+#include <osmisc.h>
 #include <colorid.h>
 
 /* Local include files */
@@ -164,7 +165,7 @@ int put_text_field (NOTEHANDLE note_handle,
     output_buffer = (char *) malloc (field_len);
     if (output_buffer == NULL)
     {
-        PRINTERROR(api_error,"malloc failed");
+        PRINTERROR(api_error,"(char *) malloc");
         exit(1);
     }
 
@@ -988,7 +989,7 @@ current location in the output buffer. */
     output_buffer = (BYTE *) malloc (output_len);
     if (output_buffer == NULL)
     {
-        PRINTERROR(api_error,"malloc failed");
+        PRINTERROR(api_error,"(char *) malloc");
         exit(1);
     }
     buff_ptr = output_buffer;
