@@ -70,7 +70,7 @@
 #include <kfm.h>
 #include <nsfdata.h>
 #include <easycd.h>
-
+#include <printlog.h>
 /* Application-specific include files */
 #include "tracker.h"
 
