@@ -66,7 +66,6 @@
 #endif
 
 /* constants  */
-#define NULLPTR 0
 #define USASCII		"US-ASCII"
 #define MAX_DB_NAME	256
 
