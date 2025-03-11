@@ -400,7 +400,6 @@ int main(int argc, char *argv[])
     {
         PRINTERROR(error,"GetCertCtx");
         NotesTerm();
-        return (error);
     }
 
     PRINTLOG("Begin recertifying %s...\n", NEW_USERNAME);
