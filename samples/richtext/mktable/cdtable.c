@@ -144,13 +144,13 @@ BOOL    CDPutTable(int table_num, WORD first_last_record,
     WORD    list_entries, num_cells, row1_cell_size, rowx_cell_size;
     WORD    list_entry, avg_celltext_len, avg_celltext_chars;
     WORD    table_size, prefix_para_size, suffix_para_size;
-    char    *temp_ptr;
-    char    temp_buf[LINEOTEXT];
+    char    *temp_ptr = NULL;
+    char    temp_buf[LINEOTEXT] = { 0 };
     WORD    buf_len, countr, countc, cur_left_margin;
     WORD    calc_columns;
     char    eString[] = "";
 
-    CDPABDEFINITION *base_pabdef_ptr;
+    CDPABDEFINITION *base_pabdef_ptr = NULL;
 
 
     /* Keep a pointer to the preceding paragraph definition. */

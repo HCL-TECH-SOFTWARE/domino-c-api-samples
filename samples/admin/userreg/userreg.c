@@ -148,10 +148,10 @@ BOOL LocalServer;
 
 int main(int argc, char *argv[])
 {
-    STATUS   error;              /* return code from API calls */
-    char     *ServName;          /* server name entered on the command line */
-    char     MailServName[MAXUSERNAME + 1]; /* mail server name */
-    char     FullDBPath[MAXPATH];  /* complete pathname for Name and Address
+    STATUS   error = NOERROR;              /* return code from API calls */
+    char     *ServName = NULL;          /* server name entered on the command line */
+    char     MailServName[MAXUSERNAME + 1] = { 0 }; /* mail server name */
+    char     FullDBPath[MAXPATH] ={0};  /* complete pathname for Name and Address
                                      Book */
     char     ServLocation[MAXLOCATIONNAME] = "Sales LAB";
     char     WorkLocation[MAXLOCATIONNAME] = "323 West";
@@ -179,7 +179,7 @@ int main(int argc, char *argv[])
     if (error)
     {
         PRINTLOG("Error: Unable to initialize Notes.\n");
-        return (1);
+        return (error);
     }
 
     PRINTLOG ("\n");
@@ -219,7 +219,7 @@ int main(int argc, char *argv[])
             PRINTLOG ("Error occurred in file %s\n", FullDBPath);
         PRINTERROR(error,"REGNewCertifier");
         NotesTerm();
-        return (1);
+        return (error);
    }
 
     /* Prepare to call REGNewCertifier to create and register a new
@@ -232,7 +232,7 @@ int main(int argc, char *argv[])
     {
         PRINTERROR(error,"GetCertCtx");
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     error = REGNewCertifier (
@@ -270,7 +270,7 @@ int main(int argc, char *argv[])
         SECKFMFreeCertifierCtx (hCertCtx);
         PRINTERROR(error,"REGNewCertifier");
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     /* Create and Register a new server.  Certify server with the Organization
@@ -334,7 +334,7 @@ int main(int argc, char *argv[])
     {
         PRINTERROR(error,"GetCertCtx");
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     /* if local machine, need to get the User Name of this workstation */
@@ -344,7 +344,7 @@ int main(int argc, char *argv[])
         {
             PRINTERROR(error,"SECKFMGetUserName");
             NotesTerm();
-            return (1);
+            return (error);
         }
     }
 
@@ -387,7 +387,7 @@ int main(int argc, char *argv[])
         if (FullDBPath[0] != '\0')
             PRINTLOG ("Error occurred in file %s\n", FullDBPath);
         NotesTerm();
-        return (1);
+        return (error);
     }
 
 
@@ -400,7 +400,7 @@ int main(int argc, char *argv[])
     {
         PRINTERROR(error,"GetCertCtx");
         NotesTerm();
-        return (1); 
+        return (error); 
     }
 
     PRINTLOG("Begin recertifying %s...\n", NEW_USERNAME);
@@ -432,7 +432,7 @@ int main(int argc, char *argv[])
         if (FullDBPath[0] != '\0')
             PRINTLOG ("Error occurred in file %s\n", FullDBPath);
         NotesTerm();
-        return (1);
+        return (error);
     }
 
 
@@ -445,7 +445,7 @@ int main(int argc, char *argv[])
         PRINTLOG("Error: unable to construct network path to N&A book.\n");
         PRINTERROR(error,"OSPathNetConstruct");
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     /* Open the database. */
@@ -455,7 +455,7 @@ int main(int argc, char *argv[])
         PRINTLOG("Error: unable to open N&A book '%s'.\n", FullDBPath);
         PRINTERROR(error,"NSFDbOpen");
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     /* Look up the Organization certifier entry */
@@ -468,7 +468,7 @@ int main(int argc, char *argv[])
         PRINTERROR(error,"REGFindAddressBookEntry");
         NSFDbClose(hNABook);
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     if (NoteID)
@@ -486,7 +486,7 @@ int main(int argc, char *argv[])
         PRINTERROR(error,"REGFindAddressBookEntry");
         NSFDbClose(hNABook);
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     if (NoteID)
@@ -528,7 +528,7 @@ int main(int argc, char *argv[])
         PRINTERROR(error,"REGFindAddressBookEntry");
         NSFDbClose(hNABook);
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     if (NoteID)
@@ -541,7 +541,7 @@ int main(int argc, char *argv[])
     {
         PRINTERROR(error,"NSFDbClose");
         NotesTerm();
-        return (1);
+        return (error);
     }
     NSFDbDelete(MAILFILENAME);
     NotesTerm();
@@ -549,7 +549,7 @@ int main(int argc, char *argv[])
 /* End of main routine */
     PRINTLOG("\nProgram completed successfully.\n");
 
-    return (0);
+    return (error);
 }
 
 

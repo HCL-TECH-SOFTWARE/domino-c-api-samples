@@ -125,7 +125,7 @@ int main(int argc, char **argv)
 	DWORD EntriesFound;
 	WORD	SignalFlags;
 	DWORD i;
-	NOTEID *IDList;
+	NOTEID *IDList = NULL;
 
 	WORD ErrCode = 0;
 	
@@ -357,7 +357,7 @@ STATUS PutRefs(HTMLHANDLE cvtr)
 	HTMLAPI_URLArg arg;
 	
 	/* below is variable used to get the element's number and its offset number within an item*/
-	char *pszItemName;  // field name
+	char *pszItemName = NULL;  // field name
 	BOOL pointFound = FALSE; // used to determine the offset of an element whthin an item
 	char *elemOffset = NULL;
 	char ElemNumber[10];
@@ -664,7 +664,7 @@ STATUS PutText(HTMLHANDLE cvtr)
 	DWORD FullTextLength = 0;
 	char  *loc_text = NULL;
 	DWORD StartOffset = 0;
-	char * pText;
+	char * pText = NULL;
 	DWORD TextLength;
 	DWORD ExpectedTextLength;
 	

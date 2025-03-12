@@ -108,7 +108,7 @@ DWORD          dwResultLength;  /* Length of data to be returned to Domino and N
 STATUS LNPUBLIC MainEntryPoint(DBVEC *drv)
 
 {
-    SESSIONQUEUE *pSessQHead;
+    SESSIONQUEUE *pSessQHead = NULL;
 
 /*
  *  Fill in the subroutine vectors
@@ -190,7 +190,7 @@ STATUS LNPUBLIC DBDTerm(DBVEC *drv)
 STATUS LNPUBLIC DBDOpen(DBVEC *vec, HDBDSESSION *rethSession)
 {
 
-    SESSIONQUEUE  *pNewSessQ;
+    SESSIONQUEUE  *pNewSessQ = NULL;
 
 /*
  *  If pSessQ->NodeNum is zero, no sessions have yet been defined, so
@@ -331,7 +331,7 @@ STATUS LNPUBLIC DBDPerformFunction(DBVEC *vec, HDBDSESSION hSession,
 
 {
 
-    SESSIONQUEUE   *pTempSessQ;  /* Pointer to session information             */
+    SESSIONQUEUE   *pTempSessQ = NULL;  /* Pointer to session information             */
     STATUS     sError = NOERROR;
     DBQUEUE    *pDBQ;            /* Pointer to database context information    */
     char       *pBuffer1;        /* Pointers used to construct function output.*/

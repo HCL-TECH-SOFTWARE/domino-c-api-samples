@@ -199,7 +199,7 @@ STATUS LNPUBLIC BillRegister ( void )
 
 STATUS LNPUBLIC BillDeregister ( void )
 {
-   STATUS error;
+   STATUS error = NOERROR;
 
    error = EMDeregister( gRegHandle1 );
    if ( error == NOERROR )
@@ -251,6 +251,9 @@ STATUS LNCALLBACK BillHandler ( EMRECORD FAR * theData )
 /* Only bill if the API was successful. If not, return without sending 
    billing record. */
      
+       goto Done;
+
+   if ( theData == NULL )
        goto Done;
 
    if ((BOOL)(BillClass & BILL_CLASS_DATABASE))
