@@ -209,7 +209,7 @@ void  LNPUBLIC  ProcessArgs (int argc, char *argv[],
         fgets(db_name, MAXPATH-1, STDIN);
         printf("\n");
         printf ("Enter mail flag [0 or 1 or 2]:  ");
-        fgets(mail_flag, MAXPATH-1, STDIN);
+        fgets(mail_flag, 2-1, STDIN);
         printf("\n");
     }
     else
@@ -218,7 +218,7 @@ void  LNPUBLIC  ProcessArgs (int argc, char *argv[],
         strncpy(server_name, argv[1], SERVER_NAME_LEN-1);
         memset(db_name, '\0', MAXPATH);    
         strncpy(db_name, argv[2], MAXPATH-1);
-        memset(mail_flag, '\0', MAXPATH);    
-        strncpy(mail_flag, argv[3], MAXPATH-1);
+        memset(mail_flag, '\0', 2);
+        strncpy(mail_flag, argv[3], 1);
     } /* end if */
 } /* ProcessArgs */

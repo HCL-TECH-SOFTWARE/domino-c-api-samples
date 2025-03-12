@@ -236,9 +236,9 @@ void  LNPUBLIC  ProcessArgs (int argc, char *argv[],
         strncpy(server_name, argv[1], SERVER_NAME_LEN-1);
         memset(db_name, '\0', MAXPATH);    
         strncpy(db_name, argv[2], MAXPATH-1);
-        memset(mail_flag, '\0', MAXPATH);    
-        strncpy(mail_flag, argv[3], MAXPATH-1);
-        memset(idvault_flag, '\0', MAXPATH);    
-        strncpy(idvault_flag, argv[4], MAXPATH-1);
+        memset(mail_flag, '\0', 2);
+        strncpy(mail_flag, argv[3], 1);
+        memset(idvault_flag, '\0', 2);
+        strncpy(idvault_flag, argv[4], 1);
     } /* end if */
 } /* ProcessArgs */
