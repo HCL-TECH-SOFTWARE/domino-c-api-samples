@@ -518,7 +518,7 @@ STATUS  LNPUBLIC  AddBackgroundAgent( DBHANDLE hDb )
     /*** Copy the raw Lotus Script into the newly allocated memory 
     space. */
     pFormattedLS=OSLock(char,hSource);
-    strncpy(pFormattedLS,szScript,sizeof(pFormattedLS)-1);
+    strncpy(pFormattedLS,szScript,strlen(szScript)+1);
     OSUnlock(hSource);
 
     /*** Convert the raw Lotus Script to IDE compliant format.  */

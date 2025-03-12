@@ -384,7 +384,7 @@ int main(int argc, char* argv[])
 Exit0:
 	NSFDbClose(hDbHandle);
 	NotesTerm();
-	return 1;
+	return error;
 
 Exit1:
 	NotesTerm();
@@ -392,12 +392,12 @@ Exit1:
 	if (error == NOERROR)
 	{
 		PRINTLOG("\nProgram completed successfully.\n");
-		return (0);
+		return error;
 	}
 	else
 	{
 		PRINTLOG("\nProgram completed with errors.\n");
-		return 1;
+		return error;
 	}
 }
 

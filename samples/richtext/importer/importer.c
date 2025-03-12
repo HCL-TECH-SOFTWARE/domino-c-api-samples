@@ -373,7 +373,7 @@ STATUS LNPUBLIC ImportCD(char *szModulePath, char *szFileName,
 
     /* return the temp filename to calling routine */
 
-    strncpy (szTempName, EditImportData.OutputFileName, sizeof(szTempName)-1);
+    strncpy (szTempName, EditImportData.OutputFileName, MAXPATH+1);
 
 Done:
     /* Free the DLL and return */

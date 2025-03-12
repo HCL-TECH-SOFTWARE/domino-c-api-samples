@@ -973,7 +973,7 @@ STATUS removeSpecialChar(char* inputStr)
         len++;
     }
     tmpStr[len] = '\0';
-    strncpy(szbase, tmpStr, strlen(tmpStr));
+    strncpy(szbase, tmpStr, strlen(szbase));
     return NOERROR;
 }
 #endif

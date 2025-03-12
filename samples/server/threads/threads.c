@@ -201,7 +201,7 @@ STATUS LNPUBLIC  AddInMain (HMODULE hModule, int argc, char *argv[])
     DHANDLE    hStatusLineDesc; /* handle to new default status line */
     HMODULE    hMod;            /* add-in task's module handle */
     STATUS     error;           /* return code from HCL C API for Notes/Domino */
-    char       MsgBuffer[3][MAX_MESSAGE + 1] = { 0 };   /* Buffer for messages */
+    char       MsgBuffer[3][MAX_MESSAGE + 1] ={{0},{0}};/* Buffer for messages */
     WORD       MsgLen;                           /* Size of message */
 
     long       cur_time;       /* current time of day */
@@ -268,9 +268,9 @@ STATUS LNPUBLIC  AddInMain (HMODULE hModule, int argc, char *argv[])
     }
 
     /* Create and Open Message Queues for worker threads */
-   strncpy(MsgQueueName[0], MsgQueue1, sizeof(MsgQueueName)-1);
-   strncpy(MsgQueueName[1], MsgQueue2, sizeof(MsgQueueName)-1);
-   strncpy(MsgQueueName[2], MsgQueue3, sizeof(MsgQueueName)-1);
+   strncpy(MsgQueueName[0], MsgQueue1, MAXPATH+1);
+   strncpy(MsgQueueName[1], MsgQueue2, MAXPATH+1);
+   strncpy(MsgQueueName[2], MsgQueue3, MAXPATH+1);
 
     for (i=0; i<3; i++)
     {
