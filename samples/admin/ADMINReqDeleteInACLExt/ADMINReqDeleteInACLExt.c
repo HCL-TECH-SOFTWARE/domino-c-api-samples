@@ -72,6 +72,7 @@ SYNTAX:     ADMINReqDeleteInACLExt  <server name> <database filename>.<mail flag
 /* conestant types */
  #define     SERVER_NAME_LEN         80
  #define     STDIN                   stdin
+ #define     FLAG_LEN                2
 
 /* function prototypes */
 
@@ -223,11 +224,11 @@ void  LNPUBLIC  ProcessArgs (int argc, char *argv[],
         printf("\n");
         printf ("Enter mail flag [0 or 1 or 2]:  ");
         fflush (stdout);
-        fgets(mail_flag, 2-1, STDIN);
+        fgets(mail_flag, FLAG_LEN-1, STDIN);
         printf("\n");
         printf ("Enter idvault flag [0 or 1 or 2]:  ");
         fflush (stdout);
-        fgets(idvault_flag, 2-1, STDIN);
+        fgets(idvault_flag, FLAG_LEN-1, STDIN);
 
     }
     else
@@ -236,9 +237,9 @@ void  LNPUBLIC  ProcessArgs (int argc, char *argv[],
         strncpy(server_name, argv[1], SERVER_NAME_LEN-1);
         memset(db_name, '\0', MAXPATH);    
         strncpy(db_name, argv[2], MAXPATH-1);
-        memset(mail_flag, '\0', 2);
-        strncpy(mail_flag, argv[3], 1);
-        memset(idvault_flag, '\0', 2);
-        strncpy(idvault_flag, argv[4], 1);
+        memset(mail_flag, '\0', FLAG_LEN);
+        strncpy(mail_flag, argv[3], FLAG_LEN-1);
+        memset(idvault_flag, '\0', FLAG_LEN);
+        strncpy(idvault_flag, argv[4], FLAG_LEN-1);
     } /* end if */
 } /* ProcessArgs */

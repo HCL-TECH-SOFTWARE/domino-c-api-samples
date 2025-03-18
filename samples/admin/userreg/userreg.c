@@ -606,6 +606,9 @@ STATUS GetCertCtx (char far *pCertFile, HCERTIFIER *phCertCtx,
     }
     ExpireDate = ExpDate;
 
+    if (error)
+        return (error);
+
    /* get the encoded password */
     if (szPassword == NULL)
         pKFMPassword = NULL;
