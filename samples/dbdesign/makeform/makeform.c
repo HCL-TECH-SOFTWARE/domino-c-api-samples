@@ -2668,7 +2668,7 @@ STATUS LNPUBLIC CreateFrame()
     {
         sprintf(errMsg,
                 "Error: Unable to set text item '%s' in form note.\n",
-                FrameName );
+                ITEM_NAME_TEMPLATE_NAME );
         goto Exit4;
     }
 
