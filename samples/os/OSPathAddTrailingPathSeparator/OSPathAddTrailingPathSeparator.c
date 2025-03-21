@@ -95,7 +95,7 @@ int main(int argc, char *argv[])
    {
        PRINTLOG("\n Unable to initialize Notes.\n");
        PRINTERROR(error,"NotesInitExtended");
-       return (1);
+       return (error);
    }
 
    /* Reading Domino data directory */
@@ -115,7 +115,7 @@ int main(int argc, char *argv[])
    {
        PRINTERROR(error,"OSPathAddTrailingPathSeparator");
        NotesTerm();
-       return(1);
+       return(error);
    }
       
    strncat(szFullPath, DEBUG_LOGDIR_DEFAULT, sizeof(szFullPath) - 1 - strlen(szFullPath));
@@ -125,7 +125,7 @@ int main(int argc, char *argv[])
    {
        PRINTERROR(error,"OSPathAddTrailingPathSeparator");
        NotesTerm();
-       return(1);
+       return(error);
    }
 
    PRINTLOG("Full path : %s\n", szFullPath);
@@ -157,6 +157,6 @@ int main(int argc, char *argv[])
    
    /* End of main routine. */
    NotesTerm();
-   return (0); 
+   return (error); 
 
 }

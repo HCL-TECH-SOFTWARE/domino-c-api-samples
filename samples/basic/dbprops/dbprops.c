@@ -100,12 +100,12 @@ int main(int argc, char *argv[])
    char        path_name[] = "test.nsf";          /* pathname of database */
    char        old_title[] = "TEST";              /* original title of database */
    char        new_title[] = "Database Properties Test"; /* new title of database */
-   char        current_title[50] = "";            /* current title of database */
-   char        db_title[50] = "";                 /* title of database */
-   char        db_flags[100] = "";                /* icon note flags */
-   char        set_db_flags[100] = "";            /* modified icon note flags */
-   char        db_info[NSF_INFO_SIZE];            /* database info buffer */
-   char        action[15] = "";                   /* input acttion */
+   char        current_title[50] = { 0 };            /* current title of database */
+   char        db_title[50] = { 0 };                 /* title of database */
+   char        db_flags[100] = { 0 };                /* icon note flags */
+   char        set_db_flags[100] = { 0 };            /* modified icon note flags */
+   char        db_info[NSF_INFO_SIZE] = { 0 };            /* database info buffer */
+   char        action[15] = { 0 };                   /* input acttion */
    int         usage = 1;
    int         i = 0;
    int         rset = 0;
@@ -118,7 +118,7 @@ int main(int argc, char *argv[])
    WORD             rset_wRepFlags;               /* replication flags to be set  */
    WORD             wPriority;                    /* replication priority	*/
    WORD             rset_wCutoffInterval;			/* rep cutoff interval to be set */
-   char             szTimedate[MAXALPHATIMEDATE+1];
+   char             szTimedate[MAXALPHATIMEDATE + 1] = { 0 };
    WORD             wLen;
 
 
@@ -126,7 +126,7 @@ int main(int argc, char *argv[])
    if (argc == 2)
    {
       usage =0;
-      strcpy(action, argv[1]);
+      strncpy(action, argv[1], sizeof(action)-1);
       for (i=0; i<15; i++)
       {
            if(action[i] == '\0')
@@ -137,7 +137,7 @@ int main(int argc, char *argv[])
       {
          usage = 1;
          rset = 1;
-         strcpy (db_title, new_title);
+         strncpy (db_title, new_title, sizeof(db_title)-1);
          set_db_flags[0] = CHFLAG_NOUNREAD_MARKS;         /*Don't maintain unread marks*/
          set_db_flags[1] = CHFLAG_FORM_BUCKET_OPT;        /*Document table bitmap optimization*/
          set_db_flags[2] = CHFLAG_MAINTAIN_LAST_ACCESSED; /*Maintain last accessed property*/
@@ -152,7 +152,7 @@ int main(int argc, char *argv[])
       {
           usage = 1;
           rset = 1;
-          strcpy (db_title, old_title);
+          strncpy (db_title, old_title, sizeof(db_title)-1);
           db_flags[0] = '\0';
           rset_wRepFlags = REPLFLG_IGNORE_DELETES | REPLFLG_PRIORITY_LOW;
           rset_wCutoffInterval = 90;
@@ -182,7 +182,7 @@ int main(int argc, char *argv[])
    if (error = NotesInitExtended (argc, argv))
    {
       PRINTLOG("\n Unable to initialize Notes.\n");
-      return (1);
+      return (error);
    }
 
 
@@ -191,7 +191,7 @@ int main(int argc, char *argv[])
    {
       PRINTERROR (error,"NSFDbOpen");
       NotesTerm();
-      return (1);
+      return (error);
    }
 
 /* Get the replication info */
@@ -200,7 +200,7 @@ int main(int argc, char *argv[])
       NSFDbClose (db_handle);
       PRINTERROR (error,"NSFDbReplicaInfoGet");
       NotesTerm();
-      return (1);
+      return (error);
    }
 
 /* We can change the title of the output database by following these steps:
@@ -230,7 +230,7 @@ int main(int argc, char *argv[])
       NSFDbClose (db_handle);
       PRINTERROR (error,"NSFDbInfoGet");
       NotesTerm();
-      return (1);
+      return (error);
    }
 
 /* Add the database title to the database information buffer */
@@ -242,7 +242,7 @@ int main(int argc, char *argv[])
           NSFDbClose (db_handle);
           PRINTERROR (error,"NSFDbInfoSet");
           NotesTerm();
-          return (1);
+          return (error);
       }
       dbrepInfo.Flags = rset_wRepFlags;
       dbrepInfo.CutoffInterval = rset_wCutoffInterval;
@@ -251,7 +251,7 @@ int main(int argc, char *argv[])
           NSFDbClose (db_handle);
           PRINTERROR (error,"NSFDbReplicaInfoSet");
           NotesTerm();
-          return (1);
+          return (error);
       }
    }
 
@@ -332,7 +332,7 @@ int main(int argc, char *argv[])
              NSFNoteClose (hIconNote);
              NSFDbClose (db_handle);
              NotesTerm();
-             return (1);
+             return (error);
          }
 
 /* Update the note in the database */
@@ -342,7 +342,7 @@ int main(int argc, char *argv[])
              NSFNoteClose (hIconNote);
              NSFDbClose (db_handle);
              NotesTerm();
-             return (1);
+             return (error);
          }
       }
 
@@ -414,7 +414,7 @@ int main(int argc, char *argv[])
    {
        PRINTERROR (error,"NSFDbClose");
        NotesTerm();
-       return (1);
+       return (error);
    }
 
    fflush(stdout);
@@ -422,5 +422,5 @@ int main(int argc, char *argv[])
 /* End of program */
    PRINTLOG("\n\n Program completed successfully.\n");
    NotesTerm();
-   return (0);
+   return (error);
 }

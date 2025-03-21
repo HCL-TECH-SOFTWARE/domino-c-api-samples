@@ -85,12 +85,12 @@ STATUS LNPUBLIC AppendNumberListField (
 int main(int argc, char *argv[])
 {
 #define LIST_COUNT 5
-    char        *szPathName;
+    char        *szPathName = NULL;
     DBHANDLE    hDB;
     NOTEHANDLE  hNote;
     STATUS      error = NOERROR;
     NUMBER      aNumbers[LIST_COUNT] = {1,3,9703.4,-7,0.11592};
-    char        database_name[STRING_LENGTH];
+    char        database_name[STRING_LENGTH] = { 0 };
    
     szPathName = database_name;
     ProcessArgs(argc, argv, szPathName); 
@@ -98,7 +98,7 @@ int main(int argc, char *argv[])
     if (error = NotesInitExtended (argc, argv))
     {
         PRINTLOG("\n Unable to initialize Notes.\n");
-        return (1);
+        return (error);
     }
 
 
@@ -108,7 +108,7 @@ int main(int argc, char *argv[])
     {
         PRINTERROR (error,"NSFDbOpen");  
         NotesTerm();
-        return (1);
+        return (error);
     } 
         
     PRINTLOG("\nOpened database: \"%s\"\n", szPathName); 
@@ -120,7 +120,7 @@ int main(int argc, char *argv[])
         NSFDbClose (hDB);
         PRINTERROR (error,"NSFNoteCreate");  
         NotesTerm();
-        return (1);
+        return (error);
     }
 
 /* Write a field named FORM to the note */
@@ -131,7 +131,7 @@ int main(int argc, char *argv[])
         NSFDbClose (hDB);
         PRINTERROR (error,"NSFItemSetText");  
         NotesTerm();
-        return (1);
+        return (error);
     }
 
 /* Write a text field named PLAIN_TEXT to the note. */
@@ -143,7 +143,7 @@ int main(int argc, char *argv[])
         NSFDbClose (hDB);
         PRINTERROR (error,"NSFItemSetText");  
         NotesTerm();
-        return (1);
+        return (error);
     }
 
 /* Write a field named NUMBER to the note. */
@@ -160,7 +160,7 @@ int main(int argc, char *argv[])
         NSFDbClose (hDB);
         PRINTERROR (error,"AppendNumberListField");  
         NotesTerm();
-        return (1);
+        return (error);
     }    
         
     PRINTLOG("Updating and closing note.\n"); 
@@ -171,7 +171,7 @@ int main(int argc, char *argv[])
         NSFDbClose (hDB);
         PRINTERROR (error,"NSFNoteUpdate");  
         NotesTerm();
-        return (1);
+        return (error);
     }
         
     if (error = NSFNoteClose (hNote))
@@ -179,20 +179,20 @@ int main(int argc, char *argv[])
         NSFDbClose (hDB);
         PRINTERROR (error,"NSFNoteClose");  
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     if (error = NSFDbClose (hDB))
     {
         PRINTERROR (error,"NSFDbClose");  
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     PRINTLOG("\nProgram completed successfully.\n"); 
 
     NotesTerm();
-    return (0); 
+    return (error); 
 
 }
 

@@ -90,13 +90,13 @@ STATUS LNPUBLIC print_fields (void far *, SEARCH_MATCH far *,
 
 int main(int argc, char *argv[])
 {
-    char       *db_filename;    /* pathname of source database */
+    char       *db_filename = NULL;    /* pathname of source database */
     DBHANDLE    db_handle;      /* handle of source database */
     char        formula[] = "@All"; /* an ASCII selection formula. */
     FORMULAHANDLE    formula_handle;    /* a compiled selection formula */
     WORD     wdc;                       /* a word we don't care about */
     STATUS   error = NOERROR;           /* return status from API calls */
-    char     database_name[STRING_LENGTH];
+    char     database_name[STRING_LENGTH] = { 0 };
    
     db_filename = database_name;
 
@@ -182,7 +182,7 @@ to NULLHANDLE and eliminate the formula compilation.) */
 /* End of main routine. */
     PRINTLOG("\nProgram completed successfully.\n");
     NotesTerm();
-    return (0); 
+    return (error); 
 
 }
 

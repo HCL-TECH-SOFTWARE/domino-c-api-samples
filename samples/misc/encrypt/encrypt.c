@@ -93,18 +93,18 @@ int main(int argc, char *argv[])
 
     /* Local data declarations */
 
-    char        PathName[MAXPATH]; /* pathname of database */
-    char        EncryptKey[100];   /* name of secret encryption key */
+    char        PathName[MAXPATH] = { 0 }; /* pathname of database */
+    char        EncryptKey[100] = { 0 };   /* name of secret encryption key */
     DBHANDLE    hDB;               /* database handle */
     NOTEHANDLE  hNote;             /* note handle */
-    char        TextField[100];    /* contents of a text field */
+    char        TextField[100] = { 0 };    /* contents of a text field */
     NUMBER      NumField = 1;      /* contents of a numeric field */
     TIMEDATE    TimeField;         /* contents of a time/date field */
     NOTEID      NoteID1, NoteID2;  /* note id's of the created documents */
     NOTEHANDLE  hEncryptedNote;    /* note handle of encrypted note */
     STATUS      error = NOERROR;   /* return code from API calls */
-    char        user1[MAXPATH];
-    char        user2[MAXPATH];
+    char        user1[MAXPATH] = { 0 };
+    char        user2[MAXPATH] = { 0 };
 
 
     
@@ -127,7 +127,7 @@ int main(int argc, char *argv[])
     {
         PRINTERROR(error,"NSFDbOpen");
         NotesTerm();
-        return (1);
+        return (error);
     }
 
    /* Create the first data note. */
@@ -137,7 +137,7 @@ int main(int argc, char *argv[])
         PRINTERROR(error,"NSFNoteCreate");
         NSFDbClose (hDB);
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     /* Write a field named FORM to the note -- this field specifies the
@@ -152,7 +152,7 @@ int main(int argc, char *argv[])
         NSFNoteClose (hNote);
         NSFDbClose (hDB);
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     /* Write a text field named PLAIN_TEXT to the note. 
@@ -170,7 +170,7 @@ int main(int argc, char *argv[])
         NSFNoteClose (hNote);
         NSFDbClose (hDB);
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     /* Write a numeric field named NUMBER to the note. 
@@ -186,7 +186,7 @@ int main(int argc, char *argv[])
         NSFNoteClose (hNote);
         NSFDbClose (hDB);
         NotesTerm();
-        return (1);
+        return (error);
     }
 
 
@@ -205,7 +205,7 @@ int main(int argc, char *argv[])
         NSFNoteClose (hNote);
         NSFDbClose (hDB);
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     /* Write a text field named, ENCRYPTED_ITEM, to the note. Set the 
@@ -224,7 +224,7 @@ int main(int argc, char *argv[])
         NSFNoteClose (hNote);
         NSFDbClose (hDB);
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     /* Add the entire new note (with all fields) to the database. */
@@ -235,7 +235,7 @@ int main(int argc, char *argv[])
         NSFNoteClose (hNote);
         NSFDbClose (hDB);
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     /* Store the NOTEID.  It will be used later to read the encrypted
@@ -248,7 +248,7 @@ int main(int argc, char *argv[])
         PRINTERROR(error,"NSFNoteClose");
         NSFDbClose (hDB);
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     /* Create a second note */
@@ -258,7 +258,7 @@ int main(int argc, char *argv[])
         PRINTERROR(error,"NSFNoteCreate");
         NSFDbClose (hDB);
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     /* Write a field named FORM to the note -- this field specifies the
@@ -273,7 +273,7 @@ int main(int argc, char *argv[])
         NSFNoteClose (hNote);
         NSFDbClose (hDB);
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     /* Write a text field named PLAIN_TEXT to the note. 
@@ -291,7 +291,7 @@ int main(int argc, char *argv[])
         NSFNoteClose (hNote);
         NSFDbClose (hDB);
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     /* Write a numeric field named NUMBER to the note. 
@@ -309,7 +309,7 @@ int main(int argc, char *argv[])
         NSFNoteClose (hNote);
         NSFDbClose (hDB);
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     /* Write a time/date field named TIME_DATE to the note. 
@@ -327,7 +327,7 @@ int main(int argc, char *argv[])
         NSFNoteClose (hNote);
         NSFDbClose (hDB);
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     /* Write a text field named, ENCRYPTED_ITEM to the note. Set the 
@@ -346,7 +346,7 @@ int main(int argc, char *argv[])
         NSFNoteClose (hNote);
         NSFDbClose (hDB);
         NotesTerm();
-        return (1);
+        return (error);
     }
   
     /* Write an item, ITEM_NAME_NOTE_SEALNAMES, to the note with the 
@@ -364,7 +364,7 @@ int main(int argc, char *argv[])
         NSFNoteClose (hNote);
         NSFDbClose (hDB);
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     /* New for Notes/Domino 6 */
@@ -381,7 +381,7 @@ int main(int argc, char *argv[])
         NSFNoteClose (hNote);
         NSFDbClose (hDB);
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     /* Add another user to the ITEM_NAME_NOTE_SEALUSERS */
@@ -396,7 +396,7 @@ int main(int argc, char *argv[])
         NSFNoteClose (hNote);
         NSFDbClose (hDB);
         NotesTerm();
-        return (1);
+        return (error);
     }
   
   
@@ -409,7 +409,7 @@ int main(int argc, char *argv[])
         NSFNoteClose (hNote);
         NSFDbClose (hDB);
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     if (error = NSFNoteUpdate (hEncryptedNote, 0))
@@ -419,7 +419,7 @@ int main(int argc, char *argv[])
         NSFNoteClose (hEncryptedNote);
         NSFDbClose (hDB);
         NotesTerm();
-        return (1);
+        return (error);
    }
 
     /* Store the NOTEID of this document.  It will be used later to
@@ -435,7 +435,7 @@ int main(int argc, char *argv[])
         NSFNoteClose (hEncryptedNote);
         NSFDbClose (hDB);
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     if (error = NSFNoteClose (hEncryptedNote))
@@ -443,7 +443,7 @@ int main(int argc, char *argv[])
         PRINTERROR(error,"NSFNoteClose");
         NSFDbClose (hDB);
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     /* Demonstrate reading encrypted fields. */
@@ -453,7 +453,7 @@ int main(int argc, char *argv[])
         PRINTERROR(error,"DecryptAndReadNoteItem");
         NSFDbClose (hDB);
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     if (error = DecryptAndReadNoteItem (hDB, NoteID2, ENCRYPTED_ITEM))
@@ -461,7 +461,7 @@ int main(int argc, char *argv[])
         PRINTERROR(error,"DecryptAndReadNoteItem");
         NSFDbClose (hDB);
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     /* Close the database */
@@ -471,12 +471,12 @@ int main(int argc, char *argv[])
         PRINTERROR(error,"NSFDbClose");
         NSFDbClose (hDB);
         NotesTerm();
-        return (1);
+        return (error);
     }
 
 /* End of subroutine. */
     PRINTLOG("\nProgram completed successfully.\n");
-    return (0);
+    return (error);
 }
 
 /************************************************************************

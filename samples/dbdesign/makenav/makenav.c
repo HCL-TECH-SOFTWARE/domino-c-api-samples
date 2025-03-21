@@ -199,7 +199,7 @@ int main(int argc, char *argv[])
     if (sError = NotesInitExtended (argc, argv))
     {
        PRINTLOG("\n Unable to initialize Notes.\n");
-       return (1);
+       return (sError);
     }
 
    

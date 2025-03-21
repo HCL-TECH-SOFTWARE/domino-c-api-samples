@@ -95,7 +95,7 @@ int main(int argc, char *argv[])
 
 /* Local data declarations */
 
-   char          path_name[STRING_LENGTH];                          /* pathname of database */
+   char          path_name[STRING_LENGTH] = { 0 };                          /* pathname of database */
    DBHANDLE      db_handle;                                         /* database handle */
    NOTEHANDLE    note_handle;                                       /* note handle */
    STATUS        error;                                             /* return code from API calls */
@@ -124,7 +124,7 @@ int main(int argc, char *argv[])
    {
        PRINTERROR(error,"NSFDbOpen");
        NotesTerm();
-       return (1);
+       return (error);
    }
 
 /* Exit program if either a database policy document exists or a
@@ -144,7 +144,7 @@ int main(int argc, char *argv[])
        PRINTERROR(error,"NSFDbGetSpecialNoteID");
        NSFDbClose(db_handle);
        NotesTerm();
-       return (1);
+       return (error);
    }
 
    error = NSFDbGetSpecialNoteID (db_handle,
@@ -161,7 +161,7 @@ int main(int argc, char *argv[])
        PRINTERROR(error,"NSFDbGetSpecialNoteID");
        NSFDbClose(db_handle);
        NotesTerm();
-       return (1);
+       return (error);
    }
 
 /* Create a new note for the database policy document. */
@@ -171,7 +171,7 @@ int main(int argc, char *argv[])
        PRINTERROR(error,"NSFNoteCreate");
        NSFDbClose(db_handle);
        NotesTerm();
-       return (1);
+       return (error);
    }
 
 /* Specify in the note header that this note is a database policy document */
@@ -188,7 +188,7 @@ int main(int argc, char *argv[])
        NSFNoteClose (note_handle);
        NSFDbClose(db_handle);
        NotesTerm();
-       return (1);
+       return (error);
    }
 
 /* Add the new note to the database. */
@@ -199,7 +199,7 @@ int main(int argc, char *argv[])
        NSFNoteClose (note_handle);
        NSFDbClose(db_handle);
        NotesTerm();
-       return (1);
+       return (error);
    }
 
 /* Close the new note. */
@@ -209,7 +209,7 @@ int main(int argc, char *argv[])
        PRINTERROR(error,"NSFNoteClose");
        NSFDbClose(db_handle);
        NotesTerm();
-       return (1);
+       return (error);
    }
 
 /* Create a new note for the database help document */
@@ -219,7 +219,7 @@ int main(int argc, char *argv[])
        PRINTERROR(error,"NSFNoteCreate");
        NSFDbClose(db_handle);
        NotesTerm();
-       return (1);
+       return (error);
    }
 
 /* Specify in the note header that this note is a database help document */
@@ -236,7 +236,7 @@ int main(int argc, char *argv[])
        NSFNoteClose (note_handle);
        NSFDbClose(db_handle);
        NotesTerm();
-       return (1);
+       return (error);
    }
 
 /* Add the new note to the database. */
@@ -247,7 +247,7 @@ int main(int argc, char *argv[])
        NSFNoteClose (note_handle);
        NSFDbClose(db_handle);
        NotesTerm();
-       return (1);
+       return (error);
    }
 
 /* Close the new note. */
@@ -257,7 +257,7 @@ int main(int argc, char *argv[])
        PRINTERROR(error,"NSFNoteClose");
        NSFDbClose(db_handle);
        NotesTerm();
-       return (1);
+       return (error);
    }
 
 /* Now open and print out the database policy document and the database
@@ -272,7 +272,7 @@ int main(int argc, char *argv[])
        PRINTERROR(error,"NSFDbGetSpecialNoteID");
        NSFDbClose(db_handle);
        NotesTerm();
-       return (1);
+       return (error);
    }
 
    if (error = print_doc (db_handle, note_ID))
@@ -280,7 +280,7 @@ int main(int argc, char *argv[])
        PRINTERROR(error,"print_doc");
        NSFDbClose(db_handle);
        NotesTerm();
-       return (1);
+       return (error);
    }
 
 /* Use NSFDbGetSpecialNoteID to get the note ID of the help doc */
@@ -292,7 +292,7 @@ int main(int argc, char *argv[])
        PRINTERROR(error,"NSFDbGetSpecialNoteID");
        NSFDbClose(db_handle);
        NotesTerm();
-       return (1);
+       return (error);
    }
 
    if (error = print_doc (db_handle, note_ID))
@@ -300,7 +300,7 @@ int main(int argc, char *argv[])
        PRINTERROR(error,"print_doc");
        NSFDbClose(db_handle);
        NotesTerm();
-       return (1);
+       return (error);
    }
 
 /* Close the database */
@@ -309,13 +309,13 @@ int main(int argc, char *argv[])
    {
        PRINTERROR(error,"NSFDbClose");
        NotesTerm();
-       return (1);
+       return (error);
    }
 
 /* End of subroutine. */
    PRINTLOG("\nProgram completed successfully.\n");
    NotesTerm();
-   return (0);
+   return (error);
 }
 
 

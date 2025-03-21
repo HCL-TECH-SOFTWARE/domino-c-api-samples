@@ -96,9 +96,9 @@ int main(int argc, char *argv[])
 /* Local type definitions */
 
 /* Local data declarations */
-    char        *path_name;     /* pathname of database */
-    char        Length[6];      /* command line string */
-    char        Width[6];       /* command line string */
+    char        *path_name = NULL;     /* pathname of database */
+    char        Length[6] = { 0 };      /* command line string */
+    char        Width[6] = { 0 };       /* command line string */
     DBHANDLE    db_handle;      /* database handle */
     NOTEHANDLE  note_handle;    /* note handle */
 
@@ -112,7 +112,7 @@ int main(int argc, char *argv[])
     if (error)
     {
         PRINTLOG("Error: Unable to initialize Notes.\n");
-        return (1);
+        return (error);
     }
 
 /* Get the pathname of the database (Compute.nsf). */
@@ -121,7 +121,7 @@ int main(int argc, char *argv[])
     {
         PRINTLOG("Error: Out of memory.\n");
         NotesTerm();
-        return (0);
+        return (error);
     }
 
     if (argc != 2 && argc != 4)
@@ -138,7 +138,7 @@ int main(int argc, char *argv[])
     {
         PRINTERROR(error,"NSFDbOpen");
         NotesTerm();
-        return(1);
+        return(error);
     }
 
 /* Finished with database name. */
@@ -150,7 +150,7 @@ int main(int argc, char *argv[])
         PRINTERROR(error,"NSFNoteCreate");
         NSFDbClose (db_handle);
         NotesTerm();
-        return(1);
+        return(error);
     }
 
     /* process command line arguments or prompt for user input */
@@ -202,11 +202,11 @@ Item_Error:
     if (error)
     {
         PRINTERROR(error,"NSFNoteUpdate");
-        return(1);
+        return(error);
     }
 
     PRINTLOG("\nProgram completed successfully.\n");
-    return(0);
+    return(error);
 
 }
 

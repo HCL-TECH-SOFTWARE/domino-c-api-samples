@@ -101,9 +101,9 @@ int main(int argc, char *argv[])
 
 /* Local data declarations */
 
-    char        server[STRING_LENGTH];      /* name of HCL Domino Server */
-    char        directory[STRING_LENGTH];   /* directory path */
-    char        full_netpath[MAXPATH] = ""; /* full network path */
+    char        server[STRING_LENGTH] = { 0 };      /* name of HCL Domino Server */
+    char        directory[STRING_LENGTH] = { 0 };   /* directory path */
+    char        full_netpath[MAXPATH] = { 0 }; /* full network path */
     DBHANDLE    dir_handle;                 /* handle for directory */
 #ifdef OS400
     STATUS      error;            /* return status from API calls */
@@ -128,7 +128,7 @@ int main(int argc, char *argv[])
     if (error)
     {
         fprintf (stderr, "\nError initializing Notes.\n");
-        return (1);
+        return (error);
     }
 
     if (strcmp (server, "\"\""))
@@ -143,7 +143,7 @@ int main(int argc, char *argv[])
         {
             PRINTERROR (error,"OSPathNetConstruct");
             NotesTerm();
-            return (1);
+            return (error);
         }
 
     }
@@ -154,7 +154,7 @@ int main(int argc, char *argv[])
     {
         PRINTERROR (error,"NSFDbOpen");
         NotesTerm();
-        return (1);
+        return (error);
     }
 
 /* Call NSFSearch to find files in the directory. For each file found,
@@ -178,7 +178,7 @@ call an action routine. */
         PRINTERROR (error,"NSFSearch");
         NSFDbClose (dir_handle);
         NotesTerm();
-        return (1);
+        return (error);
     }
 
 /* Close the directory. */
@@ -187,7 +187,7 @@ call an action routine. */
     {
         PRINTERROR (error,"NSFDbClose");
         NotesTerm();
-        return (1);
+        return (error);
     }
 
 /* Terminate Domino and Notes. */
@@ -199,7 +199,7 @@ call an action routine. */
 
 /* End of intro program. */
 
-    return (0);
+    return (error);
 }
 
 /************************************************************************

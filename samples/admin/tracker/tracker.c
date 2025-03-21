@@ -70,7 +70,7 @@
 #include <kfm.h>
 #include <nsfdata.h>
 #include <easycd.h>
-
+#include <printlog.h>
 /* Application-specific include files */
 #include "tracker.h"
 
@@ -86,7 +86,7 @@ DWORD           dwStyleID_global;
 
 /* Record all Tracker activity in the trace file */
 FILE           *pTraceFile[MAX_TRACKER_INSTANCES];
-char           TrackerLogFile[MAX_TRACKERLOG];
+char           TrackerLogFile[MAX_TRACKERLOG] = { 0 };
 int            inst; /* instance index for multi-process systems */
 
 /************************************************************************
@@ -103,10 +103,10 @@ int            inst; /* instance index for multi-process systems */
 
 STATUS LNPUBLIC  MainEntryPoint(DBHOOKVEC * pDBHooks)
 {
-    char        szDBPathName[MAXENVVALUE];
+    char        szDBPathName[MAXENVVALUE] = { 0 };
     STATUS      error;
     DBHANDLE    hDB;
-    char        szErrorMessage[MAXENVVALUE+50];
+    char        szErrorMessage[MAXENVVALUE + 50] = { 0 };
 
     /* initialize instances for multi-process systems */
     inst = 0;
@@ -116,8 +116,8 @@ STATUS LNPUBLIC  MainEntryPoint(DBHOOKVEC * pDBHooks)
     {
         /* if we have an error log it and return */
  
-        strcpy(TrackerLogFile, TRACE_FILENAME);
-        strcat(TrackerLogFile,".001");
+        strncpy(TrackerLogFile, TRACE_FILENAME, sizeof(TrackerLogFile)-1);
+        strncat(TrackerLogFile,".001", sizeof(TrackerLogFile)-1);
   
       /* open the trace log file */
 #if defined (OS400)
@@ -155,7 +155,7 @@ STATUS LNPUBLIC  MainEntryPoint(DBHOOKVEC * pDBHooks)
     if (!OSGetEnvironmentString(TRACKER_DBNAME_VARIABLE, 
                                 szDBPathName, MAXENVVALUE))
     {
-        strcpy(szDBPathName, TRACKER_DEFAULT_DBNAME);
+        strncpy(szDBPathName, TRACKER_DEFAULT_DBNAME, sizeof(szDBPathName)-1);
     }
 
     if (error = NSFDbOpen(szDBPathName, &hDB))
@@ -1080,7 +1080,7 @@ STATUS  LNPUBLIC  CopyNoteToTrashcan (DBHANDLE hDB,
     STATUS          error;
     DBREPLICAINFO   TargetDBRepInfo;
     DBID            TargetDBID;
-    char            szTrashcanName[MAXENVVALUE];
+    char            szTrashcanName[MAXENVVALUE] = { 0 };
     DBHANDLE        hTrashcanDB;
     DBREPLICAINFO   TrashcanRepInfo;
     DBID            TrashcanDBID;
@@ -1104,7 +1104,7 @@ STATUS  LNPUBLIC  CopyNoteToTrashcan (DBHANDLE hDB,
     if (!OSGetEnvironmentString(TRACKER_TRASHCAN_VARIABLE,
                                 szTrashcanName, MAXENVVALUE))
     {
-        strcpy(szTrashcanName, TRACKER_DEFAULT_TRASHCAN);
+        strncpy(szTrashcanName, TRACKER_DEFAULT_TRASHCAN, sizeof(szTrashcanName)-1);
     }
 
     if (error = NSFDbOpen (szTrashcanName, &hTrashcanDB))
@@ -1202,8 +1202,13 @@ STATUS  LNPUBLIC  RenderDataAsText(void *Data, WORD Length,
     /* Now allocate a return buffer just the size we really need. */
     *pszItemText = (char *)malloc(wTextLength);
 
+    if(*pszItemText == NULL)
+    {
+        PRINTERROR(error, "malloc failed.\n");
+    }
+
     /* return the text string to the return buffer, then clean up */
-    strcpy(*pszItemText, szTextBuff);
+    strncpy(*pszItemText, szTextBuff, wTextLength);
     free(szTextBuff);
     OSMemFree(bidValue.pool);
 
@@ -1247,7 +1252,7 @@ STATUS  LNPUBLIC  GetInstanceNumber (int *pInstNum)
     char       tmpnum[6];
 
     /* copy tracker log file name */
-    strcpy(TrackerLogFile, TRACE_FILENAME);
+    strncpy(TrackerLogFile, TRACE_FILENAME, sizeof(TrackerLogFile)-1);
 
     *pInstNum = 0;
 
@@ -1321,12 +1326,12 @@ STATUS  LNPUBLIC  GetInstanceNumber (int *pInstNum)
     
     /* add part of number extension to file name */
     if (InstNum <= 9)
-        strcat(TrackerLogFile,".00");
+        strncat(TrackerLogFile,".00", sizeof(TrackerLogFile)-1);
     else
-        strcat(TrackerLogFile,".0");
+        strncat(TrackerLogFile,".0", sizeof(TrackerLogFile)-1);
     
     /* append number to log file name (ex. TRACKER.001 ) */
-    strcat(TrackerLogFile,tmpnum);
+    strncat(TrackerLogFile,tmpnum,sizeof(TrackerLogFile)-1);
 
     return NOERROR;
 }

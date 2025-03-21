@@ -96,14 +96,14 @@ STATUS LNPUBLIC modify_field (void far *, DWORD);
 
 int main(int argc, char *argv[])
 {
-   char       *db_filename;    /* pathname of source database */
+   char       *db_filename = NULL;    /* pathname of source database */
    DBHANDLE    db_handle;      /* handle of source database */
    char formula[] = "@IsAvailable(NUMBER)";  /* an ASCII selection formula */
    FORMULAHANDLE    formula_handle;    /* a compiled selection formula */
    WORD        wdc;            /* a word we don't care about */
    STATUS      error = NOERROR;         /* return status from API calls */
    DHANDLE       hNoteIDTable;   /* table of Note IDs to modify */
-   char        database_name[STRING_LENGTH];
+   char        database_name[STRING_LENGTH] = { 0 };
    
 
    db_filename = database_name;
@@ -112,7 +112,7 @@ int main(int argc, char *argv[])
    if (error = NotesInitExtended (argc, argv))
    {
        PRINTLOG("\n Unable to initialize Notes.\n");
-       return (1);
+       return (error);
    }
    
    
@@ -122,7 +122,7 @@ int main(int argc, char *argv[])
    {
        PRINTERROR (error,"NSFDbOpen");  
        NotesTerm();
-       return (1);
+       return (error);
    } 
 
 
@@ -136,7 +136,7 @@ int main(int argc, char *argv[])
        NSFDbClose (db_handle);
        PRINTERROR (error,"IDCreateTable");  
        NotesTerm();
-       return (1);
+       return (error);
    }
 
    /* Compile the selection formula. */
@@ -156,7 +156,7 @@ int main(int argc, char *argv[])
        NSFDbClose (db_handle);
        PRINTERROR (error,"NSFFormulaCompile");  
        NotesTerm();
-       return (1);
+       return (error);
    }
 
    /* Call NSFSearch to find the notes that match the selection criteria. 
@@ -178,7 +178,7 @@ int main(int argc, char *argv[])
        NSFDbClose (db_handle);
        PRINTERROR (error,"NSFSearch");  
        NotesTerm();
-       return (1);
+       return (error);
    }
 
    /* Free the memory allocated to the compiled formula. */
@@ -203,7 +203,7 @@ int main(int argc, char *argv[])
        PRINTLOG("\nProgram completed successfully\n");
 
    NotesTerm();
-   return (0);
+   return (error);
 
 }
 

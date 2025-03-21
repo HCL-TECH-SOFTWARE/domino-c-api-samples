@@ -90,7 +90,7 @@ extern "C" {
 #endif
 
 DBHANDLE       hDB;                       /* database handle */
-char far       *pOutputBuffer;            /* Buffer to hold output strings. */
+char far       *pOutputBuffer = NULL;            /* Buffer to hold output strings. */
 STATUS         sError=0;                  /* return code */
 
 /************************************************************************
@@ -142,7 +142,7 @@ int main(int argc, char *argv[])
     if (sError = NotesInitExtended (argc, argv))
     {
         PRINTLOG("\n Unable to initialize Notes.\n");
-        return (1);
+        return (sError);
     }
       
     PRINTLOG("");
@@ -157,7 +157,7 @@ int main(int argc, char *argv[])
     {
         PRINTERROR (sError, "NSFDbOpen");  
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
     /* read the initial form */
@@ -172,7 +172,7 @@ int main(int argc, char *argv[])
     {
         PRINTERROR (sError, "ReadForm");  
         NotesTerm();
-        return (1);
+        return (sError);
     }
   
     /*
@@ -180,7 +180,7 @@ int main(int argc, char *argv[])
      */
     PRINTLOG("\nProgram completed successfully.\n");   
     NotesTerm();
-    return (0); 
+    return (sError);
 
 }
 
@@ -620,7 +620,7 @@ void far        *pCtx)
         sprintf(FieldString, "Field Name = %s, Data Type = %s\n",
                 szFieldName, szDataType);
 
-        strcat(pBuf, FieldString);
+        strncat(pBuf, FieldString, sizeof(pBuf)-1);
     
     }
 

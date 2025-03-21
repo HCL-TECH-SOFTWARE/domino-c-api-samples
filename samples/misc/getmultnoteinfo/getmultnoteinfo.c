@@ -82,10 +82,10 @@ int main(int argc, char *argv[])
 {
 	/* Local data declarations */
 
-	char			pname[MAXPATH] = "";         /* buffer to store the input path to database */
-	char			*path_name;                  /* pathname of database */
-	char			*server_name;                /* server name where database lives*/
-	char			*db_name;                    /* name of database */
+	char			pname[MAXPATH] = { 0 };         /* buffer to store the input path to database */
+	char			*path_name = NULL;                  /* pathname of database */
+	char			*server_name = NULL;                /* server name where database lives*/
+	char			*db_name = NULL;                    /* name of database */
 	int			ArgNum = 0;
 	int			i = 0;	
 
@@ -99,7 +99,8 @@ int main(int argc, char *argv[])
 	DHANDLE			hIDTable;
 	DHANDLE			hInfoTable,		hInfoTableByUNID;
 	DWORD			InfoTableLength,		InfoTableLengthByUNID;
-	char			*InfoTable,		*InfoTableByUNID;
+	char * InfoTable = NULL; 
+	char * InfoTableByUNID = NULL;
 	NOTEID			id[MaxNoteNum],		idByUNID[MaxNoteNum];
 	OID			oid[MaxNoteNum],		oidByUNID[MaxNoteNum];
 	BOOL			First;
@@ -154,7 +155,7 @@ int main(int argc, char *argv[])
 	    {
 	        PRINTERROR (error,"OSPathNetConstruct");
 	        NotesTerm();
-	        return (1);
+	        return (error);
 	    }
 	    path_name = pname;
 	}
@@ -165,7 +166,7 @@ int main(int argc, char *argv[])
 	{
 	    PRINTERROR (error,"NSFDbOpen");
 	    NotesTerm();
-	    return (1);
+	    return (error);
 	}
 
 	if (error = IDCreateTable(sizeof(NOTEID), &hIDTable))
@@ -173,7 +174,7 @@ int main(int argc, char *argv[])
 	    PRINTERROR (error,"IDCreateTable");
 	    NSFDbClose (hDB);
 	    NotesTerm();
-	    return (1);
+	    return (error);
 	}
 
 	if (error = NSFSearch (
@@ -191,7 +192,7 @@ int main(int argc, char *argv[])
 	    IDDestroyTable(hIDTable);
 	    NSFDbClose (hDB);
 	    NotesTerm();
-	    return (1);
+	    return (error);
 	}
 
 
@@ -201,7 +202,7 @@ int main(int argc, char *argv[])
 	    IDDestroyTable(hIDTable);
 	    NSFDbClose (hDB);
 	    NotesTerm();
-	    return(1);
+	    return(error);
 	}
 
 	NoteIDTable = OSLock(char, hNoteIDTable);
@@ -228,7 +229,7 @@ int main(int argc, char *argv[])
 	{
 	    NSFDbClose (hDB);
 	    NotesTerm();
-	    return(1);
+	    return(error);
 	}
 
 	/*************************************************************************
@@ -240,7 +241,7 @@ int main(int argc, char *argv[])
 	    OSMemFree(hInfoTable);
 	    NSFDbClose (hDB);
 	    NotesTerm();
-	    return(1);
+	    return(error);
 	}
 
 	InfoTable =(char *) OSLockObject(hInfoTable);
@@ -261,7 +262,7 @@ int main(int argc, char *argv[])
 	    OSMemFree(hInfoTable);
 	    NSFDbClose (hDB);
 	    NotesTerm();
-	    return(1);
+	    return(error);
 	}
 
 	UNIDTable = OSLock(char, hUNIDTable);
@@ -284,7 +285,7 @@ int main(int argc, char *argv[])
 	    OSMemFree(hInfoTable);
 	    NSFDbClose (hDB);
 	    NotesTerm();
-	    return(1);
+	    return(error);
 	}
 
 	/*************************************************************************
@@ -298,7 +299,7 @@ int main(int argc, char *argv[])
 	    OSMemFree(hInfoTable);
 	    NSFDbClose (hDB);
 	    NotesTerm();
-	    return(1);
+	    return(error);
 	}
 
 	/* Look for the TIME_DATE field within this note. */
@@ -337,7 +338,7 @@ int main(int argc, char *argv[])
 	    OSMemFree(hInfoTable);
 	    NSFDbClose (hDB);
 	    NotesTerm();
-	    return(1);
+	    return(error);
 	}
 
 	/*************************************************************************
@@ -351,7 +352,7 @@ int main(int argc, char *argv[])
 	    OSMemFree(hInfoTable);
 	    NSFDbClose (hDB);
 	    NotesTerm();
-	    return(1);
+	    return(error);
 	}
 
 	InfoTableByUNID =(char *) OSLockObject(hInfoTableByUNID);
@@ -380,14 +381,14 @@ int main(int argc, char *argv[])
 	{
 	    PRINTERROR (error,"NSFDbClose");
 	    NotesTerm();
-	    return (1);
+	    return (error);
 	}
 
 	if (error == NOERROR)
 	    PRINTLOG("\nProgram completed successfully.\n");
 
 	NotesTerm();
-	return (0);
+	return (error);
 
 }
 

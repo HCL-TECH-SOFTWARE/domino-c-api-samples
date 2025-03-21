@@ -122,7 +122,7 @@ int main(int argc, char *argv[])
     {
         PRINTERROR (error,"OSPathNetConstruct");  
         NotesTerm();
-        return (1);
+        return (error);
     }
     
     /* Open the database. */
@@ -130,7 +130,7 @@ int main(int argc, char *argv[])
     {
         PRINTERROR (error,"NSFDbOpen");
         NotesTerm();
-        return (1);
+        return (error);
     }
     
     /* Construct the path for the srcDBFullPath request file */
@@ -139,7 +139,7 @@ int main(int argc, char *argv[])
         PRINTERROR (error,"OSPathNetConstruct");
         NSFDbClose (db_handle);		
         NotesTerm();
-        return (1);
+        return (error);
     }
     
     /* Open the database. */
@@ -148,7 +148,7 @@ int main(int argc, char *argv[])
         PRINTERROR (error,"NSFDbOpen");
         NSFDbClose (db_handle);
         NotesTerm();
-        return (1);
+        return (error);
     }
     
     /* Copy Replica info and provide new Replica ID as required. */
@@ -157,7 +157,7 @@ int main(int argc, char *argv[])
         NSFDbClose (srcDB_handle);
         NSFDbClose (db_handle);
         NotesTerm();
-        return (1);
+        return (error);
     }
     
     /* get the mail server name */
@@ -167,7 +167,7 @@ int main(int argc, char *argv[])
         NSFDbClose (srcDB_handle);
         NSFDbClose (db_handle);
         NotesTerm();
-        return (1);
+        return (error);
     }
     
     memset(&arpPtr, 0x00, sizeof(arpPtr));
@@ -187,7 +187,7 @@ int main(int argc, char *argv[])
         NSFDbClose (srcDB_handle);
         NSFDbClose(db_handle);
         NotesTerm();
-        return (1);
+        return (error);
     }
     
     PRINTLOG("\n!!! ADMINReqChkAccessNCMoveReplica Processed Sucessfully !!! \n ");
@@ -198,7 +198,7 @@ int main(int argc, char *argv[])
         PRINTERROR (error,"NSFDbClose");
         NSFDbClose (db_handle);
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     /* Close the database. */
@@ -206,13 +206,13 @@ int main(int argc, char *argv[])
     {
         PRINTERROR (error,"NSFDbClose");
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     /* Terminate Domino and Notes. */
     NotesTerm();
     /* End of program. */
-    return (0);
+    return (error);
 
 }
 

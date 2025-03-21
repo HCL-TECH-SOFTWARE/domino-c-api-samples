@@ -104,13 +104,13 @@ int main(int argc, char *argv[])
 {
     /* Local data declarations */
 
-    char        pname[MAXPATH] = "";         /* buffer to store the input path to database */
+    char        pname[MAXPATH] = { 0 };         /* buffer to store the input path to database */
     DBHANDLE        db_handle = NULLHANDLE;      /* database handle */
     STATUS        error = NOERROR;             /* error code from API calls */
     NOTEID        NoteID;
     DHANDLE        hIDTable = NULLHANDLE;
     EXPORTCONTEXT          Ctx;
-    char        achOutFileName[MAXPATH+1];
+    char        achOutFileName[MAXPATH + 1] = { 0 };
 
 
     memset(&Ctx, 0, sizeof(EXPORTCONTEXT));
@@ -199,7 +199,7 @@ cleanup:
     NotesTerm();
 
     /* End of archexp program. */
-    return (0);
+    return (error);
 }
 
 

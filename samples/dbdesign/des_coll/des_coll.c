@@ -90,10 +90,10 @@ void LNPUBLIC PrintTitle (DWORD dwItem, WORD wClass, BYTE *summary);
 int main (int argc, char *argv[])
 {
    STATUS             error=0;
-   char               *szPathName;
+   char               *szPathName = NULL;
    DBHANDLE           hDB;
-   char               szDBInfo[NSF_INFO_SIZE];
-   char               szDBTitle[NSF_INFO_SIZE];
+   char               szDBInfo[NSF_INFO_SIZE] = { 0 };
+   char               szDBTitle[NSF_INFO_SIZE] = { 0 };
    HCOLLECTION        hCollection;
    COLLECTIONPOSITION CollPosition;
    DHANDLE            hBuffer;
@@ -108,7 +108,7 @@ int main (int argc, char *argv[])
    {
        PRINTERROR (error,"NotesInitExtended");
        NotesTerm();
-       return (1);
+       return (error);
    }
 
 
@@ -118,7 +118,7 @@ int main (int argc, char *argv[])
    {
        PRINTLOG("Error: Out of memory.\n");
        NotesTerm();
-       return (0);
+       return (error);
    }
 
    /* Get the pathname of the database. */
@@ -130,7 +130,7 @@ int main (int argc, char *argv[])
        PRINTLOG ("Error: unable to open database '%s'.\n", szPathName);
        free(szPathName);
        PRINTERROR (error,"NSFDbOpen");
-       return (1);
+       return (error);
    }
 
    if (error = NSFDbInfoGet (hDB, szDBInfo))
@@ -139,7 +139,7 @@ int main (int argc, char *argv[])
        NSFDbClose (hDB);
        free(szPathName);
        PRINTERROR (error,"NSFDbInfoGet");
-       return (1);
+       return (error);
    }
 
    NSFDbInfoParse (szDBInfo, INFOPARSE_TITLE, szDBTitle, NSF_INFO_SIZE-1);
@@ -162,7 +162,7 @@ int main (int argc, char *argv[])
        NSFDbClose (hDB);
        free(szPathName);
        PRINTERROR (error,"NIFOpenCollection");
-       return (1);
+       return (error);
    }
 
    CollPosition.Level = 0;
@@ -188,7 +188,7 @@ int main (int argc, char *argv[])
        NSFDbClose (hDB);
        free(szPathName);
        PRINTERROR (error,"NIFReadEntries");
-       return (1);
+       return (error);
    }
 
    /* Check to make sure there was a buffer of information returned. */ 
@@ -200,7 +200,7 @@ int main (int argc, char *argv[])
        NSFDbClose (hDB);
        free(szPathName);
        PRINTERROR (error,"NIFReadEntries");
-       return (1);
+       return (error);
    }
 
    pBuffer = (BYTE *) OSLockObject (hBuffer);
@@ -234,12 +234,12 @@ int main (int argc, char *argv[])
        NSFDbClose(hDB);
        free(szPathName);
        PRINTERROR (error,"NIFCloseCollection");
-       return (1);
+       return (error);
    }
 
    NSFDbClose(hDB);
    free(szPathName);
-   return (0);
+   return (error);
 
 }
 

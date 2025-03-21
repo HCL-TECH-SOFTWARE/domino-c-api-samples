@@ -85,22 +85,23 @@ int main (int argc, char *argv[])
         OOOCTXHANDLE    hOOOContext = NULLHANDLE;
         OOOCTXPTR       *pOOOContext = NULL;
         TIMEDATE        tdStartAway,tdEndAway;
-        char            timetext[MAXALPHATIMEDATE+1];   /* time/date in ASCII */
-        char            far *text_pointer;              /* pointer to timetext */
+        char            timetext[MAXALPHATIMEDATE + 1] = { 0 };   /* time/date in ASCII */
+        char            far *text_pointer = NULL;              /* pointer to timetext */
         DHANDLE         hMailFile = NULLHANDLE;
 
-        char            *szMailFileName;
-        char            *szOwnerName;
-        char            szServerName[MAXUSERNAME+1];
-        char            szMailFilePath[MAXPATH+1];
-        char            szStartAway[MAXALPHATIMEDATE+1],szEndAway[MAXALPHATIMEDATE+1];
-        char            pGeneralMessage[MESSAGELEN];
-        char            pGeneralSubject[MESSAGELEN];
+        char            *szMailFileName = NULL;
+        char            *szOwnerName = NULL;
+        char            szServerName[MAXUSERNAME + 1] = { 0 };
+        char            szMailFilePath[MAXPATH + 1] = { 0 };
+        char            szStartAway[MAXALPHATIMEDATE + 1] = { 0 }; 
+        char            szEndAway[MAXALPHATIMEDATE + 1] = { 0 };
+        char            pGeneralMessage[MESSAGELEN] = { 0 };
+        char            pGeneralSubject[MESSAGELEN] = { 0 };
         WORD            retVersion,retState,pGeneralMessageLen;
         BOOL            bExcludeInternet;
 
         char            altline[MAXPATH] = "I am out of office";
-        char            currrentoooStatus[MAXPATH] = "";
+        char            currrentoooStatus[MAXPATH] = { 0 };
 
         if (argc != 3)
         {
@@ -119,16 +120,16 @@ int main (int argc, char *argv[])
         PRINTLOG("Start date[ %s ]- End date[ %s ]\n", szStartAway, szEndAway);
         fflush(stdout);
 
-        strcpy(pGeneralMessage,szOwnerName);
-        strcat(pGeneralMessage," will out of office");
-        strcpy(pGeneralSubject,szOwnerName);
-        strcat(pGeneralSubject," is out of office");
+        strncpy(pGeneralMessage,szOwnerName,sizeof(pGeneralMessage)-1);
+        strncat(pGeneralMessage," will out of office",sizeof(pGeneralMessage)-1);
+        strncpy(pGeneralSubject,szOwnerName,sizeof(pGeneralSubject)-1);
+        strncat(pGeneralSubject," is out of office",sizeof(pGeneralSubject)-1);
 
         if ( error = NotesInitExtended (argc, argv) )
         {
             PRINTLOG("\n Unable to initialize Notes. Error Code[0x%04x]\n", error);
             fflush(stdout);
-            return (1);
+            return (error);
         }
 
         if (!OSGetEnvironmentString(MAIL_MAILSERVER_ITEM, szServerName, MAXUSERNAME))
@@ -137,7 +138,7 @@ int main (int argc, char *argv[])
            fflush(stdout);
            strcpy(szServerName,"");
            NotesTerm();
-           return(1);
+           return(error);
         }
 
 
@@ -147,7 +148,7 @@ int main (int argc, char *argv[])
         {
             PRINTERROR (error,"MailOpenMessageFile");
             NotesTerm();
-            return (1);
+            return (error);
         }
 
 /* at add-in initialization */
@@ -222,7 +223,7 @@ int main (int argc, char *argv[])
           PRINTLOG("Gets ExcludeInternet is FALSE\n");
         }
 
-        strcpy (timetext, szStartAway);
+        strncpy (timetext, szStartAway, sizeof(timetext)-1);
 
 /* Get a pointer to the time/date string. We need this for the next call. */
 
@@ -238,7 +239,7 @@ int main (int argc, char *argv[])
 
         }
 
-        strcpy (timetext, szEndAway);
+        strncpy (timetext, szEndAway, sizeof(timetext)-1);
 /* Get a pointer to the time/date string. We need this for the next call. */
 
         text_pointer = timetext;
@@ -380,7 +381,7 @@ EXIT2:
         PRINTLOG("\nProgram completed successfully.\n");
         fflush(stdout);
         NotesTerm();
-        return (0);
+        return (error);
 }
 
 /* This function is to get the start and end date for ooo */

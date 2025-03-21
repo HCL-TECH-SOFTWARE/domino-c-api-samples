@@ -88,9 +88,9 @@ int main(int argc, char *argv[])
 
 /* Local data declarations. */
 
-   char               db_filename[STRING_LENGTH]; /* pathname of the database */
+   char               db_filename[STRING_LENGTH] = { 0 }; /* pathname of the database */
    DBHANDLE           db_handle;                  /* handle of the database */
-   char               view_name[STRING_LENGTH];   /* name of the view we'll use */
+   char               view_name[STRING_LENGTH] = { 0 };   /* name of the view we'll use */
    NOTEID             view_id;                    /* note id of the view */
    HCOLLECTION        coll_handle;                /* collection handle */
    STATUS             error;                      /* return status from API calls */
@@ -108,7 +108,7 @@ int main(int argc, char *argv[])
    if (error)
    {
        PRINTLOG("Error: Unable to initialize Notes. Error Code[0x%04x]\n", error);
-       return (1);
+       return (error);
    }
 
 /* Get the command line parameters that the user entered. */
@@ -121,7 +121,7 @@ int main(int argc, char *argv[])
    {
        PRINTERROR(error,"NSFDbOpen");
        NotesTerm();
-       return(1);
+       return(error);
    }
 
 /* Get the note id of the view we want. */
@@ -131,7 +131,7 @@ int main(int argc, char *argv[])
        PRINTERROR(error,"NIFFindView");
        NSFDbClose (db_handle);
        NotesTerm();
-       return(1);
+       return(error);
    }
 
 /* Get a collection of notes using this view. */
@@ -152,7 +152,7 @@ int main(int argc, char *argv[])
       PRINTERROR(error,"NIFOpenCollection");
       NSFDbClose (db_handle);
       NotesTerm();
-      return(1);
+      return(error);
    }
 
 /* Set up the data structure, COLLECTIONPOSITION, that controls where in
@@ -183,7 +183,7 @@ want to start at the beginning. */
       NIFCloseCollection (coll_handle);
       NSFDbClose (db_handle);
       NotesTerm();
-      return(1);
+      return(error);
    }
 
 /* Go down one level, into subcategories. */
@@ -207,7 +207,7 @@ want to start at the beginning. */
       NIFCloseCollection (coll_handle);
       NSFDbClose (db_handle);
       NotesTerm();
-      return(1);
+      return(error);
    }
 
 /* Advance one subcategory. */
@@ -231,7 +231,7 @@ want to start at the beginning. */
        NIFCloseCollection (coll_handle);
        NSFDbClose (db_handle);
        NotesTerm();
-       return(1);
+       return(error);
    }
 
 /* Go down into main topics level, then read all main topics. */
@@ -259,7 +259,7 @@ want to start at the beginning. */
             NIFCloseCollection (coll_handle);
             NSFDbClose (db_handle);
             NotesTerm();
-            return(1);
+            return(error);
         }
 
 /* Check to see if we received a valid buffer handle. (If we had run off
@@ -272,7 +272,7 @@ null handle.) */
           NSFDbClose (db_handle);
           NotesTerm();
           PRINTLOG ("\nEmpty buffer returned by NIFReadEntries.\n");
-          return(1);
+          return(error);
       }
 
 /* Lock down (freeze the location) of the buffer of notes IDs. Cast
@@ -308,7 +308,7 @@ that don't point to a real note. */
           PRINTERROR(error,"NIFCloseCollection");
           NSFDbClose (db_handle);
           NotesTerm();
-          return(1);
+          return(error);
       }
 
 /* Close the database. */
@@ -317,7 +317,7 @@ that don't point to a real note. */
       {
           PRINTERROR(error,"NSFDbClose");
           NotesTerm();
-          return(1);
+          return(error);
       }
 
 /* End of subroutine. */
@@ -325,7 +325,7 @@ that don't point to a real note. */
       PRINTLOG("\nProgram completed successfully.\n");
 
       NotesTerm();
-      return(0);
+      return(error);
 }
 
 

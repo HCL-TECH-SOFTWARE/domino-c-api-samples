@@ -152,7 +152,7 @@ DBHANDLE hDB;
 
 /* print any errors to this trace file */
 FILE *pTraceFile;      
-char errMsg[129];      
+char errMsg[129] = { 0 };
 
 /* form names */
 char FormName[]    = "Test Form 1";
@@ -186,7 +186,7 @@ int main(int argc, char *argv[])
     if (sError = NotesInitExtended (argc, argv))
     {
         printf("\n Unable to initialize Notes.\n");
-        return (1);
+        return (sError);
     }
 
 /*
@@ -264,7 +264,7 @@ Exit1:
       PRINTLOG("This program encountered an error.  Please see trace file makeform.err!\n");
     }
       NotesTerm();
-      return (1);
+      return (sError);
 
 
 }

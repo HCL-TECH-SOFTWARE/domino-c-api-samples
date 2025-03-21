@@ -123,10 +123,10 @@ char    ItemName[MAX_ITEM_NAME_LEN];/* Zero terminated item name */
 
 int main(int argc, char *argv[])
 {
-    char       *db_filename;  /* pathname of source database */
+    char       *db_filename = NULL;  /* pathname of source database */
     DBHANDLE    db_handle;    /* handle of source database */
     STATUS      error = NOERROR;   /* return status from API calls */
-    char        database_name[STRING_LENGTH];
+    char        database_name[STRING_LENGTH] = { 0 };
 
     db_filename = database_name;
     ProcessArgs(argc, argv, db_filename);
@@ -134,7 +134,7 @@ int main(int argc, char *argv[])
     if (error = NotesInitExtended (argc, argv))
     {
         PRINTLOG("\n Unable to initialize Notes.\n");
-        return (1);
+        return (error);
     }
 
     /* Open the database. */
@@ -144,7 +144,7 @@ int main(int argc, char *argv[])
         PRINTLOG ("Error: unable to open database '%s'\n", db_filename);
         PRINTERROR (error,"NSFDbOpen");
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     /*  Call NSFSearch to find all data notes in the database.
@@ -168,7 +168,7 @@ int main(int argc, char *argv[])
         NSFDbClose (db_handle);
         PRINTERROR (error,"NSFSearch");
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     /* Close the database. */
@@ -178,13 +178,13 @@ int main(int argc, char *argv[])
         PRINTLOG ("Error: unable to close database '%s'\n", db_filename);
         PRINTERROR (error,"NSFDbClose");
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     /* End of main routine. */
     PRINTLOG("\nProgram completed successfully.\n");
     NotesTerm();
-    return (0);
+    return (error);
 }
 
 

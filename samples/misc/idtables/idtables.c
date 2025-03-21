@@ -135,13 +135,13 @@ int main(int argc, char *argv[])
                current_td,
                temp_td,
                nondata_td_src;
-   char        *temp_ptr,
-               src_name[MAXPATH],
-               text_item_value[LINEOTEXT],
-               temp_str[LINEOTEXT],
-               begin_str[MAXALPHATIMEDATE + 1],
-               end_str[MAXALPHATIMEDATE + 1],
-               arc_name[MAXPATH];
+   char        *temp_ptr = NULL,
+               src_name[MAXPATH] = { 0 },
+               text_item_value[LINEOTEXT] = { 0 },
+               temp_str[LINEOTEXT] = { 0 },
+               begin_str[MAXALPHATIMEDATE + 1] = { 0 },
+               end_str[MAXALPHATIMEDATE + 1] = { 0 },
+               arc_name[MAXPATH] = { 0 };
    DHANDLE       idtable_handle,
                arctable_handle,
                deltable_handle,
@@ -182,7 +182,7 @@ int main(int argc, char *argv[])
    if (error)
    {
        PRINTLOG("Error: Unable to initialize Notes.\n");
-       return (1);
+       return (error);
    }
 
    /* Check arg list for database name, action, start, end and catetory   */
@@ -190,7 +190,7 @@ int main(int argc, char *argv[])
    {
        PrintUsage();
        NotesTerm();
-       return (0);
+       return (error);
    }
 
    /* Get OS information for string parsing */
@@ -208,18 +208,18 @@ int main(int argc, char *argv[])
    /* Process command line */
    for (arg_count = 1; arg_count < argc; arg_count++)
    {
-      strcpy(temp_str, argv[arg_count]);
+      strncpy(temp_str, argv[arg_count], sizeof(temp_str)-1);
       if (temp_str[0] != '-')
       {
          PrintUsage();
          NotesTerm();
-         return (0);
+         return (error);
       }
       switch (temp_str[1])
       {
          case 'A':
          case 'a':
-            strcpy(arc_name, &temp_str[2]);
+            strncpy(arc_name, &temp_str[2], sizeof(arc_name)-1);
             dataset_state += HAVE_ARCHIVE;
             break;
 
@@ -250,7 +250,7 @@ int main(int argc, char *argv[])
          case 'n':
             item_type = TYPE_TEXT;
             memcpy(text_item_value, &item_type, sizeof(WORD));
-            strcpy(&text_item_value[sizeof(WORD)], &temp_str[2]);
+            strncpy(&text_item_value[sizeof(WORD)], &temp_str[2], sizeof(text_item_value));
             text_item_size = (DWORD) (strlen(&temp_str[2]) + sizeof(WORD));
             dataset_state += HAVE_CATEGORY;
             break;
@@ -262,7 +262,7 @@ int main(int argc, char *argv[])
 
          case 'S':
          case 's':
-            strcpy(src_name, &temp_str[2]);
+            strncpy(src_name, &temp_str[2], sizeof(src_name)-1);
             break;
 
          case 'F':

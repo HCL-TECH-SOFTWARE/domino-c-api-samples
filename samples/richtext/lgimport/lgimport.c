@@ -156,8 +156,8 @@ STATUS (LNCALLBACKPTR ProcAddress)(VOID *IXContext, WORD Flags,
 
 int main(int argc, char *argv[])
 {
-    char        achTempName[MAXPATH];
-    char       *szModPath, *szFilePath, *szNSFFile, *szDLL;
+    char        achTempName[MAXPATH] = { 0 };
+    char       *szModPath = NULL, *szFilePath = NULL, *szNSFFile = NULL, *szDLL = NULL;
 
     DHANDLE     hNewNote;
     DBHANDLE    hDbNSFFile;
@@ -169,7 +169,7 @@ int main(int argc, char *argv[])
     if (usError)
     {
         PRINTLOG("Error: Unable to initialize Notes.\n");
-        return (1);
+        return (usError);
     }
 
     if (argc != 4 && argc != 5)
@@ -177,7 +177,7 @@ int main(int argc, char *argv[])
         PRINTLOG("\nUsage: \n\tlgimport <NSF Filename>");
         PRINTLOG(" <Import/Export DLL Name> <Import File Path>");
         PRINTLOG(" <Second DLL Name> (if necessary)\n");
-        return(0);
+        return(usError);
     }
 
     szNSFFile    = argv[1];
@@ -284,11 +284,11 @@ int main(int argc, char *argv[])
 
     PRINTLOG("\nProgram completed successfully.\n");
 
-    return(0);
+    return(usError);
 
 Done:
     NotesTerm();
-    return(1);
+    return(usError);
 }
 
 
@@ -342,7 +342,7 @@ STATUS LNPUBLIC ImportCD(char *szModulePath, char *szFileName,
     /* specific data structure (if any), then the  signature-specific   */
     /* data.                                                            */
 
-      strcpy (EditImportData.OutputFileName, TempName);
+      strncpy (EditImportData.OutputFileName, TempName, sizeof(EditImportData.OutputFileName)-1);
       PRINTLOG ("\nTemp filename is %s.\n", EditImportData.OutputFileName);
 
     /* Assign the default fontid */
@@ -380,7 +380,7 @@ STATUS LNPUBLIC ImportCD(char *szModulePath, char *szFileName,
 
     /* return the temp filename to calling routine */
 
-    strcpy (szTempName, EditImportData.OutputFileName);
+    strncpy (szTempName, EditImportData.OutputFileName, sizeof(szTempName)-1);
 
 Done:
     /* Free the DLL and return */

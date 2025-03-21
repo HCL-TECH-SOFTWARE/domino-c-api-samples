@@ -118,14 +118,14 @@ int main(int argc, char *argv[])
     if (error)
     {
         fprintf (stderr, "\nError initializing Notes.\n");
-        return (1);
+        return (error);
     }
 
     if(!ProcessArgs(argc, argv, pname, achInFileName))
     {
         PRINTLOG( "\nUsage:  %s  <Input file> <Target database> [options]\n", argv[0] );
         PRINTLOG("\nOptions: -s ServerName\n"); 
-        return (0);
+        return (error);
     }
     
     PRINTLOG("Opening %s\n", pname);
@@ -217,7 +217,7 @@ cleanup:
 
     /* End of archimp program. */
 
-    return (0);
+    return (error);
 }
 
 

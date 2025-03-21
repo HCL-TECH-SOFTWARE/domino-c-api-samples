@@ -122,7 +122,7 @@ STATUS (LNCALLBACKPTR ProcAddress)(VOID *IXContext, WORD Flags,
 
 int main(int argc, char *argv[])
 {
-    char        achTempName[MAXPATH], *szModPath, *szFilePath, *szNSFFile, *szDLL;
+    char        achTempName[MAXPATH] = { 0 }, * szModPath = NULL, * szFilePath = NULL, * szNSFFile = NULL, * szDLL = NULL;
     char        szCompanyName[] = "Acme Computing, Inc"; /* Text field */
 
     DHANDLE     hImpBuffer, hNewNote;
@@ -161,7 +161,7 @@ int main(int argc, char *argv[])
     if (error)
     {
         PRINTLOG("Error: Unable to initialize Notes.\n");
-        return (1);
+        return (error);
     }
 
     /* Call the appropriate Import/Export DLL with the appropriate  */
@@ -281,11 +281,11 @@ int main(int argc, char *argv[])
 
     PRINTLOG("\nProgram completed successfully.\n");
 
-    return(0);
+    return(error);
 
 Done:
     NotesTerm();
-    return (1);        /* Return Domino and Notes error code. */
+    return (error);        /* Return Domino and Notes error code. */
 }
 
 /************************************************************************
@@ -343,7 +343,7 @@ STATUS LNPUBLIC ImportCD(char *szModulePath, char *szFileName,
     /* specific data structure (if any), then the  signature-specific   */
     /* data.                                                            */
 
-      strcpy (EditImportData.OutputFileName, TempName);
+      strncpy (EditImportData.OutputFileName, TempName, sizeof(EditImportData.OutputFileName)-1);
       PRINTLOG ("Temp filename is %s.\n", EditImportData.OutputFileName);
 
     /* Assign the default fontid */
@@ -373,7 +373,7 @@ STATUS LNPUBLIC ImportCD(char *szModulePath, char *szFileName,
 
     /* return the temp filename to calling routine */
 
-    strcpy (szTempName, EditImportData.OutputFileName);
+    strncpy (szTempName, EditImportData.OutputFileName, MAXPATH);
 
 Done:
     /* Free the DLL and return */

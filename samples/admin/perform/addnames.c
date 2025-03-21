@@ -66,14 +66,14 @@ int main (int argc, char *argv[])
 
 /* Local data declarations */
 
-    char           *db_path;         /* pathname of test database */
+    char           *db_path = NULL;         /* pathname of test database */
     int            transactions;     /* total number of transactions */
 
     DBHANDLE       db_handle;        /* database handle */
     NOTEHANDLE     note_handle;      /* note handle */
 
-    char           last_name[100];   /* last name in N&A book */
-    char           count[10];        /* used to construct unique names */
+    char           last_name[100] = { 0 };   /* last name in N&A book */
+    char           count[10] = { 0 };        /* used to construct unique names */
 
     LONG           time_delta;
     TIMEDATE       StartTime;        /* time to mark the start of the program */
@@ -100,7 +100,7 @@ int main (int argc, char *argv[])
     if (error = NotesInitExtended (argc, argv))
     {
         PRINTLOG("\nUnable to initialize Notes.\n");
-        return(1);
+        return(error);
     }
 
 /* ************************************************** */
@@ -128,9 +128,9 @@ int main (int argc, char *argv[])
 
 /* Construct the last name. */
 
-        strcpy (last_name, "Smith");
+        strncpy (last_name, "Smith", sizeof(last_name)-1);
         sprintf(count, "%i", i); /* itoa (i, count, 10); */
-        strcat (last_name, count);
+        strncat (last_name, count, sizeof(last_name) - 1);
 
 /* Create the record. */
 
@@ -206,7 +206,7 @@ Done1:
     {
         PRINTERROR(error,"NSFDbOpen");
         NotesTerm();
-        return(1);
+        return(error);
     }
 
 /* ************************************************** */
@@ -224,5 +224,5 @@ Done1:
 /* ************************************************** */
 
     NotesTerm();
-    return(0);
+    return(error);
 }

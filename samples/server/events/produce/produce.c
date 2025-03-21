@@ -87,7 +87,7 @@ BOOL receiveConsumermesg()
 	char            InputDestName[] = "EVENT.NSF";      /*  A database name to associate with   */
                                                             /*  events of a certain type.           */
 
-	char            OutputDestName[20];                 /*  A buffer in which to read the name  */
+	char            OutputDestName[20] = { 0 };                 /*  A buffer in which to read the name  */
                                                             /*  associated with a certain event.    */
                                                             /*  (Probably will be the same as       */
                                                             /*  InputDestName, but this is defined  */
@@ -101,8 +101,8 @@ BOOL receiveConsumermesg()
 	STATUS          sError;
 	BYTE far*       pBuf;
 	EVENT_DATA far* pEventData;
-	BYTE            DataBuf[64];                        /* A temp buf to hold event data.       */
-	BYTE            MessageBuf[128];                    /* A buffer in which to build log msgs. */
+	BYTE            DataBuf[64] = { 0 };                        /* A temp buf to hold event data.       */
+	BYTE            MessageBuf[128] = { 0 };                    /* A buffer in which to build log msgs. */
 
 	/*
          * Create the event queue, and specify that we are interested in events
@@ -166,11 +166,15 @@ BOOL receiveConsumermesg()
 		AddInLogMessageText((char*)MessageBuf, NOERROR);
 		fflush(stdout);
 		//printf("%s", (char *)MessageBuf);
-		bDestNameReturned = EventGetDestName(EVT_MISC,
+		if(bDestNameReturned = EventGetDestName(EVT_MISC,
 			SEV_NORMAL,
 			QueueName,
 			OutputDestName,
-			sizeof(OutputDestName));
+			sizeof(OutputDestName)));
+		{
+			AddInLogMessageText("EventGetDestName failed", NOERROR);
+			return FALSE;
+		}
 
 		/*
 		 *  Here, the event consumer could do something with the name
@@ -381,14 +385,17 @@ STATUS LNPUBLIC AddInMain(HMODULE hModule, int argc, char* argv[])
 						sizeof(EventBuffer) - 1,
 						&wLen);
 
-				sError = EventQueuePut(szQueueName,
+				if(sError = EventQueuePut(szQueueName,
 						NULL,
 						EVT_MISC,
 						SEV_NORMAL,
 						&EventTimeDate,
 						FMT_TEXT,
 						wLen,
-						(BYTE far*) EventBuffer);
+						(BYTE far*) EventBuffer));
+				{
+					return (ERR(sError));
+				}
 				count++;
 				AddInLogMessageText(string4, NOERROR);
 				if (count > 4)

@@ -103,7 +103,7 @@ int main(int argc, char *argv[])
 
     char          szFormula[] = "numberfield";
 
-    char          *pFormula;                   /* pointer to compiled formula.    */
+    char          *pFormula = NULL;                   /* pointer to compiled formula.    */
     FORMULAHANDLE hFormula;
     WORD          wFormulaLen;
 
@@ -111,7 +111,7 @@ int main(int argc, char *argv[])
 
     DHANDLE       hResult;                     /* Handle to results returned by  */
                                                /* NSFComputeEvaluate()           */
-    char          *pResult;                    /* Pointer to results buffer.     */
+    char          *pResult = NULL;                    /* Pointer to results buffer.     */
     WORD          wResultLen;                  /* Length of result buffer.       */
 
     HCOMPUTE      hCompute;                    /* Handle to COMPUTE returned by  */
@@ -136,14 +136,14 @@ int main(int argc, char *argv[])
     RANGE         *pRange;
     NUMBER        *pNumber;
     WORD          wEntry;
-    char          szTextNum[MAXALPHANUMBER+1];
+    char          szTextNum[MAXALPHANUMBER + 1] = { 0 };
     WORD          wTextNumLen;
 
 
     if (sError = NotesInitExtended (argc, argv))
     {
         PRINTLOG("\n Unable to initialize Notes.\n");
-        return (1);
+        return (sError);
     }
 
 
@@ -155,7 +155,7 @@ int main(int argc, char *argv[])
     {
         PRINTERROR (sError,"NSFDbOpen");
         NotesTerm();
-        return (1);
+        return (sError);
     } 
 
 
@@ -168,7 +168,7 @@ int main(int argc, char *argv[])
         NSFDbClose (hDb);
         PRINTERROR (sError,"NSFNoteCreate");
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
 /*
@@ -184,7 +184,7 @@ int main(int argc, char *argv[])
         NSFDbClose (hDb);
         PRINTERROR (sError,"NSFItemSetText");
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
 /*
@@ -198,7 +198,7 @@ int main(int argc, char *argv[])
         NSFDbClose (hDb);
         PRINTERROR (sError,"NSFItemSetNumber");
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
 /*
@@ -211,7 +211,7 @@ int main(int argc, char *argv[])
         NSFDbClose (hDb);
         PRINTERROR (sError,"NSFNoteUpdate");
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
 /*
@@ -229,7 +229,7 @@ int main(int argc, char *argv[])
         NSFDbClose (hDb);
         PRINTERROR (sError,"NSFNoteClose");
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
 /*
@@ -241,7 +241,7 @@ int main(int argc, char *argv[])
         NSFDbClose (hDb);
         PRINTERROR (sError,"NSFNoteOpen");
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
 /*
@@ -260,7 +260,7 @@ int main(int argc, char *argv[])
         NSFDbClose (hDb);
         PRINTERROR (sError,"NSFFormulaCompile");
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
 /*
@@ -280,7 +280,7 @@ int main(int argc, char *argv[])
         NSFDbClose (hDb);
         PRINTERROR (sError,"NSFComputeStart");
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
 /*
@@ -302,7 +302,7 @@ int main(int argc, char *argv[])
         NSFDbClose (hDb);
         PRINTERROR (sError,"NSFComputeEvaluate");
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
 /*
@@ -396,7 +396,7 @@ int main(int argc, char *argv[])
         NSFDbClose (hDb);
         PRINTERROR (sError,"NSFComputeStop");
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
 /* Close the database. */
@@ -405,12 +405,12 @@ int main(int argc, char *argv[])
     {
         PRINTERROR (sError,"NSFDbClose");
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
 /* End of program. */
     PRINTLOG("\nProgram completed successfully\n"); 
     NotesTerm();
-    return (0); 
+    return (sError);
 
 }

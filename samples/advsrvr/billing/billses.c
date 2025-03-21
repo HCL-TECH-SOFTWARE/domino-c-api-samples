@@ -469,7 +469,7 @@ STATUS LNPUBLIC BillingCreateDB (char *BillingPathName, DHANDLE *RethDb)
    /* Update the notefile info with that from the template including
       automatically inheriting design changes. */
 
-       strcpy(NewInfo, TemplateInfo);
+       strncpy(NewInfo, TemplateInfo, sizeof(NewInfo)-1);
        NSFDbInfoModify(NewInfo, INFOPARSE_DESIGN_CLASS, NULL);
        NSFDbInfoParse(NewInfo, INFOPARSE_CLASS, Class, sizeof(Class)-1);
        NSFDbInfoModify(NewInfo, INFOPARSE_DESIGN_CLASS, Class);

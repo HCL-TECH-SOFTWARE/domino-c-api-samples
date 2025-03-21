@@ -72,14 +72,14 @@ int main(int argc, char *argv[])
     DBHANDLE		db_handle;              /* database handle */
     WORD		wbuild;
     STATUS		error = NOERROR;            /* error code from C API for Domino and Notes calls */
-    char		database_name[STRING_LENGTH];
+    char		database_name[STRING_LENGTH] = { 0 };
     db_filename = database_name;
     ProcessArgs(argc, argv, db_filename);
 
     if (error = NotesInitExtended (argc, argv))
     {
         PRINTLOG("\n Unable to initialize Notes.\n");
-        return (1);
+        return (error);
     }
     
     /* Open the database. */
@@ -90,7 +90,7 @@ int main(int argc, char *argv[])
         PRINTLOG("Error: unable to open database '%s'.\n", db_filename);
         PRINTERROR (error,"NSFDbOpen");  
         NotesTerm();
-        return (1); 
+        return (error); 
     }
     
     
@@ -102,7 +102,7 @@ int main(int argc, char *argv[])
         NSFDbClose (db_handle);
         PRINTERROR (error,"NSFDbGetBuildVersion");  
         NotesTerm();
-        return (1); 
+        return (error); 
     }
     
     PRINTLOG ("\nThe major build number is: %d\n", wbuild);
@@ -114,13 +114,13 @@ int main(int argc, char *argv[])
     {
         PRINTERROR (error,"NSFDbClose");  
         NotesTerm();
-        return (1); 
+        return (error); 
     }
     
     /* End of subroutine. */
 
     NotesTerm();
-    return (0); 
+    return (error); 
 }
 
 /************************************************************************

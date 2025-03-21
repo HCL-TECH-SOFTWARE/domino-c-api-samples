@@ -204,7 +204,7 @@ exit:
     {
         PRINTLOG( "Fail to get text from %s.\n", szDbName );
         fflush( stdout );
-        return ( 1 );
+        return ( error );
     }
     else
     { 
@@ -624,7 +624,7 @@ STATUS removeSpecialChar( char* inputStr )
         len++;
     }
     tmpStr[len]='\0';
-    strcpy( szbase, tmpStr );
+    strncpy( szbase, tmpStr, sizeof(szbase)-1);
     return NOERROR;
 }
 #endif

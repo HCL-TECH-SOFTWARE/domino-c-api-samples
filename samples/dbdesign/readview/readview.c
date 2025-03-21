@@ -139,7 +139,7 @@ int main(int argc, char *argv[])
     if (sError = NotesInitExtended (argc, argv))
     {
         PRINTLOG("\n Unable to initialize Notes.\n");
-        return (1);
+        return (sError);
     }
       
     PRINTLOG("");
@@ -154,7 +154,7 @@ int main(int argc, char *argv[])
     {
         PRINTERROR (sError, "NSFDbOpen");
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
     if (sError = NIFFindView(hDB, szViewName, &ViewNoteID))
@@ -162,7 +162,7 @@ int main(int argc, char *argv[])
         NSFDbClose(hDB);
         PRINTERROR (sError, "NIFFindView");
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
     if (sError = NSFNoteOpen(hDB, ViewNoteID, 0, &hNote))
@@ -170,7 +170,7 @@ int main(int argc, char *argv[])
         NSFDbClose(hDB);
         PRINTERROR (sError, "NSFNoteOpen");  
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
     /*
@@ -190,7 +190,7 @@ int main(int argc, char *argv[])
         NSFDbClose(hDB);
         PRINTERROR (sError, "NSFItemInfo");  
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
     /*
@@ -221,7 +221,7 @@ int main(int argc, char *argv[])
         NSFDbClose(hDB);
         PRINTERROR (sError, "ConvertTIMEDATEToText");  
         NotesTerm();
-        return (1);
+        return (sError);
     }
                                        
     szTimeDate[wStringLen]='\0';
@@ -259,7 +259,7 @@ int main(int argc, char *argv[])
         NSFDbClose(hDB);
         PRINTERROR (sError, "NSFItemInfo");  
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
     /*
@@ -281,7 +281,7 @@ int main(int argc, char *argv[])
         NSFDbClose(hDB);
         PRINTERROR (sError, "ODSReadMemory");
         NotesTerm();
-        return (1);
+        return (sError);
     }
 
     /*
@@ -368,7 +368,7 @@ int main(int argc, char *argv[])
                     NSFDbClose(hDB);
                     PRINTERROR (sError, "NSFFormulaDecompile");  
                     NotesTerm();
-                    return (1);
+                    return (sError);
                 }
 
                 /*
@@ -544,7 +544,7 @@ int main(int argc, char *argv[])
                 NSFDbClose(hDB);
                 PRINTERROR (sError, "NSFFormulaDecompile");
                 NotesTerm();
-                return (1);
+                return (sError);
             } /* end if */
         }
         else if ( sError )
@@ -553,7 +553,7 @@ int main(int argc, char *argv[])
             NSFDbClose(hDB);
             PRINTERROR (sError, "NSFItemInfo");  
             NotesTerm();
-            return (1);
+            return (sError);
         } /* end if */
 
     } /* end if */
@@ -571,7 +571,7 @@ int main(int argc, char *argv[])
      */
     PRINTLOG("\nProgram completed successfully.\n");         
     NotesTerm();
-    return (0);
+    return (sError);
 
 } /* main */
 

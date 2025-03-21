@@ -104,7 +104,7 @@ char far * control_string)
 
 /* Local data */
 
-    char          full_netpath[MAXPATH+1]; /* complete db pathname */
+    char          full_netpath[MAXPATH + 1] = { 0 }; /* complete db pathname */
     DBHANDLE      db_handle;	/* handle of open database */
     STATUS        api_error;	/* return status from API calls */
     int           error;		/* internal error codes */
@@ -618,7 +618,7 @@ start of the name. */
 
 /* Clear the field name. */
 
-    strcpy (field_name, "");
+    strncpy (field_name, "", MAXPATH-1);
     name_len = 0;
 
 /* Start a loop that will get the field name. We check for bad input
@@ -731,7 +731,7 @@ start of the type string. */
 
 /* Clear the field type. */
 
-    strcpy (ascii_datatype, "");
+    strncpy (ascii_datatype, "", MAXPATH-1);
     type_len = 0;
 
 /* Start a loop that will get the field type. We check for bad input
@@ -842,7 +842,7 @@ start of the field contents. */
 
 /* Clear the field. */
 
-    strcpy (field_contents, "");
+    strncpy (field_contents, "", MAXPATH-1);
     field_len = 0;
 
 /* Start a loop that will get the field. We check for bad input
@@ -973,7 +973,7 @@ STATUS removeSpecialChar(char* inputStr)
         len++;
     }
     tmpStr[len] = '\0';
-    strcpy(szbase, tmpStr);
+    strncpy(szbase, tmpStr, strlen(szbase));
     return NOERROR;
 }
 #endif

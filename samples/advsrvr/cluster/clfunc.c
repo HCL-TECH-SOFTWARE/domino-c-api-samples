@@ -143,13 +143,13 @@ STATUS GetServerCluster ( char FAR *pServerName,  /* server name */
                 nError = ListGetText( lpList, FALSE, 0, &pBuffer, &wBufferLen);
                 if (!nError)
                 {
-                    strncpy( achClusterName, pBuffer, wBufferLen);
+                    strncpy( achClusterName, pBuffer, sizeof(achClusterName)-1);
                     achClusterName[wBufferLen] = '\0';
                     OSUnlock( hList);
 #ifndef UNIX
                     lstrcpy( pClusterName, (char FAR *)achClusterName);    
 #else
-                    strcpy( pClusterName, (char FAR *)achClusterName);    
+                    strncpy( pClusterName, (char FAR *)achClusterName, sizeof(pClusterName)-1);
 #endif
                 }
                 else
@@ -305,7 +305,7 @@ STATUS GetDBMarks ( char FAR *pServerName,  /* database server name */
 #ifndef UNIX
         lstrcpy (pDBName, (char FAR *)szFailoverDBName);
 #else
-        strcpy (pDBName, (char FAR *)szFailoverDBName);
+        strncpy (pDBName, (char FAR *)szFailoverDBName, sizeof(pDBName)-1);
 #endif
         if (nError != NOERROR )
         {

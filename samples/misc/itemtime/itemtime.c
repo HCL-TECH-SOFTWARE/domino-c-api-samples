@@ -95,7 +95,7 @@ int main(int argc, char *argv[])
     if (error = NotesInitExtended (argc, argv))
     {
         PRINTLOG("\n Unable to initialize Notes.\n");
-        return (1);
+        return (error);
     }
 
     /* Open the database. */
@@ -104,7 +104,7 @@ int main(int argc, char *argv[])
     {
         PRINTERROR (error,"NSFDbOpen");  
         NotesTerm();
-        return (1);
+        return (error);
     } 
 
 /* Call NSFSearch to find the notes that match the selection criteria. For 
@@ -126,7 +126,7 @@ to NULLHANDLE and eliminate the formula compilation.) */
         NSFDbClose (db_handle);
         PRINTERROR (error,"NSFSearch");  
         NotesTerm();
-        return (1);
+        return (error);
     }
 
 
@@ -137,13 +137,13 @@ to NULLHANDLE and eliminate the formula compilation.) */
     {
         PRINTERROR (error,"NSFDbClose");  
         NotesTerm();
-        return (1);
+        return (error);
     } 
 
 /* End of main routine. */
     PRINTLOG("\nProgram completed successfully.\n");
     NotesTerm();
-    return (0); 
+    return (error); 
 
 }
 

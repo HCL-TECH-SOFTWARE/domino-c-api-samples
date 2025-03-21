@@ -105,7 +105,7 @@ int main(int argc, char *argv[])
     if (error = NotesInitExtended(argc, argv))
     {
         PRINTERROR (error,"NotesInitExtended");
-        return(1);
+        return(error);
     }
 
     /* Reading Domino data directory */
@@ -117,7 +117,7 @@ int main(int argc, char *argv[])
     {
 	PRINTERROR(error,"OSPathAddTrailingPathSeparator");
         NotesTerm();
-        return (1);
+        return (error);
     }
     PRINTLOG("data path with trailing path separator: %s\n", szDataPath);
 
@@ -131,7 +131,7 @@ int main(int argc, char *argv[])
     {
         PRINTERROR(error,"OSPathNetConstruct");
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     /* Open the database. */
@@ -139,7 +139,7 @@ int main(int argc, char *argv[])
     {	
 	PRINTERROR (error,"NSFDbOpen");
 	NotesTerm();
-	return (1);
+	return (error);
     }
 
     /* Get the Note ID of the user to be recertify. */
@@ -148,7 +148,7 @@ int main(int argc, char *argv[])
 	NSFDbClose (hNABook);
 	PRINTERROR (error,"REGFindAddressBookEntry");
 	NotesTerm();
-	return (1);
+	return (error);
     }
 
     /* Get the Note handle. */
@@ -157,7 +157,7 @@ int main(int argc, char *argv[])
 	NSFDbClose (hNABook);
 	PRINTERROR (error,"NSFNoteOpen");
 	NotesTerm();
-	return (1);
+	return (error);
     }
 
     /* Get the current certifier context */
@@ -167,7 +167,7 @@ int main(int argc, char *argv[])
 	NSFDbClose (hNABook);
 	PRINTERROR (error,"GetCertCtx");
 	NotesTerm();
-	return (1);
+	return (error);
     }
 	
     /* Intializing the ADMINReqParams structure */ 
@@ -187,7 +187,7 @@ int main(int argc, char *argv[])
 	NSFDbClose (hNABook);
 	PRINTERROR (error,"ADMINReqRecertify");
 	NotesTerm();
-	return (1);
+	return (error);
     }
 
     PRINTLOG("!!! ADMINReqRecertify Processed Sucessfully !!!\n ");
@@ -201,14 +201,14 @@ int main(int argc, char *argv[])
     {
 	PRINTERROR (error,"NSFDbClose");
 	NotesTerm();
-	return (1);
+	return (error);
     }
 
     /* Terminate Domino and Notes. */
     NotesTerm();
 
     /* End of program. */
-    return (0);
+    return (error);
 
 }
 /************************************************************************

@@ -78,10 +78,10 @@ void  LNPUBLIC  ProcessArgs (int argc, char *argv[],
 
 int main(int argc, char *argv[])
 {
-    char        input_path[STRING_LENGTH];   /* pathname of input database */
-    char        output_path[STRING_LENGTH];  /* pathname of output database */
-    char        output_title[NSF_INFO_SIZE]; /* title of output database */
-    char        output_db_info[NSF_INFO_SIZE];  /* database info buffer */
+    char        input_path[STRING_LENGTH] = { 0 };   /* pathname of input database */
+    char        output_path[STRING_LENGTH] = { 0 };  /* pathname of output database */
+    char        output_title[NSF_INFO_SIZE] = { 0 }; /* title of output database */
+    char        output_db_info[NSF_INFO_SIZE] = { 0 };  /* database info buffer */
     DBHANDLE    input_handle;       /* handle of input database */
     DBHANDLE    output_handle;      /* handle of output database */
     DBID        input_dbid;         /* dbid of input database */
@@ -102,7 +102,7 @@ int main(int argc, char *argv[])
     if (error = NotesInitExtended (argc, argv))
     {
         PRINTLOG("\n Unable to initialize Notes.\n");
-        return (1);
+        return (error);
     }
 
 
@@ -112,7 +112,7 @@ int main(int argc, char *argv[])
     {
         PRINTERROR (error,"NSFDbOpen");  
         NotesTerm();
-        return (1);
+        return (error);
     } 
 
     PRINTLOG("\nOpened \"%s\" as the input database", input_path); 
@@ -124,7 +124,7 @@ int main(int argc, char *argv[])
         NSFDbClose (input_handle);
         PRINTERROR (error,"NSFDbCreate");  
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     if (error = NSFDbOpen (output_path, &output_handle))
@@ -132,7 +132,7 @@ int main(int argc, char *argv[])
         NSFDbClose (input_handle);
         PRINTERROR (error,"NSFDbOpen");  
         NotesTerm();
-        return (1);
+        return (error);
     }
  
     PRINTLOG("\nCreated \"%s\" as the output database\n", output_path); 
@@ -148,7 +148,7 @@ a replica copy of the source database. */
         NSFDbClose (output_handle);
         PRINTERROR (error,"NSFDbReplicaInfoGet");  
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     if (error = NSFDbReplicaInfoSet (output_handle, &replica_info))
@@ -157,7 +157,7 @@ a replica copy of the source database. */
         NSFDbClose (output_handle);
         PRINTERROR (error,"NSFDbReplicaInfoSet");  
         NotesTerm();
-        return (1);
+        return (error);
     }
 
 /* Copy the ACL from the input database to the output database. */
@@ -168,7 +168,7 @@ a replica copy of the source database. */
         NSFDbClose (output_handle);
         PRINTERROR (error,"NSFDbCopyACL");  
         NotesTerm();
-        return (1);
+        return (error);
     }
 
 /* Set a time/date structure that will determine the date of the earliest
@@ -221,7 +221,7 @@ specified to indicate that we do not want any cutoff date.  */
                 NSFDbClose (output_handle);
                 PRINTERROR (error,"NSFDbCopyNote");  
                 NotesTerm();
-                return (1);
+                return (error);
             }
     IDDestroyTable (idtable_p);
                        
@@ -251,7 +251,7 @@ specified to indicate that we do not want any cutoff date.  */
         NSFDbClose (output_handle);
         PRINTERROR (error,"NSFDbInfoGet");  
         NotesTerm();
-        return (1);
+        return (error);
     }
 
 /* Add the database title to the database information buffer */
@@ -263,7 +263,7 @@ specified to indicate that we do not want any cutoff date.  */
         NSFDbClose (output_handle);
         PRINTERROR (error,"NSFDbInfoSet");  
         NotesTerm();
-        return (1);
+        return (error);
     }
 
 /* If creating a new database from a template, in order to change
@@ -295,14 +295,14 @@ specified to indicate that we do not want any cutoff date.  */
         NSFDbClose (output_handle);
         PRINTERROR (error,"NSFDbClose");  
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     if (error = NSFDbClose (output_handle))
     {
         PRINTERROR (error,"NSFDbClose");  
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     PRINTLOG("\n Done.\n"); 
@@ -310,7 +310,7 @@ specified to indicate that we do not want any cutoff date.  */
 /* End of program. */
     PRINTLOG("\nProgram completed successfully.\n");
     NotesTerm();
-    return (0); 
+    return (error); 
 }
 
 

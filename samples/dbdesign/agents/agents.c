@@ -120,14 +120,14 @@ char szAGENT_JAVA[]       = "Assign Hot Problems";
 int main (int argc, char *argv[])
 {
     STATUS      error = NOERROR;
-    char        *szDbName;
+    char        *szDbName = NULL;
     DBHANDLE    hDb;
     int         goodAgents=0;
 
     if (error = NotesInitExtended (argc, argv))
     {
         PRINTLOG("\n Unable to initialize Notes.\n");
-        return (1);
+        return (error);
     }
 
     /* Process arguments */
@@ -518,7 +518,7 @@ STATUS  LNPUBLIC  AddBackgroundAgent( DBHANDLE hDb )
     /*** Copy the raw Lotus Script into the newly allocated memory 
     space. */
     pFormattedLS=OSLock(char,hSource);
-    strcpy(pFormattedLS,szScript);
+    strncpy(pFormattedLS,szScript,strlen(szScript)+1);
     OSUnlock(hSource);
 
     /*** Convert the raw Lotus Script to IDE compliant format.  */
@@ -969,7 +969,7 @@ STATUS  LNPUBLIC  AddJavaAgent( DBHANDLE hDb )
     
 
     /* $FILE info */
-        strcpy(szSourceFile,szCode);
+        strncpy(szSourceFile,szCode,sizeof(szSourceFile)-1);
 
 #ifndef UNIX
     strcat(szSourceFile,"\\");
@@ -977,7 +977,7 @@ STATUS  LNPUBLIC  AddJavaAgent( DBHANDLE hDb )
     strcat(szSourceFile,"/");
 #endif
 
-    strcat(szSourceFile,szClass);
+    strncat(szSourceFile,szClass,sizeof(szSourceFile)-1);
 
     if (error = NSFNoteAttachFile( hAgent,
                                    ITEM_NAME_ATTACHMENT,

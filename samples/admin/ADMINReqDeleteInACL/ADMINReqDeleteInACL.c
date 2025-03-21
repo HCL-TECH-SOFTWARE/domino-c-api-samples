@@ -117,7 +117,7 @@ int main(int argc, char *argv[])
     if (error)
     {
         PRINTERROR(error, "NotesInitExtended");
-        return(1);
+        return(error);
     }
     
     /* Construct the path for the admin request file */
@@ -125,7 +125,7 @@ int main(int argc, char *argv[])
     {
         PRINTERROR (error,"OSPathNetConstruct");  
         NotesTerm();
-        return (1);
+        return (error);
     }
     
     /* Open the database. */
@@ -133,7 +133,7 @@ int main(int argc, char *argv[])
     {
         PRINTERROR (error,"NSFDbOpen");
         NotesTerm();
-        return (1);
+        return (error);
     }
     
     /* get the mail server name */
@@ -142,7 +142,7 @@ int main(int argc, char *argv[])
         PRINTERROR(error, "SECKFMGetUserName");
         NSFDbClose (db_handle);
         NotesTerm();
-        return (1);
+        return (error);
     }
     
     strncpy(chMailServerName, serverName, MAXPATH);
@@ -160,7 +160,7 @@ int main(int argc, char *argv[])
         PRINTERROR(error, "ADMINReqDeleteInACL");
         NotesTerm();
         NSFDbClose(db_handle);
-        return (1);
+        return (error);
     }
     
     PRINTLOG("\n!!! ADMINReqDeleteInACL Processed Sucessfully !!! \n ");
@@ -170,13 +170,13 @@ int main(int argc, char *argv[])
     {
         PRINTERROR (error,"NSFDbClose");
         NotesTerm();
-        return (1);
+        return (error);
     }
 
     /* Terminate Domino and Notes. */
     NotesTerm();
     /* End of program. */
-    return (0);
+    return (error);
 
 }
 
