@@ -38,6 +38,7 @@ and PUTNOTE programs.
 #include <editdflt.h>
 #include <fontid.h>
 #include <osmem.h>
+#include <osmisc.h>
 #include <colorid.h>
 
 /* Local include files */
@@ -45,6 +46,16 @@ and PUTNOTE programs.
 #include "constant.h"
 #include "file_io.h"
 #include "misc.h"
+
+#if defined(CAPI_TESTING)
+#include "printlog.h"
+#else
+ #define PRINTLOG printf
+ #define PRINTERROR(api_error, api_name) {\
+ char    szErrorText[256] = { 0 };\
+ OSLoadString(NULLHANDLE, ERR(api_error), szErrorText, sizeof(szErrorText));\
+ fprintf(stderr, "[ERROR]:%s:%d:%s - %s", __FILE__,__LINE__,api_name,szErrorText); }
+#endif
 
 #if !defined(ND64) 
     #define DHANDLE HANDLE 
@@ -152,6 +163,11 @@ int put_text_field (NOTEHANDLE note_handle,
 /* Allocate a buffer that will hold the output. */
 
     output_buffer = (char *) malloc (field_len);
+    if (output_buffer == NULL)
+    {
+        PRINTERROR("Insufficient memory available","(char *) malloc");
+        exit(1);
+    }
 
 /* Start a loop that will copy the text field to the output buffer. Replace
 any line feed with a null. */
@@ -971,6 +987,11 @@ the length of the field's name. */
 current location in the output buffer. */
 
     output_buffer = (BYTE *) malloc (output_len);
+    if (output_buffer == NULL)
+    {
+        PRINTERROR("Insufficient memory available","(char *) malloc");
+        exit(1);
+    }
     buff_ptr = output_buffer;
 
 /* Copy the user name to the output buffer. */

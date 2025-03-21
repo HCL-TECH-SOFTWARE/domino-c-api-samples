@@ -250,7 +250,7 @@ int main(int argc, char *argv[])
          case 'n':
             item_type = TYPE_TEXT;
             memcpy(text_item_value, &item_type, sizeof(WORD));
-            strncpy(&text_item_value[sizeof(WORD)], &temp_str[2], sizeof(&text_item_value[sizeof(WORD)]-1));
+            strncpy(&text_item_value[sizeof(WORD)], &temp_str[2], sizeof(text_item_value));
             text_item_size = (DWORD) (strlen(&temp_str[2]) + sizeof(WORD));
             dataset_state += HAVE_CATEGORY;
             break;

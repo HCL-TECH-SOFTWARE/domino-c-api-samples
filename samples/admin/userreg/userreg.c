@@ -473,7 +473,7 @@ int main(int argc, char *argv[])
 
     if (NoteID)
        PRINTLOG (
-                 "\nOrganization Certifier, %s, found in NA Book.\nNoteID = %#lX\n\n",
+                 "\nOrganization Certifier, %s, found in NA Book.\nNoteID = %#X\n\n",
                  DNAME_ORG_CERT, NoteID);
 
    /* Look for the Org Unit certifier entry */
@@ -491,7 +491,7 @@ int main(int argc, char *argv[])
 
     if (NoteID)
         PRINTLOG (
-                  "\nOrg Unit Certifier, %s, found in NA Book.\nNoteID = %#lX\n\n",
+                  "\nOrg Unit Certifier, %s, found in NA Book.\nNoteID = %#X\n\n",
                   DNAME_ORGUNIT_CERT, NoteID);
 
    /* Look for the new server entry */
@@ -532,7 +532,7 @@ int main(int argc, char *argv[])
     }
 
     if (NoteID)
-        PRINTLOG ("\nUser, %s, found in NA Book.\nNoteID = %#lX\n\n",
+        PRINTLOG ("\nUser, %s, found in NA Book.\nNoteID = %#X\n\n",
                   DNAME_JAYNE, NoteID);
 
     /* Close the database. */
@@ -600,7 +600,10 @@ STATUS GetCertCtx (char far *pCertFile, HCERTIFIER *phCertCtx,
     OSCurrentTIMEDATE(&ExpDate);
 
     /* set the expiration date to two years from today (Domino and Notes default) */
-    error = TimeDateAdjust(&ExpDate, 0, 0, 0, 0, 0, 2);
+    if (TimeDateAdjust(&ExpDate, 0, 0, 0, 0, 0, 2) == FALSE)
+    {
+        PRINTLOG("%s\n","TimeDateAdjust failed");
+    }
     ExpireDate = ExpDate;
 
     if (error)

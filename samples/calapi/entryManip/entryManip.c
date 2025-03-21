@@ -174,7 +174,7 @@ STATUS TestCalCreateEntry(DHANDLE hDB, char* pszICalender)
     STATUS   error = NOERROR;
 
     DWORD dwFlags = 0;
-    MEMHANDLE hRetUID = NULL;
+    MEMHANDLE hRetUID = NULLMEMHANDLE;
     char* pszRetUID = NULL;
     error = CalCreateEntry(hDB, pszICalender, dwFlags, &hRetUID, NULL);
     if(error != NOERROR)
@@ -218,7 +218,7 @@ STATUS TestCalReadEntry(DHANDLE hDB, char* pszICalenderUID)
 {
     STATUS   error = NOERROR;
 
-    MEMHANDLE hCalData = NULL;
+    MEMHANDLE hCalData = NULLMEMHANDLE;
     DWORD dwFlags = CAL_READ_INCLUDE_X_LOTUS;
     char* pszCalData = NULL;
 
