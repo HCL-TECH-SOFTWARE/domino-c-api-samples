@@ -78,7 +78,7 @@ struct termios term;
 #endif
 
 
-        gets(retPassword);
+        fgets(retPassword, MAXPATH, stdin);
 
 #if defined(UNIX) || defined(MAC)
         term.c_lflag |= ECHO;                        /* set echo flag */

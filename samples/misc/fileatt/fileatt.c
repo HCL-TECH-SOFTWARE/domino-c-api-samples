@@ -602,7 +602,7 @@ void  LNPUBLIC   DumpObjectItem( char * Name,
         PRINTLOG(  "   Error code = %#x.\n", error );
         NSFNoteClose(hNote);
         NSFDbClose(hDB);
-        return (error);
+        return;
     }
     else
     {

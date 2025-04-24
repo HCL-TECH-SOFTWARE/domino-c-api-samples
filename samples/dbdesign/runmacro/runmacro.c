@@ -1657,15 +1657,15 @@ void  LNPUBLIC  ProcessArgs (int argc, char *argv[],
     {
         printf("Enter database name: ");      
         fflush (stdout);
-        gets(db_name);
+        fgets(db_name, STRING_LENGTH, stdin);
         printf("\n");
         printf ("Enter the macro name:  ");
         fflush (stdout);
-        gets(macro_name);
+        fgets(macro_name, STRING_LENGTH, stdin);
         printf("\n");
         printf("Enter option or press enter for no special options\n");
         printf("  -s     just set machine name in macro; do not run it");
-        gets(options);
+        fgets(options, STRING_LENGTH, stdin);
     }
     else
     {

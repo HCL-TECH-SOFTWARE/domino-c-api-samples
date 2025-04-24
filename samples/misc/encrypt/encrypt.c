@@ -594,20 +594,20 @@ void  LNPUBLIC  ProcessArgs (int argc, char *argv[],
     {
         printf("Enter database name: ");      
         fflush (stdout);
-        gets(dbname);
+        fgets(dbname, MAXPATH, stdin);
         printf("\n");
         
         printf ("Enter encryption key:  ");
         fflush (stdout);
-        gets(ekey);
+        fgets(ekey, MAXPATH, stdin);
 
         printf ("Enter user1 (e.g. CN=test user/O=testorg):  ");
         fflush (stdout);
-        gets(user1);
+        fgets(user1, MAXPATH, stdin);
 
         printf ("Enter user2 (e.g. CN=test user1/O=testorg): ");
         fflush (stdout);
-        gets(user2);
+        fgets(user2, MAXPATH, stdin);
     }    
     else
     {

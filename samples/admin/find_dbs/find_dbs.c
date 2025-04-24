@@ -465,11 +465,11 @@ void  LNPUBLIC  ProcessArgs (int argc, char *argv[],
         printf("\n");
         printf("Enter server name: ");
         fflush (stdout);
-        gets(server);
+        fgets(server, STRING_LENGTH, stdin);
         printf("\n");
         printf ("Enter directory name:  ");
         fflush (stdout);
-        gets(directory);
+        fgets(directory, STRING_LENGTH, stdin);
 
     }
     else

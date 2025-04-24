@@ -163,7 +163,7 @@ int main(int argc, char *argv[])
    /* if no server name on the command line, assume local machine */
    if (argc == 1)
     {
-        ServName = '\0';
+        ServName = "";
         LocalServer = TRUE;
     }
     else if (argc == 2) /* else we have the remote server name */

@@ -215,11 +215,11 @@ void  LNPUBLIC  ProcessArgs (char *ServerName, char *DBFileName, int *ArgNumber)
 {
 	printf("Enter name of server where database resides (RETURN for local access): ");
 	fflush(stdout);
-	gets(ServerName);
+	fgets(ServerName, MAXPATH, stdin);
 
 	printf("Enter name of database: ");
 	fflush(stdout);
-	gets(DBFileName);
+	fgets(DBFileName, MAXPATH, stdin);
 
 	if (!strcmp(ServerName, ""))
 	{

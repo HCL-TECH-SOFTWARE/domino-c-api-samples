@@ -283,7 +283,8 @@ void  LNPUBLIC  ProcessArgs (int argc, char *argv[],
 #endif
       
       printf("Enter text to be included in rich text field:\n");
-      gets(text);
+      fflush(stdout);
+      fgets(text, MAXPATH, stdin);
 
 #ifndef MAC
    }  

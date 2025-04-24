@@ -924,19 +924,19 @@ void  LNPUBLIC  ProcessArgs (int argc, char *argv[], char *cmd,
     {
       printf("Enter schedule command (add-a, add-i, del, busy): ");
       fflush (stdout);
-      gets(cmd);
+      fgets(cmd, MAXPATH, stdin);
       printf("Enter the name of the server where the user's mail database is: ");
       fflush (stdout);
-      gets(server);
+      fgets(server, MAXPATH, stdin);
       printf("Enter the name of the user's mail database: ");
       fflush (stdout);
-      gets(mail_file);
+      fgets(mail_file, MAXPATH, stdin);
       printf("Enter the start date and time of the schedule: ");
       fflush (stdout);
-      gets(start_time);
+      fgets(start_time, MAXPATH, stdin);
       printf ("Enter the end date and time of the schedule:  ");
       fflush (stdout);
-      gets(end_time);
+      fgets(end_time, MAXPATH, stdin);
 
     }
     else

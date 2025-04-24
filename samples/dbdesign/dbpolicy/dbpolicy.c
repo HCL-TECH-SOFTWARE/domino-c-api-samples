@@ -579,7 +579,7 @@ void  LNPUBLIC  ProcessArgs (int argc, char *argv[],
 
        printf("Enter database name: ");
        fflush (stdout);
-       gets(db_name);
+       fgets(db_name, STRING_LENGTH, stdin);
        printf("\n");
 
    }

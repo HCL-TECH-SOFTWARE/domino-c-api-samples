@@ -322,17 +322,17 @@ void  LNPUBLIC  ProcessArgs (int argc, char *argv[],
 
         printf("Enter name of input database: ");      
         fflush (stdout);
-        gets(input_path);
+        fgets(input_path, STRING_LENGTH, stdin);
            
         printf("\n");
         printf("Enter name of output database: ");      
         fflush(stdout);
-        gets(output_path);
+        fgets(output_path, STRING_LENGTH, stdin);
 
         printf("\n");
         printf("Enter title of output database: ");      
         fflush(stdout);
-        gets(output_title);
+        fgets(output_title, STRING_LENGTH, stdin);
         
     }  
     else

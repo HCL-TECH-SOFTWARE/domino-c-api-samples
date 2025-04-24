@@ -540,16 +540,16 @@ short *FreeList)
     {
         printf("Enter file name: ");      
         fflush (stdout);
-        gets(FileName);
+        fgets(FileName, LINEOFTEXT, stdin);
         printf("\n");
         printf ("Enter the view name:  ");
         fflush (stdout);
-        gets(ViewName);
+        fgets(ViewName, LINEOFTEXT, stdin);
         printf("\n");
 tryagain:
     printf("Choose whether to set read access list (L) or privilege mask (M): ");      
     fflush (stdout);
-    gets(inputString);
+    fgets(inputString, LINEOFTEXT, stdin);
     printf("\n");
     if (inputString[0] == 'L' || inputString[0] == 'l')
     {
@@ -559,7 +559,7 @@ tryagain:
         {
             printf("Enter read access names or a / to indicate you are finished: ");     
             fflush (stdout);
-            gets(inputString);
+            fgets(inputString, LINEOFTEXT, stdin);
             printf("\n");
             if (inputString[0] == '/')
                 break;
@@ -577,7 +577,7 @@ tryagain:
         printf("Enter privilege level: ");     
         *SetReaderList = FALSE;
         fflush (stdout);
-        gets(inputString);
+        fgets(inputString, LINEOFTEXT, stdin);
         printf("\n");
         *NewPrivileges = atoi(inputString) & 0x001F;
     }

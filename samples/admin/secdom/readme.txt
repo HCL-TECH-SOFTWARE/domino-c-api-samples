@@ -29,9 +29,7 @@ specific system administration is required to effectively run this sample.
 
 ENVIRONMENTS
 ------------
-Windows (32-bit)
 Windows (64-bit)
-Linux RedHat
 Linux RedHat 64 bit
 IBM AIX
 IBM i
