@@ -331,7 +331,7 @@ int SendMail()
 
         /* Ask user if they would like to deliver msg to local MAIL.BOX */
         PRINTLOG("Would you like to deliver the mail message to your local Mail Box (YES/NO)?: ");      
-        fgets(szLocalMailBox, MAXUSERNAME, STDOUT);
+        fgets(szLocalMailBox, MAXUSERNAME, STDIN);
        
         /* Unable to reach Mail Server. Save in local MAIL.BOX? */
         if (strcmp(szLocalMailBox, "YES") == 0)
@@ -764,7 +764,7 @@ void  LNPUBLIC  ProcessArgs (int argc, char *argv[],
 #else
         SetConsoleCP(852);
 #endif
-        fgets(szSendTo, MAXUSERNAME, STDOUT);
+        fgets(szSendTo, MAXUSERNAME, STDIN);
 
 /*input u+00e4u+00f6/test
 char szFinSendTo[] = {0x84, 0x94, '/', 't', 'e', 's', 't', '\0'};
