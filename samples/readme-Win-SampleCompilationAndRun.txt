@@ -32,4 +32,4 @@ Please refer to the following steps if you want to compile and run the samples o
 6. If the compilation works. Please refer the section "Testing the Installation" in this opensource link
    https://opensource.hcltechsw.com/domino-c-api-docs/howto/user_guide/Building_Windows_Applications/
    to run one sample program and follow same for others.In case compilation fails, recheck if all the environment variables are properly set
-   and all the initial setup are in place as above.
+   and all the initial setup are in place as above. Please contact HCL support, if the compilation/execution still fails.

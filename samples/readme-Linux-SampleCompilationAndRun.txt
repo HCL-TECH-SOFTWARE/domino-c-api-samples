@@ -32,4 +32,5 @@ Please refer to the following steps if you want to compile and run the samples o
 5. If the compilation works. Please refer the section "Running HCL C API programs" in this opensource link
    https://opensource.hcltechsw.com/domino-c-api-docs/howto/user_guide/Building_UNIX_Applications/
    to run the programs.In case compilation fails, recheck if all the environment variables are properly set
-   and all the initial setup are in place as above.
+   and all the initial setup are in place as above. Please contact HCL support, if the compilation/execution
+   still fails.
