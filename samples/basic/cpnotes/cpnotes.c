@@ -337,8 +337,8 @@ void  LNPUBLIC  ProcessArgs (int argc, char *argv[],
     }  
     else
     {
-        strncpy(input_path, argv[1], STRING_LENGTH);
-        strncpy(output_path, argv[2], STRING_LENGTH);
-        strncpy(output_title, argv[3], STRING_LENGTH);
+        strncpy(input_path, argv[1], STRING_LENGTH-1);
+        strncpy(output_path, argv[2], STRING_LENGTH-1);
+        strncpy(output_title, argv[3], STRING_LENGTH-1);
      } /* end if */
 } /* ProcessArgs */

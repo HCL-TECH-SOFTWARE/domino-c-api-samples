@@ -13,11 +13,11 @@ Please refer to the following steps if you want to compile and run the samples o
    
    e.g.
    
-   export NOTES_CAPI=/opt/hcl/domino/notes-capi-14.0
+   export NOTES_CAPI=/opt/hcl/domino/notes-capi-14.5
    export LOTUS=/opt/hcl/domino
    export Notes_ExecDirectory=/opt/hcl/domino/notes/latest/linux
-   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/hcl/domino/notes/latest/linux:/opt/hcl/domino/notes-capi-14.0/lib/linux64
-   export CPLUS_INCLUDE_PATH=/opt/hcl/domino/notes-capi-14.0/include:/opt/hcl/domino/notes-capi-14.0
+   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/hcl/domino/notes/latest/linux:/opt/hcl/domino/notes-capi-14.5/lib/linux64
+   export CPLUS_INCLUDE_PATH=/opt/hcl/domino/notes-capi-14.5/include:/opt/hcl/domino/notes-capi-14.5
    
    Please note following points,
    (a.)All the "libs" and "includes" are part of the CAPI toolkit releases.
@@ -31,4 +31,5 @@ Please refer to the following steps if you want to compile and run the samples o
 
 5. If the compilation works. Please refer the section "Running HCL C API programs" in this opensource link
    https://opensource.hcltechsw.com/domino-c-api-docs/howto/user_guide/Building_UNIX_Applications/
-   to run the programs.
+   to run the programs.In case compilation fails, recheck if all the environment variables are properly set
+   and all the initial setup are in place as above.
