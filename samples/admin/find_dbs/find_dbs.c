@@ -114,14 +114,14 @@ int main(int argc, char *argv[])
 
 
 /* Initialize strings to point to "" */
-    strcpy(server, full_netpath);
-    strcpy (directory, full_netpath);
+    strncpy(server, full_netpath, sizeof(server)-1);
+    strncpy (directory, full_netpath, sizeof(directory)-1);
 	
 /* Get the command line parameters that the user entered. */
     ProcessArgs(argc, argv, server, directory);
 	
     if (strcmp(directory, "\"\""))
-        strcpy(full_netpath, directory);
+        strncpy(full_netpath, directory, sizeof(full_netpath)-1);
 
     error = NotesInitExtended (argc, argv);
 
@@ -465,11 +465,11 @@ void  LNPUBLIC  ProcessArgs (int argc, char *argv[],
         printf("\n");
         printf("Enter server name: ");
         fflush (stdout);
-        gets(server);
+        fgets(server, STRING_LENGTH, stdin);
         printf("\n");
         printf ("Enter directory name:  ");
         fflush (stdout);
-        gets(directory);
+        fgets(directory, STRING_LENGTH, stdin);
 
     }
     else

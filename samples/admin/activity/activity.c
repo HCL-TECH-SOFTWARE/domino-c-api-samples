@@ -240,7 +240,7 @@ STATUS LNCALLBACK ActionRoutine(
 					"\t%.*s: %.*s\n", 
 					items[i].NameLength, 
 					name, 
-					items[i].ValueLength - sizeof(USHORT),
+					(int)(items[i].ValueLength - sizeof(USHORT)),
 					pactivitybuf);				
 				break;
 				}							

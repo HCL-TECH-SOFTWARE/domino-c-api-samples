@@ -4,7 +4,7 @@
 #
 
 #CC defines the compiler.
-CC = g++ -std=c++98 -pedantic
+CC = g++
 
 # Set CCOPTS - the compiler options.
 CCOPTS = -c -m64

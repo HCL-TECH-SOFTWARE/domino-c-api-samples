@@ -703,15 +703,15 @@ void  LNPUBLIC  ProcessArgs (int argc, char *argv[], char *server_name,
     {
         printf("Enter Server name: ");
         fflush (stdout);
-        gets(server_name);
+        fgets(server_name, MAXSPRINTF, stdin);
         printf("\n");
         printf("Enter database name: ");
         fflush (stdout);
-        gets(db_name);
+        fgets(db_name, MAXSPRINTF, stdin);
         printf("\n");
         printf ("Enter subject text:  ");
         fflush (stdout);
-        gets(subject);
+        fgets(subject, MAXSPRINTF, stdin);
     }    
     else
     {

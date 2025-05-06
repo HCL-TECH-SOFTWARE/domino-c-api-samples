@@ -128,7 +128,7 @@ int main(int argc, char *argv[])
     {
         PRINTLOG("\nEnter the database filename: ");
         fflush(stdout);
-        gets(path_name);
+        fgets(path_name, MAXPATH, stdin);
     }
     else
         strcpy(path_name, argv[1]);

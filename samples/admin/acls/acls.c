@@ -666,11 +666,11 @@ void  LNPUBLIC  ProcessArgs (int argc, char *argv[],
     {
         printf("Enter database name: ");      
         fflush (stdout);
-        gets(db_name);
+        fgets(db_name, STRING_LENGTH, stdin);
         printf("\n");
         printf ("Enter the manager name:  ");
         fflush (stdout);
-        gets(db_mgr);
+        fgets(db_mgr, STRING_LENGTH, stdin);
     }    
     else
     {

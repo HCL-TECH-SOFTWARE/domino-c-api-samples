@@ -865,19 +865,19 @@ void  LNPUBLIC  ProcessArgs (int argc, char *argv[],
     {
         printf("Enter name of HCL Domino Server where DB resides: ");
         fflush(stdout);
-        gets(ServerName);
+        fgets(ServerName, STRING_LENGTH, stdin);
 
         printf("Enter name of database: ");
         fflush(stdout);
-        gets(DbPathName);
+        fgets(DbPathName, STRING_LENGTH, stdin);
  
         printf("Enter name of an ASCII file containing Main Doc body: ");
         fflush(stdout);
-        gets(MainFileName);
+        fgets(MainFileName, STRING_LENGTH, stdin);
  
         printf("Enter name of an ASCII file containing Reponse body: ");
         fflush(stdout);
-        gets(RespFileName);
+        fgets(RespFileName, STRING_LENGTH, stdin);
  
     }
     else

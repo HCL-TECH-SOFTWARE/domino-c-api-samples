@@ -29,9 +29,7 @@ specific system administration is required to effectively run this sample.
 
 ENVIRONMENTS
 ------------
-Windows (32-bit)
 Windows (64-bit)
-Linux RedHat
 Linux RedHat 64 bit
 IBM AIX
 IBM i
@@ -45,11 +43,7 @@ w_secdom.c   - Windows specific code.
 
 u_secdom.c   - UNIX specific code
 
-mswin32.mak  - Make file for Windows 32-bit
-
 mswin64.mak  - Make file for Windows 64-bit
-
-mswin32.def  - DLL module definition file for Windows 32-bit.
 
 mswin64.def  - DLL module definition file for Windows 64-bit.
 

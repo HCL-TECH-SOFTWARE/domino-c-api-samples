@@ -266,7 +266,7 @@ void GetClusterInfo (void)
     fflush(stdin);
     ioctl(0, TCSETS, &cfg);
     printf("Enter the Server/Org name (or RETURN to exit)-> ");
-    (void) gets(szDBServerNameString);
+    (void) fgets(szDBServerNameString, LINEOTEXT, stdin);
 
     if (!strcmp(szDBServerNameString, ""))
     {
@@ -301,7 +301,7 @@ void GetDBOptions (void)
     fflush(stdin);
     ioctl(0, TCSETS, &cfg);
     printf("Enter the Server/Org name (or RETURN to cancel)-> ");
-    (void) gets(szDBServerNameString);
+    (void) fgets(szDBServerNameString, LINEOTEXT, stdin);
     if (!strcmp(szDBServerNameString, ""))
     {
         printf("\n"); 
@@ -312,7 +312,7 @@ void GetDBOptions (void)
     fflush(stdin);
     ioctl(0, TCSETS, &cfg);
     printf("Enter the Database name (or RETURN to cancel)-> ");
-    (void) gets(szDBNameString);
+    (void) fgets(szDBNameString, LINEOTEXT, stdin);
     if (!strcmp(szDBNameString, ""))
     {
         printf("\n"); 
@@ -346,7 +346,7 @@ void GetServerRestrict (void)
     fflush(stdin);
     ioctl(0, TCSETS, &cfg);
     printf("Enter the Server/Org name (or RETURN to cancel)-> ");
-    (void) gets(szDBServerNameString);
+    (void) fgets(szDBServerNameString, LINEOTEXT, stdin);
     if (!strcmp(szDBServerNameString, ""))
     {
         printf("\n"); 
@@ -380,7 +380,7 @@ void GetThreshold (void)
     fflush(stdin);
     ioctl(0, TCSETS, &cfg);
     printf("Enter the Server/Org name (or RETURN to cancel)-> ");
-    (void) gets(szDBServerNameString);
+    (void) fgets(szDBServerNameString, LINEOTEXT, stdin);
     if (!strcmp(szDBServerNameString, ""))
     {
         printf("\n"); 
@@ -416,7 +416,7 @@ void ManageDBOptions (void)
     fflush(stdin);
     ioctl(0, TCSETS, &cfg);
     printf("Enter the Server/Org name (or RETURN to cancel)-> ");
-    (void) gets(szDBServerNameString);
+    (void) fgets(szDBServerNameString, LINEOTEXT, stdin);
     if (!strcmp(szDBServerNameString, ""))
     {
         printf("\n"); 
@@ -427,7 +427,7 @@ void ManageDBOptions (void)
     fflush(stdin);
     ioctl(0, TCSETS, &cfg);
     printf("Enter the Database name (or RETURN to cancel)-> ");
-    (void) gets(szDBNameString);
+    (void) fgets(szDBNameString, LINEOTEXT, stdin);
     if (!strcmp(szDBNameString, ""))
     {
         printf("\n"); 
@@ -442,7 +442,7 @@ void ManageDBOptions (void)
     printf("\t1 = Mark Out Of Service\n");
     printf("\t2 = Mark For Deletion\n");
     printf("(or RETURN to cancel)-> ");
-    (void) gets(szMark);
+    (void) fgets(szMark, LINEOTEXT, stdin);
     if (!strcmp(szMark, ""))
     {
         printf("\n"); 
@@ -485,7 +485,7 @@ void SetServerRestrict (void)
     fflush(stdin);
     ioctl(0, TCSETS, &cfg);
     printf("Enter the Server/Org name (or RETURN to cancel)-> ");
-    (void) gets(szDBServerNameString);
+    (void) fgets(szDBServerNameString, LINEOTEXT, stdin);
     if (!strcmp(szDBServerNameString, ""))
     {
         printf("\n"); 
@@ -500,7 +500,7 @@ void SetServerRestrict (void)
     printf("\t1 = Restrict Server\n");
     printf("\t2 = Shutdown Server\n");
     printf("(or RETURN to cancel)-> ");
-    (void) gets(szRestrict);
+    (void) fgets(szRestrict, LINEOTEXT, stdin);
     if (!strcmp(szRestrict, ""))
     {
         printf("\n"); 
@@ -548,7 +548,7 @@ void SetThreshold (void)
     fflush(stdin);
     ioctl(0, TCSETS, &cfg);
     printf("Enter the Server/Org name (or RETURN to cancel)-> ");
-    (void) gets(szDBServerNameString);
+    (void) fgets(szDBServerNameString, LINEOTEXT, stdin);
     if (!strcmp(szDBServerNameString, ""))
     {
         printf("\n"); 
@@ -559,7 +559,7 @@ void SetThreshold (void)
     fflush(stdin);
     ioctl(0, TCSETS, &cfg);
     printf("Enter New Server Availability Threshold (or RETURN to cancel)-> ");
-    (void) gets(szThreshold);
+    (void) fgets(szThreshold, LINEOTEXT, stdin);
     if (!strcmp(szThreshold, ""))
     {
         printf("\n"); 
@@ -598,7 +598,7 @@ void CreateCopyDB (void)
     fflush(stdin);
     ioctl(0, TCSETS, &cfg);
     printf("Enter the Source Server/Org name (or RETURN to cancel)-> ");
-    (void) gets(szDBServerNameString);
+    (void) fgets(szDBServerNameString, LINEOTEXT, stdin);
     if (!strcmp(szDBServerNameString, ""))
     {
         printf("\n"); 
@@ -609,7 +609,7 @@ void CreateCopyDB (void)
     fflush(stdin);
     ioctl(0, TCSETS, &cfg);
     printf("Enter the Source Database name (or RETURN to cancel)-> ");
-    (void) gets(szDBNameString);
+    (void) fgets(szDBNameString, LINEOTEXT, stdin);
     if (!strcmp(szDBNameString, ""))
     {
         printf("\n"); 
@@ -620,7 +620,7 @@ void CreateCopyDB (void)
     fflush(stdin);
     ioctl(0, TCSETS, &cfg);
     printf("Enter the Destination Server/Org name (or RETURN to cancel)-> ");
-    (void) gets(szDBCopyServer);
+    (void) fgets(szDBCopyServer, LINEOTEXT, stdin);
     if (!strcmp(szDBCopyServer, ""))
     {
         printf("\n"); 
@@ -631,7 +631,7 @@ void CreateCopyDB (void)
     fflush(stdin);
     ioctl(0, TCSETS, &cfg);
     printf("Enter the Destination Database name (or RETURN to cancel)-> ");
-    (void) gets(szDBCopyFile);
+    (void) fgets(szDBCopyFile, LINEOTEXT, stdin);
     if (!strcmp(szDBCopyFile, ""))
     {
         printf("\n"); 
@@ -642,7 +642,7 @@ void CreateCopyDB (void)
     fflush(stdin);
     ioctl(0, TCSETS, &cfg);
     printf("Specify Replica or New Copy (R/N) (or RETURN to cancel) -> ");
-    (void) gets(szReplNew);
+    (void) fgets(szReplNew, LINEOTEXT, stdin);
     if (!strcmp(szReplNew, ""))
     {
         printf("\n"); 
