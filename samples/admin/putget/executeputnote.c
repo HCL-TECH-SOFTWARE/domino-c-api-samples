@@ -618,7 +618,7 @@ start of the name. */
 
 /* Clear the field name. */
 
-    strncpy (field_name, "", MAXPATH-1);
+    strncpy (field_name, "", 1);
     name_len = 0;
 
 /* Start a loop that will get the field name. We check for bad input
@@ -731,7 +731,7 @@ start of the type string. */
 
 /* Clear the field type. */
 
-    strncpy (ascii_datatype, "", MAXPATH-1);
+    strncpy (ascii_datatype, "", 1);
     type_len = 0;
 
 /* Start a loop that will get the field type. We check for bad input
@@ -842,7 +842,7 @@ start of the field contents. */
 
 /* Clear the field. */
 
-    strncpy (field_contents, "", MAXPATH-1);
+    strncpy (field_contents, "", 1);
     field_len = 0;
 
 /* Start a loop that will get the field. We check for bad input

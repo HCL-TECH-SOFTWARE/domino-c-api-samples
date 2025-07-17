@@ -24,7 +24,6 @@ for full text indexing for remote DB, checks its last indexed date and time.
 ENVIRONMENTS
 ------------
 Windows (64-bit)
-Linux (64-bit)
 
 
 FILES
@@ -35,11 +34,10 @@ ftindexreq.c  -  Main program.
 
 mswin64.mak     - Make file for Windows 64-bit.
 
-linux64.mak     - Make file for Linux 64-bit.
 
 
-RUNNING ftsearch 
-----------------
+RUNNING ftindexreq 
+------------------
 Copy the sample database, "ftsearch.nsf", to the Domino data
 directory on your system. 
 
@@ -66,4 +64,10 @@ extension you would type these.
 CHECKING THE RESULTS
 --------------------
 
+FTIndexRequest is success on creating the remote server request for Indexing.
 
+Waiting for database to be full text indexed...
+Waiting for database to be full text indexed...
+Waiting for database to be full text indexed...
+Waiting for database to be full text indexed...
+Waiting for database to be full text indexed...
