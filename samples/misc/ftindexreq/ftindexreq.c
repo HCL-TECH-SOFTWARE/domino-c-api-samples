@@ -36,7 +36,10 @@
 
 /* OS and C include files */
 
+#if !defined(UNIX)
 #include <windows.h>
+#endif
+//#include <windows.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -49,6 +52,12 @@
 #include <osmem.h>
 #include <osmisc.h>
 #include <ostime.h>
+#include <client.h>
+
+#if defined(UNIX)
+#include <unistd.h>
+#endif
+
 
 #if defined(CAPI_TESTING) 
 #include "printlog.h" 
@@ -169,7 +178,11 @@ short IsRemoteDbIndexed(DBHANDLE hDB, DWORD waitTime)
       }
 
       PRINTLOG("\nWaiting for database to be full text indexed...");
-      Sleep(1000L);
+#if defined(UNIX)
+		usleep(1000L);
+#else
+		Sleep(1000L);
+#endif
       wCounter++;
     } while (ERR(sErr) != NOERROR);
 
