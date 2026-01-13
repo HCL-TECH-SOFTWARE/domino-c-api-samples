@@ -36,7 +36,7 @@
 
 /* OS and C include files */
 
-#if !defined(UNIX)
+#if defined(W64)
 #include <windows.h>
 #endif
 
