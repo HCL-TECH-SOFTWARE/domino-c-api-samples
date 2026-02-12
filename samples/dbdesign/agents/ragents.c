@@ -342,6 +342,11 @@ STATUS  LNPUBLIC  SetRunContext( HAGENT hOpenAgent, WORD wActionType,
         if (error = AgentRedirectStdout (*hOpenAgentCtx, AGENT_REDIR_MEMORY))
             goto Exit0;
 
+        /* Set to TRUE If don't want to log to console, FALSE otherwise */
+        error = SetSupressPrintToConsole(*hOpenAgentCtx, FALSE);
+        if (error)
+            goto Exit0;
+
         if (hParmNote != NULLHANDLE)
             error = AgentSetDocumentContext (*hOpenAgentCtx, hParmNote);
     }            
