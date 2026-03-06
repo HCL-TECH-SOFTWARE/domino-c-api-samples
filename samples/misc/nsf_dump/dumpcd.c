@@ -3949,7 +3949,7 @@ void  LNPUBLIC   DumpCDButton( char *RecordPtr, DWORD RecordLength )
 	if (wFlags & BUTTON_RUNFLAG_MINIMUM)	  fprintf( dumpfile, "MINIMUM " );
 	if (wFlags & BUTTON_RUNFLAG_CONTENT)	  fprintf( dumpfile, "CONTENT " );
 	if (wFlags & BUTTON_RUNFLAG_PROPORTIONAL) fprintf( dumpfile, "PROPORTIONAL " );       /* New for Notes/Domino 6 */
-	if (wFlags & BUTTON_FOCUS_ON)			  fprintf( dumpfile, "FOCUS_ON " );			  /* New for Notes/Domino 6 */
+	//if (wFlags & BUTTON_FOCUS_ON)			  fprintf( dumpfile, "FOCUS_ON " );			  /* Macro got removed from Notes/Domino in V14.5.1 */
 	if (wFlags & BUTTON_RUNFLAG_WIDTH_MASK)   fprintf( dumpfile, "WIDTH_MASK " );
 	if (wFlags & BUTTON_EDGE_ROUNDED)		  fprintf( dumpfile, "EDGE_ROUNDED " );       /* New for Notes/Domino 6 */
 	if (wFlags & BUTTON_EDGE_SQUARE)		  fprintf( dumpfile, "BUTTON_EDGE_SQUARE " ); /* New for Notes/Domino 6 */
